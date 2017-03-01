@@ -42,5 +42,6 @@
 
     <modules>
 		<module>leesite-dependencies</module>
+        <module>leesite-parent</module>
 	</modules>
 </project>
