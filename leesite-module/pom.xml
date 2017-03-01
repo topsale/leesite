@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.funtl.leesite</groupId>
+        <artifactId>leesite-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../leesite-parent</relativePath>
+    </parent>
+	
+    <artifactId>leesite-module</artifactId>
+    <packaging>war</packaging>
+	
+    <name>leesite-module</name>
+    <description>LeeSite Module</description>
+    <url>https://github.com/topsale/leesite</url>
+
+    <organization>
+        <name>深圳市鲁斯菲尔科技有限公司</name>
+        <url>http://www.funtl.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>lusifer</id>
+            <name>Lusifer</name>
+            <email>lusifer at tssup.com</email>
+            <organization>深圳市鲁斯菲尔科技有限公司</organization>
+            <organizationUrl>http://www.funtl.com</organizationUrl>
+            <roles>
+                <role>CTO</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+        <main.basedir>${basedir}/..</main.basedir>
+    </properties>
+
+    <dependencies>
+
+    </dependencies>
+
+    <build>
+        <outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes/</outputDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
+                <excludes>
+                    <exclude>testing/**</exclude>
+                    <exclude>production/**</exclude>
+                    <exclude>development/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/profiles/${profiles.active}</directory>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <!-- 测试环境 -->
+        <profile>
+            <id>testing</id>
+            <properties>
+                <profiles.active>testing</profiles.active>
+            </properties>
+        </profile>
+
+        <!-- 生产环境 -->
+        <profile>
+            <id>production</id>
+            <properties>
+                <profiles.active>production</profiles.active>
+            </properties>
+        </profile>
+
+        <!-- 开发环境 -->
+        <profile>
+            <id>development</id>
+            <properties>
+                <profiles.active>development</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+</project>
