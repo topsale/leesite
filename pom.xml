@@ -41,6 +41,6 @@
     </properties>
 
     <modules>
-		<module></module>
+		<module>leesite-dependencies</module>
 	</modules>
 </project>
