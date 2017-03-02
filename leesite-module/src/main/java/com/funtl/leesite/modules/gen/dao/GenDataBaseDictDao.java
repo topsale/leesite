@@ -1,0 +1,59 @@
+/*
+ * Copyright 2015-2017 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.funtl.leesite.modules.gen.dao;
+
+import java.util.List;
+
+import com.funtl.leesite.common.persistence.CrudDao;
+import com.funtl.leesite.common.persistence.annotation.MyBatisDao;
+import com.funtl.leesite.modules.gen.entity.GenTable;
+import com.funtl.leesite.modules.gen.entity.GenTableColumn;
+
+/**
+ * 业务表字段DAO接口
+ *
+ * @author Lusifer
+ * @version 2013-10-15
+ */
+@MyBatisDao
+public interface GenDataBaseDictDao extends CrudDao<GenTableColumn> {
+
+	/**
+	 * 查询表列表
+	 *
+	 * @param genTable
+	 * @return
+	 */
+	List<GenTable> findTableList(GenTable genTable);
+
+	/**
+	 * 获取数据表字段
+	 *
+	 * @param genTable
+	 * @return
+	 */
+	List<GenTableColumn> findTableColumnList(GenTable genTable);
+
+	/**
+	 * 获取数据表主键
+	 *
+	 * @param genTable
+	 * @return
+	 */
+	List<String> findTablePK(GenTable genTable);
+
+}
