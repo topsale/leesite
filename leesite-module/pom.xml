@@ -196,6 +196,18 @@
         <!-- Logs Begin -->
         <dependency>
             <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
         </dependency>
         <dependency>
@@ -226,6 +238,14 @@
             <artifactId>gson</artifactId>
         </dependency>
         <!-- Google End -->
+
+        <!-- MySQL Begin -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- MySQL End -->
 
         <!-- MyBatis Begin -->
         <dependency>
@@ -355,6 +375,37 @@
         </dependency>
         <!-- GitHub End -->
 
+        <!-- Restlet Begin -->
+        <dependency>
+            <groupId>org.restlet.jee</groupId>
+            <artifactId>org.restlet</artifactId>
+            <version>2.3.9</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet-2.3.9.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.restlet.jee</groupId>
+            <artifactId>org.restlet.ext.jackson</artifactId>
+            <version>2.3.9</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.jackson-2.3.9.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.restlet.jee</groupId>
+            <artifactId>org.restlet.ext.servlet</artifactId>
+            <version>2.3.9</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.servlet-2.3.9.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.restlet.jee</groupId>
+            <artifactId>org.restlet.ext.fileupload</artifactId>
+            <version>2.3.9</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.fileupload-2.3.9.jar</systemPath>
+        </dependency>
+        <!-- Restlet End -->
+
         <!-- Other Begin -->
         <dependency>
             <groupId>net.sf.dozer</groupId>
@@ -401,13 +452,6 @@
             <version>1.0.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/QRCode.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.restlet.jee</groupId>
-            <artifactId>org.restlet.ext.servlet</artifactId>
-            <version>2.3.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.servlet-2.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>opensymphony</groupId>

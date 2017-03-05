@@ -75,7 +75,8 @@
         <jedis.version>2.9.0</jedis.version>
         <taglibs.version>1.1.2</taglibs.version>
         <hyperic-sigar.version>1.6.4</hyperic-sigar.version>
-        <restlet-ext.version>2.3.9</restlet-ext.version>
+        <mysql-connector-java.version>5.1.30</mysql-connector-java.version>
+        <restlet-jee.version>2.3.9</restlet-jee.version>
         <spring.version>4.3.5.RELEASE</spring.version>
         <spring-modules.version>0.8</spring-modules.version>
         <spring-data-redis.version>1.7.6.RELEASE</spring-data-redis.version>
@@ -366,6 +367,15 @@
             </dependency>
             <!-- Google End -->
 
+            <!-- MySQL Begin -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- MySQL End -->
+
             <!-- MyBatis Begin -->
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -490,6 +500,29 @@
             </dependency>
             <!-- GitHub End -->
 
+            <!-- Restlet Begin -->
+            <dependency>
+                <groupId>org.restlet.jee</groupId>
+                <artifactId>org.restlet</artifactId>
+                <version>${restlet-jee.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.restlet.jee</groupId>
+                <artifactId>org.restlet.ext.jackson</artifactId>
+                <version>${restlet-jee.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.restlet.jee</groupId>
+                <artifactId>org.restlet.ext.servlet</artifactId>
+                <version>${restlet-jee.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.restlet.jee</groupId>
+                <artifactId>org.restlet.ext.fileupload</artifactId>
+                <version>${restlet-jee.version}</version>
+            </dependency>
+            <!-- Restlet End -->
+
             <!-- Other Begin -->
             <dependency>
                 <groupId>net.sf.dozer</groupId>
@@ -535,11 +568,6 @@
                 <groupId>org.hyperic</groupId>
                 <artifactId>sigar</artifactId>
                 <version>${hyperic-sigar.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.restlet.jee</groupId>
-                <artifactId>org.restlet.ext.servlet</artifactId>
-                <version>${restlet-ext.version}</version>
             </dependency>
             <dependency>
                 <groupId>opensymphony</groupId>
