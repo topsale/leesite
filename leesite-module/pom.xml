@@ -113,6 +113,13 @@
         </dependency>
         <!-- Apache Shiro End -->
 
+        <!-- Alibaba Begin -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+        <!-- Alibaba End -->
+
         <!-- Spring Framework Begin -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -145,6 +152,10 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
         </dependency>
         <!-- Spring Framework End -->
 

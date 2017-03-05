@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template>
+	<name>service</name>
+	<filePath>src/main/java/${packageName}/${moduleName}/service/${subModuleName}</filePath>
+	<fileName>${ClassName}Service.java</fileName>
+	<content><![CDATA[
+/**
+ * Copyright &copy; 2015-2020 <a href="http://www.???.com/">JeePlus</a> All rights reserved.
+ */
+package ${packageName}.${moduleName}.service<#if subModuleName != "">.${subModuleName}</#if>;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+<#list table.importGridJavaList as i>
+import ${i};
+</#list>
+import com.jeeplus.common.persistence.Page;
+import com.jeeplus.common.service.CrudService;
+import ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
+import ${packageName}.${moduleName}.dao<#if subModuleName != "">.${subModuleName}</#if>.${ClassName}Dao;
+
+/**
+ * ${functionName}Service
+ * @author ${functionAuthor}
+ * @version ${functionVersion}
+ */
+@Service
+@Transactional(readOnly = true)
+public class ${ClassName}Service extends CrudService<${ClassName}Dao, ${ClassName}> {
+
+	public ${ClassName} get(String id) {
+		return super.get(id);
+	}
+	
+	public List<${ClassName}> findList(${ClassName} ${className}) {
+		return super.findList(${className});
+	}
+	
+	public Page<${ClassName}> findPage(Page<${ClassName}> page, ${ClassName} ${className}) {
+		return super.findPage(page, ${className});
+	}
+	
+	@Transactional(readOnly = false)
+	public void save(${ClassName} ${className}) {
+		super.save(${className});
+	}
+	
+	@Transactional(readOnly = false)
+	public void delete(${ClassName} ${className}) {
+		super.delete(${className});
+	}
+	
+	<#list table.columnList as c>
+		<#-- 如果不是基类属性 -->
+		<#if c.tableName?? && c.tableName!=''>
+	public Page<${c.simpleJavaType}> findPageBy${c.simpleJavaField}(Page<${c.simpleJavaType}> page, ${c.simpleJavaType} ${c.simpleJavaField}) {
+		${c.simpleJavaField}.setPage(page);
+		page.setList(dao.findListBy${c.simpleJavaField}(${c.simpleJavaField}));
+		return page;
+	}
+	</#if>
+	</#list>
+	
+	
+	
+}]]>
+	</content>
+</template>
