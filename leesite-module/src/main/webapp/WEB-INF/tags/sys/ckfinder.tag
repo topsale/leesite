@@ -1,5 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ include file="/webpage/include/taglib.jsp"%>
+<%@ include file="/views/include/taglib.jsp"%>
 <%@ attribute name="input" type="java.lang.String" required="true" description="输入框"%>
 <%@ attribute name="type" type="java.lang.String" required="true" description="files、images、flash、thumb"%>
 <%@ attribute name="uploadPath" type="java.lang.String" required="true" description="打开文件管理的上传路径"%>

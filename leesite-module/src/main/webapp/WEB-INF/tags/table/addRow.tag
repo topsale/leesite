@@ -1,5 +1,5 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ include file="/webpage/include/taglib.jsp"%>
+<%@ include file="/views/include/taglib.jsp"%>
 <%@ attribute name="url" type="java.lang.String" required="true"%>
 <%@ attribute name="title" type="java.lang.String" required="true"%>
 <%@ attribute name="width" type="java.lang.String" required="false"%>

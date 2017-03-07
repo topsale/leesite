@@ -63,7 +63,7 @@ public class UserfilesDownloadServlet extends HttpServlet {
 			return;
 		} catch (FileNotFoundException e) {
 			req.setAttribute("exception", new FileNotFoundException("请求的文件不存在"));
-			req.getRequestDispatcher("/webpage/error/404.jsp").forward(req, resp);
+			req.getRequestDispatcher("/views/error/404.jsp").forward(req, resp);
 		}
 	}
 

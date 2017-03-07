@@ -13,6 +13,13 @@
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="Lusifer" name="author" />
 
+        <!-- BEGIN REQUIRE TOP -->
+        <script src="${ctxStatic}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="${ctxStatic}/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+        <link href="${ctxStatic}/assets/global/plugins/jquery-jbox/2.3/Skins/Bootstrap/jbox.min.css" rel="stylesheet" />
+        <script src="${ctxStatic}/assets/global/plugins/jquery-jbox/2.3/jquery.jBox-2.3.min.js" type="text/javascript"></script>
+        <!-- END REQUIRE TOP -->
+
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="${ctxStatic}/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <link href="${ctxStatic}/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
@@ -42,11 +49,13 @@
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="index.html" method="post">
+            <form class="login-form" action="${ctx}/login" method="post">
                 <div class="form-title">
                     <span class="form-title">管理员</span>
                     <span class="form-subtitle">欢迎您登录</span>
                 </div>
+
+                <sys:message content="${message}" />
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
                     <span> 输入您的账号和密码 </span>
@@ -54,19 +63,25 @@
                 <div class="form-group">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">账号</label>
-                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="账号" name="username" />
+                    <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="账号" id="username" name="username" value="${username}" />
                 </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">密码</label>
-                    <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="password" />
+                    <input class="form-control form-control-solid placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" id="password" name="password" />
                 </div>
+                <c:if test="${isValidateCodeLogin}">
+                    <div class="form-group">
+                        <label class="control-label visible-ie8 visible-ie9">验证码:</label>
+                        <sys:validateCode name="validateCode" inputCssStyle="display:inline; width:220px;" imageCssStyle="height:43px; margin-top:-3px; cursor:pointer;"/>
+                    </div>
+                </c:if>
                 <div class="form-actions">
                     <button type="submit" class="btn red btn-block uppercase">登录</button>
                 </div>
                 <div class="form-actions">
                     <div class="pull-left">
                         <label class="rememberme mt-checkbox mt-checkbox-outline">
-                            <input type="checkbox" name="remember" value="1" /> 记住我
+                            <input type="checkbox" id="rememberMe" name="rememberMe" ${rememberMe ? 'checked' : ''} /> 记住我
                             <span></span>
                         </label>
                     </div>
@@ -101,7 +116,6 @@
         <![endif]-->
 
         <!-- BEGIN CORE PLUGINS -->
-        <script src="${ctxStatic}/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="${ctxStatic}/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="${ctxStatic}/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
         <script src="${ctxStatic}/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>

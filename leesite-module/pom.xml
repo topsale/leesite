@@ -457,6 +457,10 @@
             <groupId>opensymphony</groupId>
             <artifactId>sitemesh</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+        </dependency>
         <!-- Other End -->
     </dependencies>
 

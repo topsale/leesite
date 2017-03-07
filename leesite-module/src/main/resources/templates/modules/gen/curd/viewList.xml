@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
 	<name>viewList</name>
-	<filePath>src/WebContent/webpage/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
+	<filePath>src/WebContent/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
 	<fileName>${className}List.jsp</fileName>
 	<content><![CDATA[
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="/webpage/include/taglib.jsp"%>
+<%@ include file="/views/include/taglib.jsp"%>
 <html>
 <head>
 	<title>${functionNameSimple}管理</title>
