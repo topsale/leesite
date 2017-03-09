@@ -88,7 +88,7 @@ public class MenuTag extends TagSupport {
 		if (!parent.hasPermisson()) return "";
 		if (level > 0) {//level 为0是功能菜单
 
-			menuString.append("<li>");
+			menuString.append("<li class=\"nav-item\">");
 
 			ServletContext context = SpringContextHolder.getBean(ServletContext.class);
 			if (parent.getHref() != null && parent.getHref().length() > 0) {
@@ -107,16 +107,16 @@ public class MenuTag extends TagSupport {
 
 		if ((parent.getHref() == null || parent.getHref().trim().equals("")) && parent.getIsShow().equals("1")) {//如果是父节点且显示
 			if (level > 0) {
-				menuString.append("<a href=\"" + href + "\"><i class=\"fa " + parent.getIcon() + "\"></i> <span class=\"nav-label\">" + parent.getName() + "</span><span class=\"fa arrow\"></span></a>");
+				menuString.append("<a href=\"" + href + "\" class=\"nav-link nav-toggle\"><i class=\"" + parent.getIcon() + "\"></i><span class=\"title\">" + parent.getName() + "</span><span class=\"arrow\"></span></a>");
 			}
 			if (level == 1) {
-				menuString.append("<ul class=\"nav nav-second-level\">");
+				menuString.append("<ul class=\"sub-menu\"><li class=\"nav-item\">");
 			} else if (level == 2) {
-				menuString.append("<ul class=\"nav nav-third-level\">");
+				menuString.append("<ul class=\"sub-menu\"><li class=\"nav-item\">");
 			} else if (level == 3) {
-				menuString.append("<ul class=\"nav nav-forth-level\">");
+				menuString.append("<ul class=\"sub-menu\"><li class=\"nav-item\">");
 			} else if (level == 4) {
-				menuString.append("<ul class=\"nav nav-fifth-level\">");
+				menuString.append("<ul class=\"sub-menu\"><li class=\"nav-item\">");
 			}
 			for (Menu child : menuList) {
 				if (child.getParentId().equals(parent.getId()) && child.getIsShow().equals("1")) {
@@ -127,7 +127,7 @@ public class MenuTag extends TagSupport {
 				menuString.append("</ul>");
 			}
 		} else {
-			menuString.append("<a class=\"J_menuItem\"  href=\"" + href + "\" ><i class=\"fa " + parent.getIcon() + "\"></i> <span class=\"nav-label\">" + parent.getName() + "</span></a>");
+			menuString.append("<a href=\"" + href + "\" class=\"nav-link\"><i class=\"" + parent.getIcon() + "\"></i><span class=\"title\">" + parent.getName() + "</span></a>");
 		}
 		if (level > 0) {
 			menuString.append("</li>");

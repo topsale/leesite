@@ -14,8 +14,8 @@
 		<tag-class>com.funtl.leesite.common.tag.MenuTag</tag-class>
 		<body-content>JSP</body-content>
 		<display-name>左侧菜单生成控件</display-name>
-		<small-icon>111</small-icon>
-		<description>左侧菜单生成控件可选样式ace,bootstrap</description>
+		<small-icon></small-icon>
+		<description>左侧菜单生成控件</description>
 		<attribute>
 			<name>menu</name>
 			<required>false</required>
@@ -23,22 +23,4 @@
 			<description>菜单信息</description>
 		</attribute>
 	</tag>
-	
-	
-	<!-- 菜单生成控件 -->
-	<tag>
-		<name>aceMenu</name>
-		<tag-class>com.funtl.leesite.common.tag.AceMenuTag</tag-class>
-		<body-content>JSP</body-content>
-		<display-name>左侧菜单生成控件</display-name>
-		<small-icon>111</small-icon>
-		<description>左侧菜单生成控件可选样式ace,bootstrap</description>
-		<attribute>
-			<name>menu</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-			<description>菜单信息</description>
-		</attribute>
-	</tag>
-	<!-- 自动完成 -->
 </taglib>

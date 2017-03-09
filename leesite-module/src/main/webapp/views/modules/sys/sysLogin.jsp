@@ -41,6 +41,12 @@
     <!-- END PAGE LEVEL STYLES -->
 
     <link rel="shortcut icon" href="${ctxStatic}/favicon.ico" />
+
+    <style type="text/css">
+        * {
+            font-family: "Microsoft YaHei" ! important;
+        }
+    </style>
 </head>
 <body class=" login">
 <!-- BEGIN LOGO -->
