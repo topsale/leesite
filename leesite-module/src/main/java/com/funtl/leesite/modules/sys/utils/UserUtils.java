@@ -20,10 +20,19 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.funtl.leesite.common.persistence.Page;
 import com.funtl.leesite.common.service.BaseService;
 import com.funtl.leesite.common.sms.SMSUtils;
 import com.funtl.leesite.common.utils.CacheUtils;
 import com.funtl.leesite.common.utils.SpringContextHolder;
+import com.funtl.leesite.modules.iim.entity.MailBox;
+import com.funtl.leesite.modules.iim.entity.MailPage;
+import com.funtl.leesite.modules.iim.service.MailBoxService;
+import com.funtl.leesite.modules.oa.entity.OaNotify;
+import com.funtl.leesite.modules.oa.service.OaNotifyService;
 import com.funtl.leesite.modules.sys.dao.AreaDao;
 import com.funtl.leesite.modules.sys.dao.MenuDao;
 import com.funtl.leesite.modules.sys.dao.OfficeDao;
@@ -393,6 +402,60 @@ public class UserUtils {
 		} else {
 			return new Area();
 		}
+	}
+
+	/**
+	 * 未读通知笔数
+	 * @return
+	 */
+	public static long noReadNotifyCount() {
+		OaNotifyService oaNotifyService = SpringContextHolder.getBean(OaNotifyService.class);
+		OaNotify oaNotify = new OaNotify();
+		oaNotify.setSelf(true);
+		oaNotify.setReadFlag("0");
+		return oaNotifyService.findCount(oaNotify);
+	}
+
+	/**
+	 * 未读通知列表
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public static List<OaNotify> noReadNotifyList(HttpServletRequest request, HttpServletResponse response) {
+		OaNotifyService oaNotifyService = SpringContextHolder.getBean(OaNotifyService.class);
+		OaNotify oaNotify = new OaNotify();
+		oaNotify.setSelf(true);
+		oaNotify.setReadFlag("0");
+		Page<OaNotify> page = oaNotifyService.find(new Page<OaNotify>(request, response), oaNotify);
+		return page.getList();
+	}
+
+	/**
+	 * 未读邮件笔数
+	 * @return
+	 */
+	public static int noReadMailCount() {
+		MailBoxService mailBoxService = SpringContextHolder.getBean(MailBoxService.class);
+		MailBox mailBox = new MailBox();
+		mailBox.setReceiver(UserUtils.getUser());
+		mailBox.setReadstatus("0");//筛选未读
+		return mailBoxService.getCount(mailBox);
+	}
+
+	/**
+	 * 未读邮件列表
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	public static List<MailBox> noReadMailList(HttpServletRequest request, HttpServletResponse response) {
+		MailBoxService mailBoxService = SpringContextHolder.getBean(MailBoxService.class);
+		MailBox mailBox = new MailBox();
+		mailBox.setReceiver(UserUtils.getUser());
+		mailBox.setReadstatus("0");//筛选未读
+		Page<MailBox> page = mailBoxService.findPage(new MailPage<MailBox>(request, response), mailBox);
+		return page.getList();
 	}
 
 }

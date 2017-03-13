@@ -25,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.funtl.leesite.common.config.Global;
 import com.funtl.leesite.common.json.AjaxJson;
-import com.funtl.leesite.common.persistence.Page;
 import com.funtl.leesite.common.security.shiro.session.SessionDAO;
 import com.funtl.leesite.common.servlet.ValidateCodeServlet;
 import com.funtl.leesite.common.utils.CacheUtils;
@@ -33,10 +32,7 @@ import com.funtl.leesite.common.utils.CookieUtils;
 import com.funtl.leesite.common.utils.IdGen;
 import com.funtl.leesite.common.utils.StringUtils;
 import com.funtl.leesite.common.web.BaseController;
-import com.funtl.leesite.modules.iim.entity.MailBox;
-import com.funtl.leesite.modules.iim.entity.MailPage;
 import com.funtl.leesite.modules.iim.service.MailBoxService;
-import com.funtl.leesite.modules.oa.entity.OaNotify;
 import com.funtl.leesite.modules.oa.service.OaNotifyService;
 import com.funtl.leesite.modules.sys.security.FormAuthenticationFilter;
 import com.funtl.leesite.modules.sys.security.SystemAuthorizingRealm.Principal;
@@ -234,39 +230,6 @@ public class LoginController extends BaseController {
 			return "redirect:" + adminPath + "/login";
 		}
 
-		//		// 登录成功后，获取上次登录的当前站点ID
-		//		UserUtils.putCache("siteId", StringUtils.toLong(CookieUtils.getCookie(request, "siteId")));
-
-		//		System.out.println("==========================a");
-		//		try {
-		//			byte[] bytes = com.jeeplus.common.utils.FileUtils.readFileToByteArray(
-		//					com.jeeplus.common.utils.FileUtils.getFile("c:\\sxt.dmp"));
-		//			UserUtils.getSession().setAttribute("kkk", bytes);
-		//			UserUtils.getSession().setAttribute("kkk2", bytes);
-		//		} catch (Exception e) {
-		//			e.printStackTrace();
-		//		}
-		////		for (int i=0; i<1000000; i++){
-		////			//UserUtils.getSession().setAttribute("a", "a");
-		////			request.getSession().setAttribute("aaa", "aa");
-		////		}
-		//		System.out.println("==========================b");
-		//
-		OaNotify oaNotify = new OaNotify();
-		oaNotify.setSelf(true);
-		oaNotify.setReadFlag("0");
-		Page<OaNotify> page = oaNotifyService.find(new Page<OaNotify>(request, response), oaNotify);
-		request.setAttribute("page", page);
-		request.setAttribute("count", page.getList().size());//未读通知条数
-
-
-		//
-		MailBox mailBox = new MailBox();
-		mailBox.setReceiver(UserUtils.getUser());
-		mailBox.setReadstatus("0");//筛选未读
-		Page<MailBox> mailPage = mailBoxService.findPage(new MailPage<MailBox>(request, response), mailBox);
-		request.setAttribute("noReadCount", mailBoxService.getCount(mailBox));
-		request.setAttribute("mailPage", mailPage);
 		// 默认风格
 		String indexStyle = "default";
 		Cookie[] cookies = request.getCookies();
@@ -336,8 +299,6 @@ public class LoginController extends BaseController {
 	 */
 	@RequestMapping(value = "${adminPath}/home")
 	public String home(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
-
 		return "modules/sys/sysHome";
-
 	}
 }

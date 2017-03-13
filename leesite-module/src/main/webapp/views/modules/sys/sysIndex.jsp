@@ -87,12 +87,12 @@
                         <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-bell"></i>
-                                <span class="badge badge-success"> ${count} </span>
+                                <span class="badge badge-success"> ${fns:noReadNotifyCount()} </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>您有
-                                        <span class="bold">${count} 条</span> 未读消息</h3>
+                                        <span class="bold">${fns:noReadNotifyCount()} 条</span> 未读消息</h3>
                                     <a href="${ctx}">全部</a>
                                 </li>
                             </ul>
@@ -104,12 +104,12 @@
                         <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <i class="icon-envelope-open"></i>
-                                <span class="badge badge-danger"> ${noReadCount} </span>
+                                <span class="badge badge-danger"> ${fns:noReadMailCount()} </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="external">
                                     <h3>您有
-                                        <span class="bold">${noReadCount} 条</span> 未读邮件</h3>
+                                        <span class="bold">${fns:noReadMailCount()} 条</span> 未读邮件</h3>
                                     <a href="app_inbox.html">全部</a>
                                 </li>
                             </ul>
@@ -142,7 +142,7 @@
                                 <li>
                                     <a href="app_inbox.html">
                                         <i class="icon-envelope-open"></i> 我的信箱
-                                        <span class="badge badge-danger"> ${noReadCount} </span>
+                                        <span class="badge badge-danger"> ${fns:noReadMailCount()} </span>
                                     </a>
                                 </li>
                                 <li>
@@ -196,6 +196,15 @@
             <!-- END SIDEBAR -->
         </div>
         <!-- END SIDEBAR -->
+        <!-- BEGIN CONTENT -->
+        <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+                <iframe id="leesiteFrame" width="100%" height="100%" frameborder="0" seamless></iframe>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
     </div>
     <!-- END CONTAINER -->
 
