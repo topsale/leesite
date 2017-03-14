@@ -3,8 +3,7 @@
 <%@ attribute name="id" type="java.lang.String" required="true"%>
 <%@ attribute name="url" type="java.lang.String" required="true"%>
 <%@ attribute name="label" type="java.lang.String" required="false"%>
-<button class="btn btn-white btn-sm" onclick="deleteAll()" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash-o"> ${label==null?'删除':label}</i>
-                        </button>
+<button class="btn btn-default btn-sm" onclick="deleteAll()" data-toggle="tooltip" data-placement="top"><i class="fa fa-trash-o"> ${label==null?'删除':label}</i></button>
 <%-- 使用方法： 1.将本tag写在查询的form之前；2.传入table的id和controller的url --%>
 <script type="text/javascript">
 $(document).ready(function() {

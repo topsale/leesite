@@ -200,7 +200,7 @@
         <div class="page-content-wrapper">
             <!-- BEGIN CONTENT BODY -->
             <div class="page-content">
-                <iframe id="leesiteFrame" width="100%" height="100%" frameborder="0" seamless></iframe>
+
             </div>
             <!-- END CONTENT BODY -->
         </div>
