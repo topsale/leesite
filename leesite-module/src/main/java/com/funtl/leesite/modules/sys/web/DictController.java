@@ -85,7 +85,7 @@ public class DictController extends BaseController {
 	@RequestMapping(value = "save")//@Valid 
 	public String save(Dict dict, Model model, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/dict/?repage&type=" + dict.getType();
 		}
 		if (!beanValidator(model, dict)) {
@@ -100,7 +100,7 @@ public class DictController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(Dict dict, Model model, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/dict/?repage";
 		}
 		dictService.delete(dict);
@@ -118,7 +118,7 @@ public class DictController extends BaseController {
 	public String deleteAll(String ids, RedirectAttributes redirectAttributes) {
 
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/dict/?repage";
 		}
 		String idArray[] = ids.split(",");

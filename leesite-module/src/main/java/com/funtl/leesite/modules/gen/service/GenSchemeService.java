@@ -97,7 +97,7 @@ public class GenSchemeService extends BaseService {
 	public boolean checkSrcPathConfig() {
 		String srcPath = Global.getConfig("srcPath");
 		if (StringUtils.isBlank(srcPath)) {
-			logger.error("未在“jeesite.properties”中配置“srcPath”！");
+			logger.error("未在“jeesite.properties”中配置“srcPath”");
 			return false;
 		}
 

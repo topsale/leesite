@@ -6,7 +6,7 @@
 <div id="importBox" class="hide">
 		<form id="importForm" action="${url}" method="post" enctype="multipart/form-data"
 			 style="padding-left:20px;text-align:center;" onsubmit="loading('正在导入，请稍等...');"><br/>
-			<input id="uploadFile" name="file" type="file" style="width:330px"/>导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件！<br/>　　
+			<input id="uploadFile" name="file" type="file" style="width:330px"/>导入文件不能超过5M，仅允许导入“xls”或“xlsx”格式文件<br/>　　
 			
 			
 		</form>

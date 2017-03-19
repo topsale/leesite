@@ -120,7 +120,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(User user, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/user/list?repage";
 		}
 		// 修正引用赋值问题，不知道为何，Company和Office引用的一个实例地址，修改了一个，另外一个跟着修改。
@@ -168,7 +168,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(User user, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/user/list?repage";
 		}
 		if (UserUtils.getUser().getId().equals(user.getId())) {
@@ -192,7 +192,7 @@ public class UserController extends BaseController {
 		for (String id : idArray) {
 			User user = systemService.getUser(id);
 			if (Global.isDemoMode()) {
-				addMessage(redirectAttributes, "演示模式，不允许操作！");
+				addMessage(redirectAttributes, "演示模式，不允许操作");
 				return "redirect:" + adminPath + "/sys/user/list?repage";
 			}
 			if (UserUtils.getUser().getId().equals(user.getId())) {
@@ -225,7 +225,7 @@ public class UserController extends BaseController {
 			new ExportExcel("用户数据", User.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出用户失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出用户失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + adminPath + "/sys/user/list?repage";
 	}
@@ -241,7 +241,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "import", method = RequestMethod.POST)
 	public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/user/list?repage";
 		}
 		try {
@@ -277,7 +277,7 @@ public class UserController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条用户" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入用户失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入用户失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + adminPath + "/sys/user/list?repage";
 	}
@@ -299,7 +299,7 @@ public class UserController extends BaseController {
 			new ExportExcel("用户数据", User.class, 2).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + adminPath + "/sys/user/list?repage";
 	}
@@ -352,7 +352,7 @@ public class UserController extends BaseController {
 		User currentUser = UserUtils.getUser();
 		if (StringUtils.isNotBlank(user.getName())) {
 			if (Global.isDemoMode()) {
-				model.addAttribute("message", "演示模式，不允许操作！");
+				model.addAttribute("message", "演示模式，不允许操作");
 				return "modules/sys/userInfo";
 			}
 			if (user.getName() != null) currentUser.setName(user.getName());
@@ -393,7 +393,7 @@ public class UserController extends BaseController {
 		User currentUser = UserUtils.getUser();
 		if (StringUtils.isNotBlank(user.getName())) {
 			if (Global.isDemoMode()) {
-				model.addAttribute("message", "演示模式，不允许操作！");
+				model.addAttribute("message", "演示模式，不允许操作");
 				return "modules/sys/userInfo";
 			}
 			if (user.getPhoto() != null) currentUser.setPhoto(user.getPhoto());
@@ -472,7 +472,7 @@ public class UserController extends BaseController {
 		User user = UserUtils.getUser();
 		if (StringUtils.isNotBlank(oldPassword) && StringUtils.isNotBlank(newPassword)) {
 			if (Global.isDemoMode()) {
-				model.addAttribute("message", "演示模式，不允许操作！");
+				model.addAttribute("message", "演示模式，不允许操作");
 				return "modules/sys/userInfo";
 			}
 			if (SystemService.validatePassword(oldPassword, user.getPassword())) {

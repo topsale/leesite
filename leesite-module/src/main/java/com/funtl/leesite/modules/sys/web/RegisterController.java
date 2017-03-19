@@ -100,7 +100,7 @@ public class RegisterController extends BaseController {
 				AjaxJson j = new AjaxJson();
 				j.setSuccess(false);
 				j.setErrorCode("1");
-				j.setMsg("手机号已经被使用！");
+				j.setMsg("手机号已经被使用");
 				return renderString(response, j.getJsonStr());
 			} else {
 				addMessage(model, "手机号已经被使用!");
@@ -116,7 +116,7 @@ public class RegisterController extends BaseController {
 				AjaxJson j = new AjaxJson();
 				j.setSuccess(false);
 				j.setErrorCode("2");
-				j.setMsg("用户名已经被注册！");
+				j.setMsg("用户名已经被注册");
 				return renderString(response, j.getJsonStr());
 			} else {
 				addMessage(model, "用户名已经被注册!");
@@ -213,7 +213,7 @@ public class RegisterController extends BaseController {
 
 			j.setSuccess(false);
 			j.setErrorCode("1");
-			j.setMsg("手机号已经被使用！");
+			j.setMsg("手机号已经被使用");
 			return j;
 		}
 

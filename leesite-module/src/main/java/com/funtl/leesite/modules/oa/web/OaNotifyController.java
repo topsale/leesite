@@ -92,7 +92,7 @@ public class OaNotifyController extends BaseController {
 		if (StringUtils.isNotBlank(oaNotify.getId())) {
 			OaNotify e = oaNotifyService.get(oaNotify.getId());
 			if ("1".equals(e.getStatus())) {
-				addMessage(redirectAttributes, "已发布，不能操作！");
+				addMessage(redirectAttributes, "已发布，不能操作");
 				return "redirect:" + adminPath + "/oa/oaNotify/?repage";
 			}
 		}

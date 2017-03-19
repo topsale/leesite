@@ -62,7 +62,7 @@ public class PreparePaginationInterceptor extends BaseInterceptor {
 			Object parameterObject = boundSql.getParameterObject();
 			if (parameterObject == null) {
 				log.error("参数未实例化");
-				throw new NullPointerException("parameterObject尚未实例化！");
+				throw new NullPointerException("parameterObject尚未实例化");
 			} else {
 				final Connection connection = (Connection) ivk.getArgs()[0];
 				final String sql = boundSql.getSql();

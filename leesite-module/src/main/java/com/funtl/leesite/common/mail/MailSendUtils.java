@@ -70,7 +70,7 @@ public class MailSendUtils {
 		mailMessage.setText(mailContent);
 		// 发送邮件
 		Transport.send(mailMessage);
-		System.out.println("发送成功！");
+		System.out.println("发送成功");
 		return true;
 	}
 

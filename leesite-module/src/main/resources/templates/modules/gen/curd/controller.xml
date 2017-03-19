@@ -144,7 +144,7 @@ public class ${ClassName}Controller extends BaseController {
     		new ExportExcel("${functionNameSimple}", ${ClassName}.class).setDataList(page.getList()).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出${functionNameSimple}记录失败！失败信息："+e.getMessage());
+			addMessage(redirectAttributes, "导出${functionNameSimple}记录失败失败信息："+e.getMessage());
 		}
 		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
     }
@@ -177,7 +177,7 @@ public class ${ClassName}Controller extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 "+successNum+" 条${functionNameSimple}记录"+failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入${functionNameSimple}失败！失败信息："+e.getMessage());
+			addMessage(redirectAttributes, "导入${functionNameSimple}失败失败信息："+e.getMessage());
 		}
 		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
     }
@@ -194,7 +194,7 @@ public class ${ClassName}Controller extends BaseController {
     		new ExportExcel("${functionNameSimple}数据", ${ClassName}.class, 1).setDataList(list).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败！失败信息："+e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败失败信息："+e.getMessage());
 		}
 		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
     }

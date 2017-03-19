@@ -100,7 +100,7 @@ public class AreaController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(Area area, Model model, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/area";
 		}
 		if (!beanValidator(model, area)) {
@@ -115,7 +115,7 @@ public class AreaController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(Area area, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/area";
 		}
 		//		if (Area.isRoot(id)){

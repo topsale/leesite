@@ -129,12 +129,12 @@ function demo_2_2() {
 
                 data.amount = f.amount; //或 h.find('#amount').val();
                 if (data.amount == '' || parseInt(data.amount) < 1) {
-                    $('<div class="errorBlock" style="display: none;">请输入购买数量！</div>').prependTo(h).show('fast');
+                    $('<div class="errorBlock" style="display: none;">请输入购买数量</div>').prependTo(h).show('fast');
                     return false;
                 }
                 data.address = f.address;
                 if (data.address == '') {
-                    $('<div class="errorBlock" style="display: none;">请输入收货地址！</div>').prependTo(h).show('fast');
+                    $('<div class="errorBlock" style="display: none;">请输入收货地址</div>').prependTo(h).show('fast');
                     return false;
                 }
 

@@ -97,11 +97,11 @@ public class MenuController extends BaseController {
 	@RequestMapping(value = "save")
 	public String save(Menu menu, Model model, RedirectAttributes redirectAttributes) {
 		if (!UserUtils.getUser().isAdmin()) {
-			addMessage(redirectAttributes, "越权操作，只有超级管理员才能添加或修改数据！");
+			addMessage(redirectAttributes, "越权操作，只有超级管理员才能添加或修改数据");
 			return "redirect:" + adminPath + "/sys/role/?repage";
 		}
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/menu/";
 		}
 		if (!beanValidator(model, menu)) {
@@ -116,7 +116,7 @@ public class MenuController extends BaseController {
 	@RequestMapping(value = "delete")
 	public String delete(Menu menu, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/menu/";
 		}
 		//		if (Menu.isRoot(id)){
@@ -132,7 +132,7 @@ public class MenuController extends BaseController {
 	@RequestMapping(value = "deleteAll")
 	public String deleteAll(String ids, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/menu/";
 		}
 		//		if (Menu.isRoot(id)){
@@ -171,7 +171,7 @@ public class MenuController extends BaseController {
 	@RequestMapping(value = "updateSort")
 	public String updateSort(String[] ids, Integer[] sorts, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage(redirectAttributes, "演示模式，不允许操作");
 			return "redirect:" + adminPath + "/sys/menu/";
 		}
 		for (int i = 0; i < ids.length; i++) {
@@ -179,7 +179,7 @@ public class MenuController extends BaseController {
 			menu.setSort(sorts[i]);
 			systemService.updateMenuSort(menu);
 		}
-		addMessage(redirectAttributes, "保存菜单排序成功!");
+		addMessage(redirectAttributes, "保存菜单排序成功");
 		return "redirect:" + adminPath + "/sys/menu/";
 	}
 

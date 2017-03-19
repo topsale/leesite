@@ -365,12 +365,12 @@ states.state1 = {
 
             data.amount = f.amount; //或 h.find('#amount').val();
             if (data.amount == '' || parseInt(data.amount) &lt; 1) {
-                $('&lt;div class="errorBlock" style="display: none;"&gt;请输入购买数量！&lt;/div&gt;').prependTo(h).show('fast');
+                $('&lt;div class="errorBlock" style="display: none;"&gt;请输入购买数量&lt;/div&gt;').prependTo(h).show('fast');
                 return false;
             }
             data.address = f.address;
             if (data.address == '') {
-                $('&lt;div class="errorBlock" style="display: none;"&gt;请输入收货地址！&lt;/div&gt;').prependTo(h).show('fast');
+                $('&lt;div class="errorBlock" style="display: none;"&gt;请输入收货地址&lt;/div&gt;').prependTo(h).show('fast');
                 return false;
             }
 

@@ -149,7 +149,7 @@ public class FormLeaveController extends BaseController {
 			new ExportExcel("请假单", FormLeave.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出请假单记录失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出请假单记录失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
 	}
@@ -181,7 +181,7 @@ public class FormLeaveController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条请假单记录" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入请假单失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入请假单失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
 	}
@@ -198,7 +198,7 @@ public class FormLeaveController extends BaseController {
 			new ExportExcel("请假单数据", FormLeave.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
 	}

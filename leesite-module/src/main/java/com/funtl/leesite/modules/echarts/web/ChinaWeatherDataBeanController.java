@@ -220,7 +220,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 			new ExportExcel("城市气温", ChinaWeatherDataBean.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出城市气温记录失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出城市气温记录失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
 	}
@@ -252,7 +252,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条城市气温记录" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入城市气温失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入城市气温失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
 	}
@@ -269,7 +269,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 			new ExportExcel("城市气温数据", ChinaWeatherDataBean.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
 	}

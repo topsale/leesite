@@ -285,7 +285,7 @@ public class UploadUtils {
 				 */
 			} catch (IOException e) {
 				e.printStackTrace();
-				System.out.println("上传失败了！！！");
+				System.out.println("上传失败了");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

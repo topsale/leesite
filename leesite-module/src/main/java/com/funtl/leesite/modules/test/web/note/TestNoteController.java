@@ -149,7 +149,7 @@ public class TestNoteController extends BaseController {
 			new ExportExcel("富文本测试", TestNote.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出富文本测试记录失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出富文本测试记录失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
 	}
@@ -181,7 +181,7 @@ public class TestNoteController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条富文本测试记录" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入富文本测试失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入富文本测试失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
 	}
@@ -198,7 +198,7 @@ public class TestNoteController extends BaseController {
 			new ExportExcel("富文本测试数据", TestNote.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
 	}
