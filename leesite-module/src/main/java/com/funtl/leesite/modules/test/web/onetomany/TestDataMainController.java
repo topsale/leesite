@@ -149,7 +149,7 @@ public class TestDataMainController extends BaseController {
 			new ExportExcel("票务代理", TestDataMain.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出票务代理记录失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出票务代理记录失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
 	}
@@ -181,7 +181,7 @@ public class TestDataMainController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条票务代理记录" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入票务代理失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入票务代理失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
 	}
@@ -198,7 +198,7 @@ public class TestDataMainController extends BaseController {
 			new ExportExcel("票务代理数据", TestDataMain.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
 	}

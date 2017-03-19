@@ -138,7 +138,7 @@ public class ChatHistoryController extends BaseController {
 			new ExportExcel("聊天", ChatHistory.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出聊天记录失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出聊天记录失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/?repage";
 	}

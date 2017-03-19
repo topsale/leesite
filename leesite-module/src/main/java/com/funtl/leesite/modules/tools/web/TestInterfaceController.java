@@ -151,7 +151,7 @@ public class TestInterfaceController extends BaseController {
 			new ExportExcel("接口", TestInterface.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出接口记录失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出接口记录失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
 	}
@@ -171,7 +171,7 @@ public class TestInterfaceController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条接口记录");
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入接口失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入接口失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
 	}
@@ -188,7 +188,7 @@ public class TestInterfaceController extends BaseController {
 			new ExportExcel("接口数据", TestInterface.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
 	}

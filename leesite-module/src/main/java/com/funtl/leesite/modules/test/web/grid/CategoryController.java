@@ -149,7 +149,7 @@ public class CategoryController extends BaseController {
 			new ExportExcel("商品分类", Category.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出商品分类记录失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出商品分类记录失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
 	}
@@ -181,7 +181,7 @@ public class CategoryController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条商品分类记录" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入商品分类失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入商品分类失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
 	}
@@ -198,7 +198,7 @@ public class CategoryController extends BaseController {
 			new ExportExcel("商品分类数据", Category.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
 	}

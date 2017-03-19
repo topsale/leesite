@@ -150,7 +150,7 @@ public class GoodsController extends BaseController {
 			new ExportExcel("商品", Goods.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出商品记录失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出商品记录失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
 	}
@@ -182,7 +182,7 @@ public class GoodsController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条商品记录" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入商品失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入商品失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
 	}
@@ -199,7 +199,7 @@ public class GoodsController extends BaseController {
 			new ExportExcel("商品数据", Goods.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
 	}

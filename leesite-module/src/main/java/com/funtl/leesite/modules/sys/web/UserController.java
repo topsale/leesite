@@ -225,7 +225,7 @@ public class UserController extends BaseController {
 			new ExportExcel("用户数据", User.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出用户失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出用户失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + adminPath + "/sys/user/list?repage";
 	}
@@ -277,7 +277,7 @@ public class UserController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条用户" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入用户失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入用户失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + adminPath + "/sys/user/list?repage";
 	}
@@ -299,7 +299,7 @@ public class UserController extends BaseController {
 			new ExportExcel("用户数据", User.class, 2).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + adminPath + "/sys/user/list?repage";
 	}

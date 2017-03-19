@@ -142,7 +142,7 @@ public class SystemConfigController extends BaseController {
 			new ExportExcel("系统配置", SystemConfig.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出系统配置记录失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出系统配置记录失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/?repage";
 	}
@@ -162,7 +162,7 @@ public class SystemConfigController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条系统配置记录");
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入系统配置失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入系统配置失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/?repage";
 	}
@@ -179,7 +179,7 @@ public class SystemConfigController extends BaseController {
 			new ExportExcel("系统配置数据", SystemConfig.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/?repage";
 	}

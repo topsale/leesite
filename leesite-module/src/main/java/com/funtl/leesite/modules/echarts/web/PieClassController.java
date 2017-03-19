@@ -159,7 +159,7 @@ public class PieClassController extends BaseController {
 			new ExportExcel("班级", PieClass.class).setDataList(page.getList()).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出班级记录失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导出班级记录失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
 	}
@@ -191,7 +191,7 @@ public class PieClassController extends BaseController {
 			}
 			addMessage(redirectAttributes, "已成功导入 " + successNum + " 条班级记录" + failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入班级失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入班级失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
 	}
@@ -208,7 +208,7 @@ public class PieClassController extends BaseController {
 			new ExportExcel("班级数据", PieClass.class, 1).setDataList(list).write(response, fileName).dispose();
 			return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入模板下载失败失败信息：" + e.getMessage());
+			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
 		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
 	}
