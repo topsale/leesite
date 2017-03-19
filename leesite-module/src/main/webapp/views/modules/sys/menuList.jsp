@@ -31,8 +31,7 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="${ctxStatic}/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
-    <link href="${ctxStatic}/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-    <link href="${ctxStatic}/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="${ctxStatic}/assets/global/scripts/loader/loading.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="${ctxStatic}/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
@@ -240,54 +239,66 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <form id="listForm" method="post">
-                                        <table id="treeTable" class="table table-striped table-bordered table-hover dataTable">
-                                            <thead>
-                                            <tr>
-                                                <th><input type="checkbox" class="i-checks"></th>
-                                                <th>名称</th>
-                                                <th>链接</th>
-                                                <th style="text-align:center;">排序</th>
-                                                <th>可见</th>
-                                                <th>权限标识</th>
-                                                <shiro:hasPermission name="sys:menu:edit">
-                                                    <th>操作</th>
-                                                </shiro:hasPermission>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <c:forEach items="${list}" var="menu">
-                                                <tr id="${menu.id}" pId="${menu.parent.id ne '1'?menu.parent.id:'0'}">
-                                                    <td> <input type="checkbox" id="${menu.id}" class="i-checks"></td>
-                                                    <td nowrap><i class="icon-${not empty menu.icon?menu.icon:' hide'}"></i><a  href="#" onclick="openDialogView('查看菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')">${menu.name}</a></td>
-                                                    <td title="${menu.href}">${fns:abbr(menu.href,30)}</td>
-                                                    <td style="text-align:center;">
-                                                        <shiro:hasPermission name="sys:menu:updateSort">
-                                                            <input type="hidden" name="ids" value="${menu.id}"/>
-                                                            <input name="sorts" type="text" value="${menu.sort}" class="form-control" style="width:100px;margin:0;padding:0;text-align:center;">
-                                                        </shiro:hasPermission><shiro:lacksPermission name="sys:menu:updateSort">
-                                                        ${menu.sort}
-                                                    </shiro:lacksPermission>
-                                                    </td>
-                                                    <td>${menu.isShow eq '1'?'显示':'隐藏'}</td>
-                                                    <td title="${menu.permission}">${fns:abbr(menu.permission,30)}</td>
-                                                    <td nowrap>
-                                                        <shiro:hasPermission name="sys:menu:view">
-                                                            <a href="#" onclick="openDialogView('查看菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
-                                                        </shiro:hasPermission>
-                                                        <shiro:hasPermission name="sys:menu:edit">
-                                                            <a href="#" onclick="openDialog('修改菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
-                                                        </shiro:hasPermission>
-                                                        <shiro:hasPermission name="sys:menu:del">
-                                                            <a href="${ctx}/sys/menu/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
-                                                        </shiro:hasPermission>
-                                                        <shiro:hasPermission name="sys:menu:add">
-                                                            <a href="#" onclick="openDialog('添加下级菜单', '${ctx}/sys/menu/form?parent.id=${menu.id}','800px', '500px')" class="btn btn-primary btn-xs" ><i class="fa fa-plus"></i> 添加下级菜单</a>
-                                                        </shiro:hasPermission>
-                                                    </td>
+                                        <div class="table-scrollable">
+                                            <table id="treeTable" class="table table-striped table-bordered table-hover table-checkable">
+                                                <thead>
+                                                <tr>
+                                                    <th>
+                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                            <input type="checkbox" class="group-checkable" data-set=".checkboxes" />
+                                                            <span></span>
+                                                        </label>
+                                                    </th>
+                                                    <th>名称</th>
+                                                    <th>链接</th>
+                                                    <th>排序</th>
+                                                    <th>可见</th>
+                                                    <th>权限标识</th>
+                                                    <shiro:hasPermission name="sys:menu:edit">
+                                                        <th>操作</th>
+                                                    </shiro:hasPermission>
                                                 </tr>
-                                            </c:forEach>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                <c:forEach items="${list}" var="menu">
+                                                    <tr id="${menu.id}" pId="${menu.parent.id ne '1'?menu.parent.id:'0'}">
+                                                        <td>
+                                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                                <input type="checkbox" class="checkboxes" id="${menu.id}" />
+                                                                <span></span>
+                                                            </label>
+                                                        </td>
+                                                        <td nowrap><i class="icon-${not empty menu.icon?menu.icon:' hide'}"></i><a  href="#" onclick="openDialogView('查看菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')">${menu.name}</a></td>
+                                                        <td title="${menu.href}">${fns:abbr(menu.href,30)}</td>
+                                                        <td>
+                                                            <shiro:hasPermission name="sys:menu:updateSort">
+                                                                <input type="hidden" name="ids" value="${menu.id}"/>
+                                                                <input name="sorts" type="text" value="${menu.sort}" class="form-control" style="width:100px;margin:0;padding:0;text-align:center;">
+                                                            </shiro:hasPermission><shiro:lacksPermission name="sys:menu:updateSort">
+                                                            ${menu.sort}
+                                                        </shiro:lacksPermission>
+                                                        </td>
+                                                        <td>${menu.isShow eq '1'?'显示':'隐藏'}</td>
+                                                        <td title="${menu.permission}">${fns:abbr(menu.permission,30)}</td>
+                                                        <td nowrap>
+                                                            <shiro:hasPermission name="sys:menu:view">
+                                                                <a href="#" onclick="openDialogView('查看菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
+                                                            </shiro:hasPermission>
+                                                            <shiro:hasPermission name="sys:menu:edit">
+                                                                <a href="#" onclick="openDialog('修改菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+                                                            </shiro:hasPermission>
+                                                            <shiro:hasPermission name="sys:menu:del">
+                                                                <a href="${ctx}/sys/menu/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
+                                                            </shiro:hasPermission>
+                                                            <shiro:hasPermission name="sys:menu:add">
+                                                                <a href="#" onclick="openDialog('添加下级菜单', '${ctx}/sys/menu/form?parent.id=${menu.id}','800px', '500px')" class="btn btn-primary btn-xs" ><i class="fa fa-plus"></i> 添加下级菜单</a>
+                                                            </shiro:hasPermission>
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -318,12 +329,12 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="${ctxStatic}/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
-<script src="${ctxStatic}/assets/global/scripts/datatable.js" type="text/javascript"></script>
-<script src="${ctxStatic}/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
-<script src="${ctxStatic}/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="${ctxStatic}/assets/global/scripts/app.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/assets/global/scripts/leesite.js" type="text/javascript"></script>
+<script src="${ctxStatic}/assets/global/scripts/checktable.js" type="text/javascript"></script>
+<script src="${ctxStatic}/assets/global/scripts/loader/loading.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${ctxStatic}/assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>
@@ -337,8 +348,22 @@
 
 <script>
     $(function () {
-        $("#treeTable").treeTable({expandLevel: 2, column: 1}).show();
+        $("#treeTable").treeTable({expandLevel: 1, column: 1}).show();
+
+        CheckTable.init("#treeTable");
     });
+
+    // 刷新
+    function refresh(){
+        window.location="${ctx}/sys/menu/";
+    }
+
+    // 保存排序
+    function updateSort() {
+        loading('正在提交，请稍等...');
+        $("#listForm").attr("action", "${ctx}/sys/menu/updateSort");
+        $("#listForm").submit();
+    }
 </script>
 </body>
 </html>
