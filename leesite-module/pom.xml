@@ -308,22 +308,16 @@
             <groupId>org.ckfinder</groupId>
             <artifactId>ckfinder</artifactId>
             <version>2.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ckfinder-2.3.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.ckfinder</groupId>
             <artifactId>ckfinder-plugin-fileeditor</artifactId>
             <version>2.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ckfinderplugin-fileeditor-2.3.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.ckfinder</groupId>
             <artifactId>ckfinder-plugin-imageresize</artifactId>
             <version>2.3</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ckfinderplugin-imageresize-2.3.jar</systemPath>
         </dependency>
         <!-- CkFinder End -->
 
@@ -380,29 +374,21 @@
             <groupId>org.restlet.jee</groupId>
             <artifactId>org.restlet</artifactId>
             <version>2.3.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet-2.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.restlet.jee</groupId>
             <artifactId>org.restlet.ext.jackson</artifactId>
             <version>2.3.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.jackson-2.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.restlet.jee</groupId>
             <artifactId>org.restlet.ext.servlet</artifactId>
             <version>2.3.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.servlet-2.3.9.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.restlet.jee</groupId>
             <artifactId>org.restlet.ext.fileupload</artifactId>
             <version>2.3.9</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.fileupload-2.3.9.jar</systemPath>
         </dependency>
         <!-- Restlet End -->
 
@@ -443,15 +429,11 @@
             <groupId>org.hyperic</groupId>
             <artifactId>sigar</artifactId>
             <version>1.6.4</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/sigar-1.6.4.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>jp.sourceforge</groupId>
             <artifactId>qucode</artifactId>
             <version>1.0.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/QRCode.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>opensymphony</groupId>
@@ -471,6 +453,165 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>install-external-ckfinder</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/ckfinder-2.3.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>org.ckfinder</groupId>
+                            <artifactId>ckfinder</artifactId>
+                            <version>2.3</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>install-external-ckfinderplugin-fileeditor</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/ckfinderplugin-fileeditor-2.3.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>org.ckfinder</groupId>
+                            <artifactId>ckfinder-plugin-fileeditor</artifactId>
+                            <version>2.3</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>install-external-ckfinderplugin-imageresize</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/ckfinderplugin-imageresize-2.3.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>org.ckfinder</groupId>
+                            <artifactId>ckfinder-plugin-imageresize</artifactId>
+                            <version>2.3</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>install-external-restlet</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet-2.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>org.restlet.jee</groupId>
+                            <artifactId>org.restlet</artifactId>
+                            <version>2.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>install-external-restlet-ext-jackson</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.jackson-2.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>org.restlet.jee</groupId>
+                            <artifactId>org.restlet.ext.jackson</artifactId>
+                            <version>2.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>install-external-restlet-ext-servlet</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.servlet-2.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>org.restlet.jee</groupId>
+                            <artifactId>org.restlet.ext.servlet</artifactId>
+                            <version>2.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>install-external-restlet-ext-fileupload</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/org.restlet.ext.fileupload-2.3.9.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>org.restlet.jee</groupId>
+                            <artifactId>org.restlet.ext.fileupload</artifactId>
+                            <version>2.3.9</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>install-external-sigar</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/sigar-1.6.4.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>org.hyperic</groupId>
+                            <artifactId>sigar</artifactId>
+                            <version>1.6.4</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>install-external-qucode</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/src/main/webapp/WEB-INF/lib/QRCode.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>jp.sourceforge</groupId>
+                            <artifactId>qucode</artifactId>
+                            <version>1.0.0</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
 
