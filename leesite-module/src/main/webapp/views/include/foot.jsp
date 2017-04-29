@@ -15,6 +15,8 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="${ctxStatic}/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/assets/global/plugins/layer-v2.3/layer/layer.js"></script>
+<script src="${ctxStatic}/assets/global/plugins/layer-v2.3/layer/laydate/laydate.js"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="${ctxStatic}/assets/global/scripts/app.min.js" type="text/javascript"></script>

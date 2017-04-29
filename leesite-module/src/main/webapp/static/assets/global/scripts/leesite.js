@@ -10,7 +10,7 @@ $(document).ready(function () {
                 this.blur()
             }
         });
-        //所有下拉框使用select2
+        // 所有下拉框使用select2
         $("select").select2();
     } catch (e) {
         // blank
@@ -111,11 +111,11 @@ function alertx(mess, closed) {
 // 确认对话框
 function confirmx(mess, href, closed) {
     top.layer.confirm(mess, {icon: 3, title: '系统提示'}, function (index) {
-        //do something
+        // do something
         if (typeof href == 'function') {
             href();
         } else {
-            resetTip(); //loading();
+            resetTip(); // loading();
             location = href;
         }
         top.layer.close(index);
@@ -125,7 +125,6 @@ function confirmx(mess, href, closed) {
 
 // 提示输入对话框
 function promptx(title, href) {
-
     var index = top.layer.prompt({title: title, formType: 2}, function (text) {
         if (typeof href == 'function') {
             href();
