@@ -19,8 +19,6 @@ package com.funtl.leesite.modules.sys.web;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import com.funtl.leesite.common.config.Global;
 import com.funtl.leesite.common.utils.StringUtils;
 import com.funtl.leesite.common.web.BaseController;
@@ -187,14 +185,13 @@ public class MenuController extends BaseController {
 	 * isShowHide是否显示隐藏菜单
 	 *
 	 * @param extId
-	 * @param isShowHidden
-	 * @param response
+	 * @param isShowHide
 	 * @return
 	 */
 	@RequiresPermissions("user")
 	@ResponseBody
 	@RequestMapping(value = "treeData")
-	public List<Map<String, Object>> treeData(@RequestParam(required = false) String extId, @RequestParam(required = false) String isShowHide, HttpServletResponse response) {
+	public List<Map<String, Object>> treeData(@RequestParam(required = false) String extId, @RequestParam(required = false) String isShowHide) {
 		List<Map<String, Object>> mapList = Lists.newArrayList();
 		List<Menu> list = systemService.findAllMenu();
 		for (int i = 0; i < list.size(); i++) {

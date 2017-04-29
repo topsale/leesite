@@ -10,6 +10,6 @@
 <%-- 使用方法： 1.将本tag写在查询的form之前；2.传入table的id和controller的url --%>
 <script type="text/javascript">
 	function add(){
-		openDialog("新增"+'${title}',"${url}","${width==null?'800px':width}", "${height==null?'500px':height}","${target}");
+		openDialog("新增"+'${title}',"${url}","${width==null?'900px':width}", "${height==null?'600px':height}","${target}");
 	}
 </script>

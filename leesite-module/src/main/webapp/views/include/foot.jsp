@@ -17,12 +17,14 @@
 <script src="${ctxStatic}/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/plugins/layer-v2.3/layer/layer.js"></script>
 <script src="${ctxStatic}/assets/global/plugins/layer-v2.3/layer/laydate/laydate.js"></script>
+<script src="${ctxStatic}/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/assets/global/plugins/jquery-validation/js/localization/messages_zh.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="${ctxStatic}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/scripts/leesite.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/scripts/checktable.js" type="text/javascript"></script>
-<script src="${ctxStatic}/assets/global/scripts/loader/loading.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="${ctxStatic}/assets/pages/scripts/dashboard.min.js" type="text/javascript"></script>

@@ -41,3 +41,9 @@
 
 <link rel="shortcut icon" href="${ctxStatic}/favicon.ico" />
 <script type="text/javascript">var ctx = '${ctx}', ctxStatic='${ctxStatic}';</script>
+
+<style type="text/css">
+    td {
+        vertical-align: middle !important; /* 设置垂直居中 */
+    }
+</style>

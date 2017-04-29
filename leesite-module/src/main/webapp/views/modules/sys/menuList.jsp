@@ -106,11 +106,11 @@
                                                     <tr id="${menu.id}" pId="${menu.parent.id ne '1'?menu.parent.id:'0'}">
                                                         <td>
                                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                                <input type="checkbox" class="checkboxes" id="${menu.id}" />
+                                                                <input type="checkbox" class="checkboxes i-checks" id="${menu.id}" />
                                                                 <span></span>
                                                             </label>
                                                         </td>
-                                                        <td nowrap><i class="icon-${not empty menu.icon?menu.icon:' hide'}"></i><a  href="#" onclick="openDialogView('查看菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')">${menu.name}</a></td>
+                                                        <td nowrap><i class="${not empty menu.icon?menu.icon:' hide'}"></i>&nbsp;<a  href="#" onclick="openDialogView('查看菜单', '${ctx}/sys/menu/form?id=${menu.id}','900px', '600px')">${menu.name}</a></td>
                                                         <td title="${menu.href}">${fns:abbr(menu.href,30)}</td>
                                                         <td>
                                                             <shiro:hasPermission name="sys:menu:updateSort">
@@ -124,16 +124,16 @@
                                                         <td title="${menu.permission}">${fns:abbr(menu.permission,30)}</td>
                                                         <td nowrap>
                                                             <shiro:hasPermission name="sys:menu:view">
-                                                                <a href="#" onclick="openDialogView('查看菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
+                                                                <a href="#" onclick="openDialogView('查看菜单', '${ctx}/sys/menu/form?id=${menu.id}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
                                                             </shiro:hasPermission>
                                                             <shiro:hasPermission name="sys:menu:edit">
-                                                                <a href="#" onclick="openDialog('修改菜单', '${ctx}/sys/menu/form?id=${menu.id}','800px', '500px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+                                                                <a href="#" onclick="openDialog('修改菜单', '${ctx}/sys/menu/form?id=${menu.id}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
                                                             </shiro:hasPermission>
                                                             <shiro:hasPermission name="sys:menu:del">
                                                                 <a href="${ctx}/sys/menu/delete?id=${menu.id}" onclick="return confirmx('要删除该菜单及所有子菜单项吗？', this.href)" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
                                                             </shiro:hasPermission>
                                                             <shiro:hasPermission name="sys:menu:add">
-                                                                <a href="#" onclick="openDialog('添加下级菜单', '${ctx}/sys/menu/form?parent.id=${menu.id}','800px', '500px')" class="btn btn-primary btn-xs" ><i class="fa fa-plus"></i> 添加下级菜单</a>
+                                                                <a href="#" onclick="openDialog('添加下级菜单', '${ctx}/sys/menu/form?parent.id=${menu.id}','900px', '600px')" class="btn btn-primary btn-xs" ><i class="fa fa-plus"></i> 添加下级菜单</a>
                                                             </shiro:hasPermission>
                                                         </td>
                                                     </tr>

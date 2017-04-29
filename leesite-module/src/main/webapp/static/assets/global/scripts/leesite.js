@@ -272,23 +272,19 @@ function openDialog(title, url, width, height, target) {
         btn: ['确定', '关闭'],
         yes: function (index, layero) {
             var body = top.layer.getChildFrame('body', index);
-            var iframeWin = layero.find('iframe')[0]; //得到iframe页的窗口对象，执行iframe页的方法：iframeWin.method();
-            var inputForm = body.find('#inputForm');
-            var top_iframe;
-            if (target) {
-                top_iframe = target;//如果指定了iframe，则在改frame中跳转
-            } else {
-                top_iframe = top.getActiveTab().attr("name");//获取当前active的tab的iframe
-            }
-            inputForm.attr("target", top_iframe);//表单提交成功后，从服务器返回的url在当前tab中展示
-
+            var iframeWin = layero.find('iframe')[0]; // 得到iframe页的窗口对象，执行 iframe 页的方法：iframeWin.method();
+            // var inputForm = body.find('#inputForm');
+            // inputForm.attr("target", body);
             if (iframeWin.contentWindow.doSubmit()) {
-                // top.layer.close(index);//关闭对话框。
                 setTimeout(function () {
-                    top.layer.close(index)
-                }, 100);//延时0.1秒，对应360 7.1版本bug
-            }
+                    top.layer.close(index);
 
+                    // 延时执行，等待窗口关闭完成
+                    setTimeout(function () {
+                        window.location.reload(true);
+                    }, 500);
+                }, 100); // 延时0.1秒，对应360 7.1 版本bug
+            }
         },
         cancel: function (index) {
         }
