@@ -55,7 +55,7 @@ public class WebSockertFilter implements Filter {
 		try {
 			s = new ChatServer(8668);
 			s.start();
-			System.out.println("websocket服务器启动,端口" + s.getPort());
+			System.out.println("WebSocket server is started. Port: " + s.getPort());
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}

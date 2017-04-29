@@ -47,7 +47,7 @@ function getQueryString(name, url) {
     return null;
 }
 
-//获取字典标签
+// 获取字典标签
 function getDictLabel(data, value, defaultValue) {
     for (var i = 0; i < data.length; i++) {
         var row = data[i];
@@ -76,7 +76,7 @@ function closeTip() {
     top.$.jBox.closeTip();
 }
 
-//显示提示框
+// 显示提示框
 function showTip(mess, type, timeout, lazytime) {
     resetTip();
     setTimeout(function () {
@@ -202,7 +202,7 @@ function addDate(date, dadd) {
     return new Date(date);
 }
 
-//截取字符串，区别汉字和英文
+// 截取字符串，区别汉字和英文
 function abbr(name, maxLength) {
     if (!maxLength) {
         maxLength = 20;
@@ -255,7 +255,7 @@ function abbr(name, maxLength) {
 }
 
 
-//打开对话框(添加修改)
+// 打开对话框(添加修改)
 function openDialog(title, url, width, height, target) {
     if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {//如果是移动端，就使用自适应大小弹窗
         width = 'auto';
@@ -297,7 +297,7 @@ function openDialog(title, url, width, height, target) {
 
 }
 
-//打开对话框(查看)
+// 打开对话框(查看)
 function openDialogView(title, url, width, height) {
     if (navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {//如果是移动端，就使用自适应大小弹窗
         width = 'auto';
@@ -317,13 +317,13 @@ function openDialogView(title, url, width, height) {
     });
 }
 
-function search() {//查询，页码清零
+function search() { // 查询，页码清零
     $("#pageNo").val(0);
     $("#searchForm").submit();
     return false;
 }
 
-function reset() {//重置，页码清零
+function reset() { // 重置，页码清零
     $("#pageNo").val(0);
     $("#searchForm div.form-group input").val("");
     $("#searchForm div.form-group select").val("");
@@ -331,12 +331,12 @@ function reset() {//重置，页码清零
     return false;
 }
 
-function sortOrRefresh() {//刷新或者排序，页码不清零
+function sortOrRefresh() { // 刷新或者排序，页码不清零
     $("#searchForm").submit();
     return false;
 }
 
-function page(n, s) {//翻页
+function page(n, s) { // 翻页
     $("#pageNo").val(n);
     $("#pageSize").val(s);
     $("#searchForm").submit();
