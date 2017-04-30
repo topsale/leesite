@@ -109,7 +109,7 @@
 									<i class="icon-picture"></i> 修改头像 </a>
 							</li>
 							<li>
-								<a href="page_user_profile_1.html">
+								<a href="${ctx}/sys/user/info">
 									<i class="icon-user"></i> 我的资料 </a>
 							</li>
 							<li>

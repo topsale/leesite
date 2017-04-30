@@ -127,7 +127,7 @@ public class MenuTag extends TagSupport {
 				menuString.append("</ul>");
 			}
 		} else {
-			menuString.append("<a href=\"" + href + "\" class=\"nav-link\"><i class=\"" + parent.getIcon() + "\"></i><span class=\"title\">" + parent.getName() + "</span></a>");
+			menuString.append("<a href=\"" + href + "\" target=\"" + parent.getTarget() + "\" class=\"nav-link\"><i class=\"" + parent.getIcon() + "\"></i><span class=\"title\">" + parent.getName() + "</span></a>");
 		}
 		if (level > 0) {
 			menuString.append("</li>");

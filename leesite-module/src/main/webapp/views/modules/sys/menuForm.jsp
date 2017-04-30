@@ -47,7 +47,7 @@
                 <td class="active"><label class="pull-right">目标：</label></td>
                 <td>
                     <form:input path="target" htmlEscape="false" maxlength="10" class="form-control "/>
-                    <span class="help-inline">链接打开的目标窗口，默认：mainFrame</span>
+                    <span class="help-inline">链接打开的目标窗口</span>
                 </td>
             </tr>
             <tr>
