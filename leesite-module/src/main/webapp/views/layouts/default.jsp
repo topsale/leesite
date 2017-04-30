@@ -105,7 +105,7 @@
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
-								<a href="app_calendar.html">
+								<a href="${ctx}/sys/user/imageEdit">
 									<i class="icon-picture"></i> 修改头像 </a>
 							</li>
 							<li>
