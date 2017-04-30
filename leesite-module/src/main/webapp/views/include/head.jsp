@@ -34,7 +34,7 @@
 <link href="${ctxStatic}/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
 <!-- END THEME GLOBAL STYLES -->
 <!-- BEGIN THEME LAYOUT STYLES -->
-<link href="${ctxStatic}/assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
+<link href="${ctxStatic}/assets/layouts/layout4/css/layout.css" rel="stylesheet" type="text/css" />
 <link href="${ctxStatic}/assets/layouts/layout4/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
 <link href="${ctxStatic}/assets/layouts/layout4/css/custom.css" rel="stylesheet" type="text/css" />
 <!-- END THEME LAYOUT STYLES -->

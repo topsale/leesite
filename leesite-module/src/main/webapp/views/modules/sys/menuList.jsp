@@ -72,7 +72,7 @@
                                         <table:delRow url="${ctx}/sys/menu/deleteAll" id="treeTable"></table:delRow><!-- 删除按钮 -->
                                     </shiro:hasPermission>
                                     <shiro:hasPermission name="sys:menu:updateSort">
-                                        <button id="btnSubmit" class="btn btn-default btn-sm " data-toggle="tooltip" data-placement="left" onclick="updateSort()" title="保存排序"><i class="fa fa-save"></i> 保存排序</button>
+                                        <button id="btnSubmit" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="left" onclick="updateSort()" title="保存排序"><i class="fa fa-save"></i> 保存排序</button>
                                     </shiro:hasPermission>
                                     <button class="btn btn-default btn-sm " data-toggle="tooltip" data-placement="left" onclick="refresh()" title="刷新"><i class="fa fa-repeat"></i> 刷新</button>
                                 </div>

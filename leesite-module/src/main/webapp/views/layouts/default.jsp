@@ -83,7 +83,7 @@
 							<li class="external">
 								<h3>您有
 									<span class="bold">${fns:noReadMailCount()} 条</span> 未读邮件</h3>
-								<a href="app_inbox.html">全部</a>
+								<a href="${ctx}/iim/mailBox/list?orderBy=sendtime desc">全部</a>
 							</li>
 						</ul>
 					</li>
@@ -113,7 +113,7 @@
 									<i class="icon-user"></i> 我的资料 </a>
 							</li>
 							<li>
-								<a href="app_inbox.html">
+								<a href="${ctx}/iim/mailBox/list?orderBy=sendtime desc">
 									<i class="icon-envelope-open"></i> 我的信箱
 									<span class="badge badge-danger"> ${fns:noReadMailCount()} </span>
 								</a>
