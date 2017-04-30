@@ -13,6 +13,7 @@
 <script src="${ctxStatic}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="${ctxStatic}/assets/global/plugins/moment.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/plugins/layer-v2.3/layer/layer.js"></script>
