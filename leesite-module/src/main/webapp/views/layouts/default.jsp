@@ -18,7 +18,7 @@
 
 <body id="<sitemesh:getProperty property='body.id'/>" class="<sitemesh:getProperty property='body.class'/>" style="<sitemesh:getProperty property='body.style'/>">
 <!-- BEGIN HEADER -->
-<div class="page-header navbar navbar-fixed-top">
+<div class="page-header navbar navbar-fixed-top" style="height: 76px;">
 	<!-- BEGIN HEADER INNER -->
 	<div class="page-header-inner">
 		<!-- BEGIN LOGO -->
