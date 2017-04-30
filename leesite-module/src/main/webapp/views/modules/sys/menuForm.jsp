@@ -107,7 +107,6 @@
     }
 
     $(document).ready(function () {
-        $("#name").focus();
         validateForm = $("#inputForm").validate({
             errorElement: 'span',
             errorClass: 'help-inline border-red font-red',

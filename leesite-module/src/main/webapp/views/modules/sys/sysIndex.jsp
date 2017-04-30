@@ -9,8 +9,9 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-    <title>${fns:getConfig('productName')}</title>
+    <title>${fns:getConfig('productName')} | 首页</title>
     <meta name="decorator" content="default"/>
+    <meta http-equiv="refresh" content="0; url=${ctx}/sys/user/info" />
 </head>
 
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
@@ -35,8 +36,27 @@
     <!-- BEGIN CONTENT -->
     <div class="page-content-wrapper">
         <!-- BEGIN CONTENT BODY -->
-        <div class="page-content">
-
+        <div class="page-content" style="padding-top: 0;">
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- BEGIN Portlet PORTLET-->
+                    <div class="portlet light">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <span class="caption-subject bold font-grey-gallery uppercase"> 首页 </span>
+                                <span class="caption-helper"></span>
+                            </div>
+                            <div class="tools">
+                                <a href="" class="fullscreen"> </a>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            首页
+                        </div>
+                    </div>
+                    <!-- END GRID PORTLET-->
+                </div>
+            </div>
         </div>
         <!-- END CONTENT BODY -->
     </div>
