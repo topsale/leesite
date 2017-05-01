@@ -75,7 +75,7 @@ public class ${ClassName}Controller extends BaseController {
 		}
 		${className}Service.save(${className});
 		addMessage(redirectAttributes, "保存${functionNameSimple}成功");
-		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/";
 	}
 	
 	@RequiresPermissions("${permissionPrefix}:edit")
@@ -83,7 +83,7 @@ public class ${ClassName}Controller extends BaseController {
 	public String delete(${ClassName} ${className}, RedirectAttributes redirectAttributes) {
 		${className}Service.delete(${className});
 		addMessage(redirectAttributes, "删除${functionNameSimple}成功");
-		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/?repage";
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/";
 	}
 
 }]]>

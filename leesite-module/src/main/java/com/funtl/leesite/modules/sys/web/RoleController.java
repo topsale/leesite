@@ -108,11 +108,11 @@ public class RoleController extends BaseController {
 	public String save(Role role, Model model, RedirectAttributes redirectAttributes) {
 		if (!UserUtils.getUser().isAdmin() && role.getSysData().equals(Global.YES)) {
 			addMessage(redirectAttributes, "越权操作，只有超级管理员才能修改此数据");
-			return "redirect:" + adminPath + "/sys/role/?repage";
+			return "redirect:" + adminPath + "/sys/role/";
 		}
 		if (Global.isDemoMode()) {
 			addMessage(redirectAttributes, "演示模式，不允许操作");
-			return "redirect:" + adminPath + "/sys/role/?repage";
+			return "redirect:" + adminPath + "/sys/role/";
 		}
 		if (!beanValidator(model, role)) {
 			return list(role, model);
@@ -127,7 +127,7 @@ public class RoleController extends BaseController {
 		}
 		systemService.saveRole(role);
 		addMessage(redirectAttributes, "保存角色'" + role.getName() + "'成功");
-		return "redirect:" + adminPath + "/sys/role/?repage";
+		return "redirect:" + adminPath + "/sys/role/";
 	}
 
 	@RequiresPermissions("sys:role:del")
@@ -135,11 +135,11 @@ public class RoleController extends BaseController {
 	public String delete(Role role, RedirectAttributes redirectAttributes) {
 		if (!UserUtils.getUser().isAdmin() && role.getSysData().equals(Global.YES)) {
 			addMessage(redirectAttributes, "越权操作，只有超级管理员才能修改此数据");
-			return "redirect:" + adminPath + "/sys/role/?repage";
+			return "redirect:" + adminPath + "/sys/role/";
 		}
 		if (Global.isDemoMode()) {
 			addMessage(redirectAttributes, "演示模式，不允许操作");
-			return "redirect:" + adminPath + "/sys/role/?repage";
+			return "redirect:" + adminPath + "/sys/role/";
 		}
 		//		if (Role.isAdmin(id)){
 		//			addMessage(redirectAttributes, "删除角色失败, 不允许内置角色或编号空");
@@ -149,7 +149,7 @@ public class RoleController extends BaseController {
 		systemService.deleteRole(role);
 		addMessage(redirectAttributes, "删除角色成功");
 		//		}
-		return "redirect:" + adminPath + "/sys/role/?repage";
+		return "redirect:" + adminPath + "/sys/role/";
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class RoleController extends BaseController {
 
 		if (Global.isDemoMode()) {
 			addMessage(redirectAttributes, "演示模式，不允许操作");
-			return "redirect:" + adminPath + "/sys/role/?repage";
+			return "redirect:" + adminPath + "/sys/role/";
 		}
 		String idArray[] = ids.split(",");
 		StringBuffer msg = new StringBuffer();
@@ -176,7 +176,7 @@ public class RoleController extends BaseController {
 			}
 		}
 		addMessage(redirectAttributes, msg.toString());
-		return "redirect:" + adminPath + "/sys/role/?repage";
+		return "redirect:" + adminPath + "/sys/role/";
 	}
 
 	/**

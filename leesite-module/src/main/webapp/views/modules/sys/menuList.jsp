@@ -160,8 +160,6 @@
 <script>
     $(function () {
         $("#treeTable").treeTable({expandLevel: 1, column: 1}).show();
-
-        CheckTable.init("#treeTable");
     });
 
     // 刷新

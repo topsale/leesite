@@ -207,10 +207,5 @@
 <!-- END CONTAINER -->
 
 <%@include file="/views/include/foot.jsp" %>
-<script type="text/javascript">
-    $(function () {
-        CheckTable.init("#contentTable");
-    });
-</script>
 </body>
 </html>

@@ -107,7 +107,7 @@ public class GenTableController extends BaseController {
 		}
 		genTableService.save(genTable);
 		addMessage(redirectAttributes, "保存业务表'" + genTable.getName() + "'成功");
-		return "redirect:" + adminPath + "/gen/genTable/?repage";
+		return "redirect:" + adminPath + "/gen/genTable/";
 	}
 
 	@RequiresPermissions("gen:genTable:edit")
@@ -115,7 +115,7 @@ public class GenTableController extends BaseController {
 	public String delete(GenTable genTable, RedirectAttributes redirectAttributes) {
 		genTableService.delete(genTable);
 		addMessage(redirectAttributes, "删除业务表成功");
-		return "redirect:" + adminPath + "/gen/genTable/?repage";
+		return "redirect:" + adminPath + "/gen/genTable/";
 	}
 
 }

@@ -82,14 +82,14 @@ public class MailController extends BaseController {
 		}
 		mailService.save(mail);
 		addMessage(redirectAttributes, "删除站内信成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mail/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/mail/";
 	}
 
 	@RequestMapping(value = "delete")
 	public String delete(Mail mail, RedirectAttributes redirectAttributes) {
 		mailService.delete(mail);
 		addMessage(redirectAttributes, "删除站内信成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mail/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/mail/";
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class MailController extends BaseController {
 			mailService.delete(mailService.get(id));
 		}
 		addMessage(redirectAttributes, "删除站内信成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mail/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/mail/";
 	}
 
 }

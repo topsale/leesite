@@ -180,7 +180,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 			chinaWeatherDataBeanService.save(chinaWeatherDataBean);//保存
 		}
 		addMessage(redirectAttributes, "保存城市气温成功");
-		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/";
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 	public String delete(ChinaWeatherDataBean chinaWeatherDataBean, RedirectAttributes redirectAttributes) {
 		chinaWeatherDataBeanService.delete(chinaWeatherDataBean);
 		addMessage(redirectAttributes, "删除城市气温成功");
-		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/";
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 			chinaWeatherDataBeanService.delete(chinaWeatherDataBeanService.get(id));
 		}
 		addMessage(redirectAttributes, "删除城市气温成功");
-		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/";
 	}
 
 	/**
@@ -222,7 +222,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出城市气温记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/";
 	}
 
 	/**
@@ -254,7 +254,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入城市气温失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/";
 	}
 
 	/**
@@ -271,7 +271,7 @@ public class ChinaWeatherDataBeanController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/chinaWeatherDataBean/";
 	}
 
 

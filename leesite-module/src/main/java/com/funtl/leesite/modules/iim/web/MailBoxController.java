@@ -142,14 +142,14 @@ public class MailBoxController extends BaseController {
 		mailBox.setSendtime(date);
 		mailBoxService.save(mailBox);
 		addMessage(redirectAttributes, "保存站内信成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mailBox/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/mailBox/";
 	}
 
 	@RequestMapping(value = "delete")
 	public String delete(MailBox mailBox, RedirectAttributes redirectAttributes) {
 		mailBoxService.delete(mailBox);
 		addMessage(redirectAttributes, "删除站内信成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mailBox/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/mailBox/";
 	}
 
 	/**
@@ -162,6 +162,6 @@ public class MailBoxController extends BaseController {
 			mailBoxService.delete(mailBoxService.get(id));
 		}
 		addMessage(redirectAttributes, "删除站内信成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mailBox/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/mailBox/";
 	}
 }

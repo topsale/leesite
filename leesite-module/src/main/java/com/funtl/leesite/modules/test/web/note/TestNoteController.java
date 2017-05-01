@@ -109,7 +109,7 @@ public class TestNoteController extends BaseController {
 			testNoteService.save(testNote);//保存
 		}
 		addMessage(redirectAttributes, "保存富文本测试成功");
-		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/";
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class TestNoteController extends BaseController {
 	public String delete(TestNote testNote, RedirectAttributes redirectAttributes) {
 		testNoteService.delete(testNote);
 		addMessage(redirectAttributes, "删除富文本测试成功");
-		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/";
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class TestNoteController extends BaseController {
 			testNoteService.delete(testNoteService.get(id));
 		}
 		addMessage(redirectAttributes, "删除富文本测试成功");
-		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/";
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class TestNoteController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出富文本测试记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/";
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class TestNoteController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入富文本测试失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/";
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class TestNoteController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/note/testNote/";
 	}
 
 

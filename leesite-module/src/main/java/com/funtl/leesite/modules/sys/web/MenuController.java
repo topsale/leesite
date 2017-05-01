@@ -96,7 +96,7 @@ public class MenuController extends BaseController {
 	public String save(Menu menu, Model model, RedirectAttributes redirectAttributes) {
 		if (!UserUtils.getUser().isAdmin()) {
 			addMessage(redirectAttributes, "越权操作，只有超级管理员才能添加或修改数据");
-			return "redirect:" + adminPath + "/sys/role/?repage";
+			return "redirect:" + adminPath + "/sys/role/";
 		}
 		if (Global.isDemoMode()) {
 			addMessage(redirectAttributes, "演示模式，不允许操作");

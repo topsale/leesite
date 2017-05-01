@@ -93,12 +93,12 @@ public class OaNotifyController extends BaseController {
 			OaNotify e = oaNotifyService.get(oaNotify.getId());
 			if ("1".equals(e.getStatus())) {
 				addMessage(redirectAttributes, "已发布，不能操作");
-				return "redirect:" + adminPath + "/oa/oaNotify/?repage";
+				return "redirect:" + adminPath + "/oa/oaNotify/";
 			}
 		}
 		oaNotifyService.save(oaNotify);
 		addMessage(redirectAttributes, "保存通知'" + oaNotify.getTitle() + "'成功");
-		return "redirect:" + adminPath + "/oa/oaNotify/?repage";
+		return "redirect:" + adminPath + "/oa/oaNotify/";
 	}
 
 	@RequiresPermissions("oa:oaNotify:del")
@@ -106,7 +106,7 @@ public class OaNotifyController extends BaseController {
 	public String delete(OaNotify oaNotify, RedirectAttributes redirectAttributes) {
 		oaNotifyService.delete(oaNotify);
 		addMessage(redirectAttributes, "删除通知成功");
-		return "redirect:" + adminPath + "/oa/oaNotify/?repage";
+		return "redirect:" + adminPath + "/oa/oaNotify/";
 	}
 
 	@RequiresPermissions("oa:oaNotify:del")
@@ -117,7 +117,7 @@ public class OaNotifyController extends BaseController {
 			oaNotifyService.delete(oaNotifyService.get(id));
 		}
 		addMessage(redirectAttributes, "删除通知成功");
-		return "redirect:" + adminPath + "/oa/oaNotify/?repage";
+		return "redirect:" + adminPath + "/oa/oaNotify/";
 	}
 
 	/**
@@ -154,7 +154,7 @@ public class OaNotifyController extends BaseController {
 			model.addAttribute("oaNotify", oaNotify);
 			return "modules/oa/oaNotifyForm";
 		}
-		return "redirect:" + adminPath + "/oa/oaNotify/self?repage";
+		return "redirect:" + adminPath + "/oa/oaNotify/self";
 	}
 
 	/**

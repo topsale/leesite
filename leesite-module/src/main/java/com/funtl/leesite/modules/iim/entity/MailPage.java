@@ -98,7 +98,7 @@ public class MailPage<T> extends Page<T> {
 			sb.append("<li class=\"paginate_button next\"><a href=\"javascript:\" onclick=\"" + funcName + "(" + next + "," + pageSize + ",'" + funcParam + "');\">" + "下一页</a></li>\n");
 		}
 
-		sb.append("<li> <select onChange=\"" + funcName + "(" + pageNo + ",this.value,'" + funcParam + "');\"" + " style=\"height:33px;\" class=\"btn-sm\">" + "<option value=\"10\" " + getSelected(pageSize, 10) + ">10</option>" + "<option value=\"25\" " + getSelected(pageSize, 25) + ">25</option>" + "<option value=\"50\" " + getSelected(pageSize, 50) + ">50</option>" + "<option value=\"100\" " + getSelected(pageSize, 100) + ">100</option>" + "</select> </li>\n");
+		sb.append("<li> <select id=\"mailPageSelect\" onChange=\"" + funcName + "(" + pageNo + ",this.value,'" + funcParam + "');\"" + " style=\"height:33px;\" class=\"btn-sm\">" + "<option value=\"10\" " + getSelected(pageSize, 10) + ">10</option>" + "<option value=\"25\" " + getSelected(pageSize, 25) + ">25</option>" + "<option value=\"50\" " + getSelected(pageSize, 50) + ">50</option>" + "<option value=\"100\" " + getSelected(pageSize, 100) + ">100</option>" + "</select> </li>\n");
 		sb.append("</ul>");
 		sb.append("</div>");
 		sb.append("</div>");

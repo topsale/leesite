@@ -111,7 +111,7 @@ public class ContactController extends BaseController {
 			}
 		}
 		addMessage(redirectAttributes, "添加好友成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/contact/myFriends/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/contact/myFriends/";
 	}
 
 
@@ -127,7 +127,7 @@ public class ContactController extends BaseController {
 			//  userDao.deleteFriend(friend.getId(), currentUser.getId());//同时把自己从对方的好友列表删除
 		}
 
-		return "redirect:" + Global.getAdminPath() + "/iim/contact/myFriends/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/contact/myFriends/";
 	}
 
 	/**

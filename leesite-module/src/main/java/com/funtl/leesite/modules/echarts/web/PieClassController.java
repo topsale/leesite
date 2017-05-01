@@ -119,7 +119,7 @@ public class PieClassController extends BaseController {
 			pieClassService.save(pieClass);//保存
 		}
 		addMessage(redirectAttributes, "保存班级成功");
-		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/";
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class PieClassController extends BaseController {
 	public String delete(PieClass pieClass, RedirectAttributes redirectAttributes) {
 		pieClassService.delete(pieClass);
 		addMessage(redirectAttributes, "删除班级成功");
-		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/";
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class PieClassController extends BaseController {
 			pieClassService.delete(pieClassService.get(id));
 		}
 		addMessage(redirectAttributes, "删除班级成功");
-		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/";
 	}
 
 	/**
@@ -161,7 +161,7 @@ public class PieClassController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出班级记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/";
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class PieClassController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入班级失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/";
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class PieClassController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/?repage";
+		return "redirect:" + Global.getAdminPath() + "/echarts/pieClass/";
 	}
 
 

@@ -109,7 +109,7 @@ public class FormLeaveController extends BaseController {
 			formLeaveService.save(formLeave);//保存
 		}
 		addMessage(redirectAttributes, "保存请假单成功");
-		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/";
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class FormLeaveController extends BaseController {
 	public String delete(FormLeave formLeave, RedirectAttributes redirectAttributes) {
 		formLeaveService.delete(formLeave);
 		addMessage(redirectAttributes, "删除请假单成功");
-		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/";
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class FormLeaveController extends BaseController {
 			formLeaveService.delete(formLeaveService.get(id));
 		}
 		addMessage(redirectAttributes, "删除请假单成功");
-		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/";
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class FormLeaveController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出请假单记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/";
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class FormLeaveController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入请假单失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/";
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class FormLeaveController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/one/formLeave/";
 	}
 
 

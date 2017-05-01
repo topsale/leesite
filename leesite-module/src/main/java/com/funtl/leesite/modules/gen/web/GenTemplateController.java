@@ -85,7 +85,7 @@ public class GenTemplateController extends BaseController {
 		}
 		genTemplateService.save(genTemplate);
 		addMessage(redirectAttributes, "保存代码模板'" + genTemplate.getName() + "'成功");
-		return "redirect:" + adminPath + "/gen/genTemplate/?repage";
+		return "redirect:" + adminPath + "/gen/genTemplate/";
 	}
 
 	@RequiresPermissions("gen:genTemplate:edit")
@@ -93,7 +93,7 @@ public class GenTemplateController extends BaseController {
 	public String delete(GenTemplate genTemplate, RedirectAttributes redirectAttributes) {
 		genTemplateService.delete(genTemplate);
 		addMessage(redirectAttributes, "删除代码模板成功");
-		return "redirect:" + adminPath + "/gen/genTemplate/?repage";
+		return "redirect:" + adminPath + "/gen/genTemplate/";
 	}
 
 }

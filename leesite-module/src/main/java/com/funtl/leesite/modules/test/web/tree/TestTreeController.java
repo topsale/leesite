@@ -123,7 +123,7 @@ public class TestTreeController extends BaseController {
 			testTreeService.save(testTree);//保存
 		}
 		addMessage(redirectAttributes, "保存机构成功");
-		return "redirect:" + Global.getAdminPath() + "/test/tree/testTree/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/tree/testTree/";
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class TestTreeController extends BaseController {
 	public String delete(TestTree testTree, RedirectAttributes redirectAttributes) {
 		testTreeService.delete(testTree);
 		addMessage(redirectAttributes, "删除机构成功");
-		return "redirect:" + Global.getAdminPath() + "/test/tree/testTree/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/tree/testTree/";
 	}
 
 	@RequiresPermissions("user")

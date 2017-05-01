@@ -111,7 +111,7 @@ public class TestInterfaceController extends BaseController {
 		}
 		testInterfaceService.save(testInterface);
 		addMessage(redirectAttributes, "保存接口成功");
-		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
+		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/";
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class TestInterfaceController extends BaseController {
 	public String delete(TestInterface testInterface, RedirectAttributes redirectAttributes) {
 		testInterfaceService.delete(testInterface);
 		addMessage(redirectAttributes, "删除接口成功");
-		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
+		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/";
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class TestInterfaceController extends BaseController {
 			testInterfaceService.delete(testInterfaceService.get(id));
 		}
 		addMessage(redirectAttributes, "删除接口成功");
-		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
+		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/";
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class TestInterfaceController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出接口记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
+		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/";
 	}
 
 	/**
@@ -173,7 +173,7 @@ public class TestInterfaceController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入接口失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
+		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/";
 	}
 
 	/**
@@ -190,7 +190,7 @@ public class TestInterfaceController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/?repage";
+		return "redirect:" + Global.getAdminPath() + "/tools/testInterface/";
 	}
 
 

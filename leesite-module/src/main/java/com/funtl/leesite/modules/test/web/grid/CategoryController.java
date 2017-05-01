@@ -109,7 +109,7 @@ public class CategoryController extends BaseController {
 			categoryService.save(category);//保存
 		}
 		addMessage(redirectAttributes, "保存商品分类成功");
-		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/category/";
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class CategoryController extends BaseController {
 	public String delete(Category category, RedirectAttributes redirectAttributes) {
 		categoryService.delete(category);
 		addMessage(redirectAttributes, "删除商品分类成功");
-		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/category/";
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class CategoryController extends BaseController {
 			categoryService.delete(categoryService.get(id));
 		}
 		addMessage(redirectAttributes, "删除商品分类成功");
-		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/category/";
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class CategoryController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出商品分类记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/category/";
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class CategoryController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入商品分类失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/category/";
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class CategoryController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/grid/category/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/category/";
 	}
 
 

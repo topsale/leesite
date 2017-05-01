@@ -113,7 +113,7 @@ public class SystemConfigController extends BaseController {
 	public String delete(SystemConfig systemConfig, RedirectAttributes redirectAttributes) {
 		systemConfigService.delete(systemConfig);
 		addMessage(redirectAttributes, "删除系统配置成功");
-		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/?repage";
+		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/";
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class SystemConfigController extends BaseController {
 			systemConfigService.delete(systemConfigService.get(id));
 		}
 		addMessage(redirectAttributes, "删除系统配置成功");
-		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/?repage";
+		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/";
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class SystemConfigController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出系统配置记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/?repage";
+		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/";
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class SystemConfigController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入系统配置失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/?repage";
+		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/";
 	}
 
 	/**
@@ -181,7 +181,7 @@ public class SystemConfigController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/?repage";
+		return "redirect:" + Global.getAdminPath() + "/sys/systemConfig/";
 	}
 
 

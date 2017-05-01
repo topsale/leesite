@@ -121,7 +121,7 @@ public class UserController extends BaseController {
 	public String save(User user, HttpServletRequest request, Model model, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
 			addMessage(redirectAttributes, "演示模式，不允许操作");
-			return "redirect:" + adminPath + "/sys/user/list?repage";
+			return "redirect:" + adminPath + "/sys/user/list";
 		}
 		// 修正引用赋值问题，不知道为何，Company和Office引用的一个实例地址，修改了一个，另外一个跟着修改。
 		user.setCompany(new Office(request.getParameter("company.id")));
@@ -161,7 +161,7 @@ public class UserController extends BaseController {
 			//UserUtils.getCacheMap().clear();
 		}
 		addMessage(redirectAttributes, "保存用户'" + user.getLoginName() + "'成功");
-		return "redirect:" + adminPath + "/sys/user/list?repage";
+		return "redirect:" + adminPath + "/sys/user/list";
 	}
 
 	@RequiresPermissions("sys:user:del")
@@ -169,7 +169,7 @@ public class UserController extends BaseController {
 	public String delete(User user, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
 			addMessage(redirectAttributes, "演示模式，不允许操作");
-			return "redirect:" + adminPath + "/sys/user/list?repage";
+			return "redirect:" + adminPath + "/sys/user/list";
 		}
 		if (UserUtils.getUser().getId().equals(user.getId())) {
 			addMessage(redirectAttributes, "删除用户失败, 不允许删除当前用户");
@@ -179,7 +179,7 @@ public class UserController extends BaseController {
 			systemService.deleteUser(user);
 			addMessage(redirectAttributes, "删除用户成功");
 		}
-		return "redirect:" + adminPath + "/sys/user/list?repage";
+		return "redirect:" + adminPath + "/sys/user/list";
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class UserController extends BaseController {
 			User user = systemService.getUser(id);
 			if (Global.isDemoMode()) {
 				addMessage(redirectAttributes, "演示模式，不允许操作");
-				return "redirect:" + adminPath + "/sys/user/list?repage";
+				return "redirect:" + adminPath + "/sys/user/list";
 			}
 			if (UserUtils.getUser().getId().equals(user.getId())) {
 				addMessage(redirectAttributes, "删除用户失败, 不允许删除当前用户");
@@ -204,7 +204,7 @@ public class UserController extends BaseController {
 				addMessage(redirectAttributes, "删除用户成功");
 			}
 		}
-		return "redirect:" + adminPath + "/sys/user/list?repage";
+		return "redirect:" + adminPath + "/sys/user/list";
 	}
 
 	/**
@@ -227,7 +227,7 @@ public class UserController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出用户失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + adminPath + "/sys/user/list?repage";
+		return "redirect:" + adminPath + "/sys/user/list";
 	}
 
 	/**
@@ -242,7 +242,7 @@ public class UserController extends BaseController {
 	public String importFile(MultipartFile file, RedirectAttributes redirectAttributes) {
 		if (Global.isDemoMode()) {
 			addMessage(redirectAttributes, "演示模式，不允许操作");
-			return "redirect:" + adminPath + "/sys/user/list?repage";
+			return "redirect:" + adminPath + "/sys/user/list";
 		}
 		try {
 			int successNum = 0;
@@ -279,7 +279,7 @@ public class UserController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入用户失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + adminPath + "/sys/user/list?repage";
+		return "redirect:" + adminPath + "/sys/user/list";
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class UserController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + adminPath + "/sys/user/list?repage";
+		return "redirect:" + adminPath + "/sys/user/list";
 	}
 
 	/**

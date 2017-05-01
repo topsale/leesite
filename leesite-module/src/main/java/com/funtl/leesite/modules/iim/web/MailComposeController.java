@@ -274,7 +274,7 @@ public class MailComposeController extends BaseController {
 	public String delete(MailCompose mailCompose, RedirectAttributes redirectAttributes) {
 		mailComposeService.delete(mailCompose);
 		addMessage(redirectAttributes, "删除站内信成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mailCompose/?repage&orderBy=sendtime desc&status=" + mailCompose.getStatus();
+		return "redirect:" + Global.getAdminPath() + "/iim/mailCompose/?orderBy=sendtime desc&status=" + mailCompose.getStatus();
 	}
 
 	/**
@@ -289,7 +289,7 @@ public class MailComposeController extends BaseController {
 
 
 		addMessage(redirectAttributes, "删除邮件成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mailCompose/?repage&status=1&orderBy=sendtime desc";
+		return "redirect:" + Global.getAdminPath() + "/iim/mailCompose/?status=1&orderBy=sendtime desc";
 	}
 
 	/**
@@ -302,7 +302,7 @@ public class MailComposeController extends BaseController {
 			mailComposeService.delete(mailComposeService.get(id));
 		}
 		addMessage(redirectAttributes, "删除邮件成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/mailCompose/?repage&status=0&orderBy=sendtime desc";
+		return "redirect:" + Global.getAdminPath() + "/iim/mailCompose/?status=0&orderBy=sendtime desc";
 	}
 
 }

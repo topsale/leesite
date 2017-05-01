@@ -110,7 +110,7 @@ public class GoodsController extends BaseController {
 			goodsService.save(goods);//保存
 		}
 		addMessage(redirectAttributes, "保存商品成功");
-		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/";
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class GoodsController extends BaseController {
 	public String delete(Goods goods, RedirectAttributes redirectAttributes) {
 		goodsService.delete(goods);
 		addMessage(redirectAttributes, "删除商品成功");
-		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/";
 	}
 
 	/**
@@ -135,7 +135,7 @@ public class GoodsController extends BaseController {
 			goodsService.delete(goodsService.get(id));
 		}
 		addMessage(redirectAttributes, "删除商品成功");
-		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/";
 	}
 
 	/**
@@ -152,7 +152,7 @@ public class GoodsController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出商品记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/";
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class GoodsController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入商品失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/";
 	}
 
 	/**
@@ -201,7 +201,7 @@ public class GoodsController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/grid/goods/";
 	}
 
 

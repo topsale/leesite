@@ -100,7 +100,7 @@ public class ChatHistoryController extends BaseController {
 		}
 		chatHistoryService.save(chatHistory);
 		addMessage(redirectAttributes, "保存聊天成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/";
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class ChatHistoryController extends BaseController {
 	public String delete(ChatHistory chatHistory, RedirectAttributes redirectAttributes) {
 		chatHistoryService.delete(chatHistory);
 		addMessage(redirectAttributes, "删除聊天成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/";
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class ChatHistoryController extends BaseController {
 			chatHistoryService.delete(chatHistoryService.get(id));
 		}
 		addMessage(redirectAttributes, "删除聊天成功");
-		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/";
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class ChatHistoryController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出聊天记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/?repage";
+		return "redirect:" + Global.getAdminPath() + "/iim/chatHistory/";
 	}
 
 	/**

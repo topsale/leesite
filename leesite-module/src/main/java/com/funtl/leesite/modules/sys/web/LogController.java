@@ -65,7 +65,7 @@ public class LogController extends BaseController {
 			logService.delete(logService.get(id));
 		}
 		addMessage(redirectAttributes, "删除日志成功");
-		return "redirect:" + Global.getAdminPath() + "/sys/log/?repage";
+		return "redirect:" + Global.getAdminPath() + "/sys/log/";
 	}
 
 	/**
@@ -76,6 +76,6 @@ public class LogController extends BaseController {
 	public String empty(RedirectAttributes redirectAttributes) {
 		logService.empty();
 		addMessage(redirectAttributes, "清空日志成功");
-		return "redirect:" + Global.getAdminPath() + "/sys/log/?repage";
+		return "redirect:" + Global.getAdminPath() + "/sys/log/";
 	}
 }

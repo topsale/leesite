@@ -109,7 +109,7 @@ public class TestDataMainController extends BaseController {
 			testDataMainService.save(testDataMain);//保存
 		}
 		addMessage(redirectAttributes, "保存票务代理成功");
-		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/";
 	}
 
 	/**
@@ -120,7 +120,7 @@ public class TestDataMainController extends BaseController {
 	public String delete(TestDataMain testDataMain, RedirectAttributes redirectAttributes) {
 		testDataMainService.delete(testDataMain);
 		addMessage(redirectAttributes, "删除票务代理成功");
-		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/";
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class TestDataMainController extends BaseController {
 			testDataMainService.delete(testDataMainService.get(id));
 		}
 		addMessage(redirectAttributes, "删除票务代理成功");
-		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/";
 	}
 
 	/**
@@ -151,7 +151,7 @@ public class TestDataMainController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出票务代理记录失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/";
 	}
 
 	/**
@@ -183,7 +183,7 @@ public class TestDataMainController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入票务代理失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/";
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class TestDataMainController extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息：" + e.getMessage());
 		}
-		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/?repage";
+		return "redirect:" + Global.getAdminPath() + "/test/onetomany/testDataMain/";
 	}
 
 

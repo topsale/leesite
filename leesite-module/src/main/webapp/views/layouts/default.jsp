@@ -119,7 +119,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="app_todo_2.html">
+								<a href="${ctx}/iim/contact/index">
 									<i class="icon-notebook"></i> 我的通讯录
 								</a>
 							</li>

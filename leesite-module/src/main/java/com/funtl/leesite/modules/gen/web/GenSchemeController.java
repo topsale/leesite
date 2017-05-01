@@ -107,13 +107,13 @@ public class GenSchemeController extends BaseController {
 		if ("1".equals(genScheme.getFlag())) {
 			if (!genSchemeService.checkSrcPathConfig()) {
 				addMessage(redirectAttributes, "您未配置源码路径“srcPath”，或您配置的路径不正确");
-				return "redirect:" + adminPath + "/gen/genScheme/?repage";
+				return "redirect:" + adminPath + "/gen/genScheme/";
 			}
 		}
 
 		String result = genSchemeService.save(genScheme);
 		addMessage(redirectAttributes, "操作生成方案'" + genScheme.getName() + "'成功<br/>" + result);
-		return "redirect:" + adminPath + "/gen/genScheme/?repage";
+		return "redirect:" + adminPath + "/gen/genScheme/";
 	}
 
 	@RequiresPermissions("gen:genScheme:edit")
@@ -121,7 +121,7 @@ public class GenSchemeController extends BaseController {
 	public String delete(GenScheme genScheme, RedirectAttributes redirectAttributes) {
 		genSchemeService.delete(genScheme);
 		addMessage(redirectAttributes, "删除生成方案成功");
-		return "redirect:" + adminPath + "/gen/genScheme/?repage";
+		return "redirect:" + adminPath + "/gen/genScheme/";
 	}
 
 }
