@@ -19,9 +19,6 @@ package com.funtl.leesite.modules.echarts.web;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.funtl.leesite.common.web.BaseController;
 
 import org.springframework.stereotype.Controller;
@@ -37,8 +34,8 @@ public class PieController extends BaseController {
 	private Map<String, Object> orientData;
 
 	@RequestMapping(value = {"index", ""})
-	public String index(HttpServletRequest request, HttpServletResponse response, Model model) {
-		request.setAttribute("orientData", getorientData());
+	public String index(Model model) {
+		model.addAttribute("orientData", getorientData());
 		return "modules/echarts/pie";
 	}
 

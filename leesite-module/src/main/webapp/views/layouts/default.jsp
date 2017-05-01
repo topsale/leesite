@@ -66,7 +66,7 @@
 							<li class="external">
 								<h3>您有
 									<span class="bold">${fns:noReadNotifyCount()} 条</span> 未读消息</h3>
-								<a href="${ctx}">全部</a>
+								<a href="${ctx}/oa/oaNotify/self/">全部</a>
 							</li>
 						</ul>
 					</li>
