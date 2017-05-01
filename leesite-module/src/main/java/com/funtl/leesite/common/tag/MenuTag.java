@@ -29,6 +29,9 @@ import com.funtl.leesite.common.utils.SpringContextHolder;
 import com.funtl.leesite.modules.sys.entity.Menu;
 import com.funtl.leesite.modules.sys.utils.UserUtils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * 类描述：菜单标签
@@ -39,9 +42,10 @@ import com.funtl.leesite.modules.sys.utils.UserUtils;
  * @date： 日期：2015-1-23 时间：上午10:17:45
  */
 public class MenuTag extends TagSupport {
-	private static final long serialVersionUID = 1L;
-	protected Menu menu;//菜单Map
+	private static final Logger logger = LoggerFactory.getLogger(MenuTag.class);
 
+	private static final long serialVersionUID = 1L;
+	protected Menu menu;// 菜单Map
 
 	public Menu getMenu() {
 		return menu;
@@ -76,10 +80,8 @@ public class MenuTag extends TagSupport {
 	public StringBuffer end() {
 		StringBuffer sb = new StringBuffer();
 		sb.append(getChildOfTree(menu, 0, UserUtils.getMenuList()));
-
-		System.out.println(sb);
+		logger.debug("{}", sb);
 		return sb;
-
 	}
 
 	private static String getChildOfTree(Menu parent, int level, List<Menu> menuList) {
@@ -103,7 +105,6 @@ public class MenuTag extends TagSupport {
 				}
 			}
 		}
-
 
 		if ((parent.getHref() == null || parent.getHref().trim().equals("")) && parent.getIsShow().equals("1")) {//如果是父节点且显示
 			if (level > 0) {

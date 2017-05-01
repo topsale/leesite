@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-    <title>${fns:getConfig('productName')} | 信箱</title>
+    <title>${fns:getConfig('productName')} | 站内信</title>
     <meta name="decorator" content="default"/>
     <link href="${ctxStatic}/assets/apps/css/inbox.min.css" rel="stylesheet" type="text/css" />
 </head>
@@ -211,33 +211,6 @@
     $(function () {
         CheckTable.init("#contentTable");
     });
-
-    function search(){ // 查询，页码清零
-        $("#pageNo").val(0);
-        $("#searchForm").submit();
-        return false;
-    }
-
-    function reset(){ // 重置，页码清零
-        $("#pageNo").val(0);
-        $("#searchForm div.form-group input").val("");
-        $("#searchForm div.form-group select").val("");
-        $("#searchForm").submit();
-        return false;
-    }
-
-    function sortOrRefresh(){ // 刷新或者排序，页码不清零
-        $("#searchForm").submit();
-        return false;
-    }
-
-    function page(n,s){ // 翻页
-        $("#pageNo").val(n);
-        $("#pageSize").val(s);
-        $("#searchForm").submit();
-        $("span.page-size").text(s);
-        return false;
-    }
 </script>
 </body>
 </html>

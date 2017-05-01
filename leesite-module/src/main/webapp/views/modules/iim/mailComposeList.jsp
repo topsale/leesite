@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-    <title>${fns:getConfig('productName')} | 信箱</title>
+    <title>${fns:getConfig('productName')} | 站内信</title>
     <meta name="decorator" content="default"/>
     <link href="${ctxStatic}/assets/apps/css/inbox.min.css" rel="stylesheet" type="text/css" />
 </head>
@@ -211,13 +211,6 @@
     $(function () {
         CheckTable.init("#contentTable");
     });
-
-    function page(n,s){
-        $("#pageNo").val(n);
-        $("#pageSize").val(s);
-        $("#searchForm").submit();
-        return false;
-    }
 </script>
 </body>
 </html>
