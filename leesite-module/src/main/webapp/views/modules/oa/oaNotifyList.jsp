@@ -67,7 +67,11 @@
                                             </form:select>
                                             <c:if test="${!requestScope.oaNotify.self}">
                                                 <label>状态：</label>
-                                                <form:radiobuttons path="status" class="i-checks" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false" />
+                                                <div class="input-group">
+                                                    <div class="icheck-inline">
+                                                        <form:radiobuttons path="status" class="icheck" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false" />
+                                                    </div>
+                                                </div>
                                             </c:if>
                                         </div>
                                     </form:form>

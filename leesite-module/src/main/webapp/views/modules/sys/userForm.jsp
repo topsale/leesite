@@ -126,7 +126,11 @@
                     <label class="pull-right"> <span style="color: #E7505A;"> * </span>用户角色：</label>
                 </td>
                 <td colspan="3">
-                    <form:checkboxes path="roleIdList" items="${allRoles}" itemLabel="name" itemValue="id" htmlEscape="false" cssClass="required" />
+                    <div class="input-group">
+                        <div class="icheck-inline">
+                            <form:checkboxes path="roleIdList" items="${allRoles}" itemLabel="name" itemValue="id" htmlEscape="false" cssClass="required icheck" />
+                        </div>
+                    </div>
                     <label id="roleIdList-error" class="error" for="roleIdList"></label>
                 </td>
             </tr>

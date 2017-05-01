@@ -95,8 +95,8 @@
             </span>
         </p>
         <p>
-            <label><input type="checkbox" value="1" id="isallday" name="isallday" checked> 全天</label>
-            <label><input type="checkbox" value="1" id="isend" style="margin-left: 10px;" name="isend" ${chk} }> 结束时间</label>
+            <label><input type="checkbox" class="icheck" value="1" id="isallday" name="isallday" checked> 全天</label>
+            <label><input type="checkbox" class="icheck" value="1" id="isend" style="margin-left: 10px;" name="isend" ${chk} }> 结束时间</label>
         </p>
         <div class="sub_btn">
             <span class="del"><input type="button" class="btn btn_del" id="del_event" value="删除"></span>

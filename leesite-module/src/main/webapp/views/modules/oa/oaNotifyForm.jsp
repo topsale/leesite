@@ -68,7 +68,11 @@
                         <label class="pull-right"> <span style="color: #E7505A;"> * </span>状态：</label>
                     </td>
                     <td>
-                        <form:radiobuttons path="status" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required"/>
+                        <div class="input-group">
+                            <div class="icheck-inline">
+                                <form:radiobuttons path="status" items="${fns:getDictList('oa_notify_status')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required icheck"/>
+                            </div>
+                        </div>
                     </td>
                     <td class="active">
                         <label class="pull-right"> <span style="color: #E7505A;"> * </span>接受人：</label>

@@ -70,9 +70,13 @@
                     <label class="pull-right">可见：</label>
                 </td>
                 <td>
-                    <form:radiobuttons path="isShow" items="${fns:getDictList('show_hide')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required" cssStyle="margin-left: 10px;" />
+                    <div class="input-group">
+                        <div class="icheck-inline">
+                            <form:radiobuttons path="isShow" items="${fns:getDictList('show_hide')}" itemLabel="label" itemValue="value" htmlEscape="false" class="required icheck" />
+                        </div>
+                    </div>
                     <br />
-                    <span class="help-inline" style="margin-left: 10px;">该菜单或操作是否显示到系统菜单中</span>
+                    <span class="help-inline">该菜单或操作是否显示到系统菜单中</span>
                 </td>
                 <td class="active">
                     <label class="pull-right">权限标识：</label>

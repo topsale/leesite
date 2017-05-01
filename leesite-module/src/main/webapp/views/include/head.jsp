@@ -30,6 +30,7 @@
 <link href="${ctxStatic}/assets/global/scripts/loader/loading.css" rel="stylesheet" type="text/css" />
 <link href="${ctxStatic}/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 <link href="${ctxStatic}/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="${ctxStatic}/assets/global/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" />
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL STYLES -->
 <link href="${ctxStatic}/assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
