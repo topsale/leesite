@@ -48,7 +48,7 @@
                             </div>
                             <div class="actions">
                                 <div class="btn-group">
-                                    <a class="btn btn-circle btn-default " href="javascript:;" data-toggle="dropdown">
+                                    <a class="btn btn-circle btn-default" href="javascript:;" data-toggle="dropdown">
                                         <i class="fa fa-wrench"></i> 编辑
                                         <i class="fa fa-angle-down"></i>
                                     </a>

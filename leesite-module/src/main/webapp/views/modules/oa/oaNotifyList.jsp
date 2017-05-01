@@ -59,9 +59,9 @@
                                         <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                                         <div class="form-group">
                                             <label>标题：</label>
-                                            <form:input path="title" htmlEscape="false" maxlength="200"  class="form-control"/>
+                                            <form:input path="title" htmlEscape="false" maxlength="200"  class="form-control input-sm"/>
                                             <label>类型：</label>
-                                            <form:select path="type" class="form-control">
+                                            <form:select path="type" class="form-control input-sm">
                                                 <form:option value="" label=""/>
                                                 <form:options items="${fns:getDictList('oa_notify_type')}" itemLabel="label" itemValue="value" htmlEscape="false"/>
                                             </form:select>
@@ -86,18 +86,12 @@
                                             <shiro:hasPermission name="oa:oaNotify:del">
                                                 <table:delRow url="${ctx}/oa/oaNotify/deleteAll" id="contentTable"></table:delRow><!-- 删除按钮 -->
                                             </shiro:hasPermission>
-                                            <shiro:hasPermission name="oa:oaNotify:import">
-                                                <table:importExcel url="${ctx}/oa/oaNotify/import"></table:importExcel><!-- 导入按钮 -->
-                                            </shiro:hasPermission>
-                                            <shiro:hasPermission name="oa:oaNotify:export">
-                                                <table:exportExcel url="${ctx}/oa/oaNotify/export"></table:exportExcel><!-- 导出按钮 -->
-                                            </shiro:hasPermission>
                                             <button class="btn btn-default btn-sm" onclick="sortOrRefresh()"><i class="fa fa-repeat"></i> 刷新</button>
                                         </c:if>
                                     </div>
                                     <div class="pull-right">
-                                        <button  class="btn btn-primary btn-rounded btn-outline btn-sm" onclick="search()" ><i class="fa fa-search"></i> 查询</button>
-                                        <button  class="btn btn-primary btn-rounded btn-outline btn-sm" onclick="reset()" ><i class="fa fa-refresh"></i> 重置</button>
+                                        <button  class="btn btn-primary btn-sm" onclick="search()" ><i class="fa fa-search"></i> 查询</button>
+                                        <button  class="btn btn-primary btn-sm" onclick="reset()" ><i class="fa fa-refresh"></i> 重置</button>
                                     </div>
                                 </div>
                             </div>

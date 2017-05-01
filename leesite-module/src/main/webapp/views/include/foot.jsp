@@ -1,5 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner" style="display: none;"> 2016 &copy; LeeSite By
+        <a target="_blank" href="http://www.funtl.com">深圳市鲁斯菲尔科技有限公司</a>
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- END FOOTER -->
+
 <!--[if lt IE 9]>
 <script src="${ctxStatic}/assets/global/plugins/respond.min.js"></script>
 <script src="${ctxStatic}/assets/global/plugins/excanvas.min.js"></script>

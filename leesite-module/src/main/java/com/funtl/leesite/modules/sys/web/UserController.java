@@ -326,13 +326,12 @@ public class UserController extends BaseController {
 	/**
 	 * 用户信息显示
 	 *
-	 * @param user
 	 * @param model
 	 * @return
 	 */
 	@RequiresPermissions("user")
 	@RequestMapping(value = "info")
-	public String info(HttpServletResponse response, Model model) {
+	public String info(Model model) {
 		User currentUser = UserUtils.getUser();
 		model.addAttribute("user", currentUser);
 		model.addAttribute("Global", new Global());
@@ -415,15 +414,13 @@ public class UserController extends BaseController {
 	/**
 	 * 用户头像显示编辑保存
 	 *
-	 * @param user
-	 * @param model
 	 * @return
 	 * @throws IOException
 	 * @throws IllegalStateException
 	 */
 	@RequiresPermissions("user")
 	@RequestMapping(value = "imageUpload")
-	public String imageUpload(HttpServletRequest request, HttpServletResponse response, MultipartFile file) throws IllegalStateException, IOException {
+	public String imageUpload(HttpServletRequest request, MultipartFile file) throws IllegalStateException, IOException {
 		User currentUser = UserUtils.getUser();
 
 		// 判断文件是否为空  
@@ -584,26 +581,4 @@ public class UserController extends BaseController {
 		}
 		return j;
 	}
-
-	//	@InitBinder
-	//	public void initBinder(WebDataBinder b) {
-	//		b.registerCustomEditor(List.class, "roleList", new PropertyEditorSupport(){
-	//			@Autowired
-	//			private SystemService systemService;
-	//			@Override
-	//			public void setAsText(String text) throws IllegalArgumentException {
-	//				String[] ids = StringUtils.split(text, ",");
-	//				List<Role> roles = new ArrayList<Role>();
-	//				for (String id : ids) {
-	//					Role role = systemService.getRole(Long.valueOf(id));
-	//					roles.add(role);
-	//				}
-	//				setValue(roles);
-	//			}
-	//			@Override
-	//			public String getAsText() {
-	//				return Collections3.extractToString((List) getValue(), "id", ",");
-	//			}
-	//		});
-	//	}
 }

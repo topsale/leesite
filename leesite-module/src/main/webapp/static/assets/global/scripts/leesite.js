@@ -12,11 +12,11 @@ $(document).ready(function () {
         });
 
         // 所有下拉框使用select2
-        $("select").each(function () {
-            if ($(this).attr("id") != "mailPageSelect") {
-                $(this).select2();
-            }
-        });
+        // $("select").each(function () {
+        //     if ($(this).attr("id") != "mailPageSelect") {
+        //         $(this).select2();
+        //     }
+        // });
 
         // 初始化带 CheckBox 的表格
         CheckTable.init();

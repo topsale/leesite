@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 类描述：菜单标签
  * <p>
- * 刘高峰
+ *
  *
  * @version 1.0
  * @date： 日期：2015-1-23 时间：上午10:17:45
