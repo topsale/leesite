@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-    <title>${fns:getConfig('productName')} | 用户管理</title>
+    <title>${fns:getConfig('productName')} | 机构管理</title>
     <meta name="decorator" content="default"/>
     <%@include file="/views/include/treeview.jsp" %>
 </head>
@@ -46,7 +46,7 @@
                                 <span class="caption-helper"></span>
                             </div>
                             <div class="tools">
-                                <a href="javascript:;" onclick="window.location = '${ctx}/sys/user/index'">
+                                <a href="javascript:;" onclick="window.location = '${ctx}/sys/office/'">
                                     <i class="fa fa-refresh"></i>
                                 </a>
                             </div>
@@ -61,7 +61,7 @@
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
-                                <span class="caption-subject bold font-grey-gallery uppercase"> 用户列表 </span>
+                                <span class="caption-subject bold font-grey-gallery uppercase"> 机构列表 </span>
                                 <span class="caption-helper"></span>
                             </div>
                             <div class="tools">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <iframe id="officeContent" name="officeContent" src="${ctx}/sys/user/list" width="100%" height="800" frameborder="0" scrolling="no"></iframe>
+                            <iframe id="officeContent" name="officeContent" src="${ctx}/sys/office/list?id=&parentIds=" width="100%" height="800px" frameborder="0" scrolling="no"></iframe>
                         </div>
                     </div>
                 </div>
@@ -87,8 +87,8 @@
         data: {simpleData: {enable: true, idKey: "id", pIdKey: "pId", rootPId: '0'}},
         callback: {
             onClick: function (event, treeId, treeNode) {
-                var id = treeNode.id == '0' ? '' : treeNode.id;
-                $('#officeContent').attr("src", "${ctx}/sys/user/list?office.id=" + id + "&office.name=" + treeNode.name);
+                var id = treeNode.pId == '0' ? '' : treeNode.pId;
+                $('#officeContent').attr("src", "${ctx}/sys/office/list?id=" + id + "&parentIds=" + treeNode.pIds);
             }
         }
     };

@@ -148,5 +148,7 @@
 
 <!-- 页面加载动画效果 -->
 <script src="${ctxStatic}/assets/global/scripts/loader/loading.js" type="text/javascript"></script>
+<%--<script src="${ctxStatic}/assets/global/scripts/pace/pace.min.js" type="text/javascript"></script>--%>
+<%--<script src="${ctxStatic}/assets/global/scripts/pace/loadpace.js" type="text/javascript"></script>--%>
 </body>
 </html>

@@ -139,7 +139,7 @@
                     <label class="pull-right"> 备注：</label>
                 </td>
                 <td colspan="3">
-                    <form:textarea path="remarks" htmlEscape="false" rows="3" maxlength="200" class="form-control"/>
+                    <form:textarea path="remarks" htmlEscape="false" rows="5" maxlength="200" class="form-control"/>
                 </td>
             </tr>
 

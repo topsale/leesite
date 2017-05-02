@@ -28,6 +28,7 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <link href="${ctxStatic}/assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
 <link href="${ctxStatic}/assets/global/scripts/loader/loading.css" rel="stylesheet" type="text/css" />
+<link href="${ctxStatic}/assets/global/scripts/pace/pace-minimal.css" rel="stylesheet" type="text/css" />
 <link href="${ctxStatic}/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 <link href="${ctxStatic}/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="${ctxStatic}/assets/global/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" />

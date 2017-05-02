@@ -34,6 +34,7 @@
 <script src="${ctxStatic}/assets/global/plugins/jquery-validation/js/localization/messages_zh.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
 <script src="${ctxStatic}/assets/global/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<script src="${ctxStatic}/assets/global/plugins/mustache.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="${ctxStatic}/assets/global/scripts/app.min.js" type="text/javascript"></script>
