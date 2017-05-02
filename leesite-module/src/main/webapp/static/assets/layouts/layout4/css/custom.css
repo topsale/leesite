@@ -3,6 +3,11 @@
     font-family: "Microsoft YaHei", "FontAwesome", "Simple-Line-Icons" ! important;
 }
 
+/* 设置垂直居中 */
+td {
+    vertical-align: middle !important;
+}
+
 /* 联系人表格 */
 .client-avatar {
     width: 42px;
