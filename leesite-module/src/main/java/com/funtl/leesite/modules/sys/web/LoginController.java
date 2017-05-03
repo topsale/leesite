@@ -112,7 +112,6 @@ public class LoginController extends BaseController {
 			}
 		}
 
-
 		return "modules/sys/sysLogin";
 	}
 
