@@ -145,6 +145,48 @@
 													<th>操作</th>
 												</tr>
 											</thead>
+											<tbody>
+											<c:forEach items="${r"${page.list}"}" var="${className}">
+												<tr>
+													<td>
+														<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                            <input type="checkbox" class="checkboxes i-checks" id="${"$"}{${className}.id}" />
+                                                            <span></span>
+                                                        </label>
+													</td>
+													<#assign firstListField = true>
+													<#list table.columnList as c>
+														<#if c.isList?? && c.isList == "1">
+													<td><#if firstListField><a  href="#" onclick="openDialogView('查看${functionNameSimple}', '${r"${ctx}"}/${urlPrefix}/form?id=${"${"+className+".id}"}','900px', '600px')"></#if>
+													<#if c.simpleJavaType == "Date">
+														<fmt:formatDate value="${"$"}{${className}.${c.javaFieldId}}" pattern="yyyy-MM-dd HH:mm:ss"/>
+													<#elseif c.showType == "select" || c.showType == "checkbox" || c.showType == "radiobox">
+														${"$"}{fns:getDictLabel(${className}.${c.javaFieldId}, '${c.dictType}', '')}
+													<#elseif c.showType == "userselect" || c.showType == "officeselect" || c.showType == "areaselect">
+														${"$"}{${className}.${c.javaFieldName}}
+													<#elseif c.showType == "umeditor">
+														${"$"}{fns:unescapeHtml(${className}.${c.javaFieldId})}
+													<#else>
+														${"$"}{${className}.${c.javaFieldId}}
+													</#if>
+													<#if firstListField></a></#if></td>
+															<#assign firstListField = false>
+														</#if>
+													</#list>
+													<td>
+														<shiro:hasPermission name="${permissionPrefix}:view">
+															<a href="#" onclick="openDialogView('查看${functionNameSimple}', '${r"${ctx}"}/${urlPrefix}/form?id=${"${"+className+".id}"}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
+														</shiro:hasPermission>
+														<shiro:hasPermission name="${permissionPrefix}:edit">
+															<a href="#" onclick="openDialog('修改${functionNameSimple}', '${r"${ctx}"}/${urlPrefix}/form?id=${"${"+className+".id}"}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+														</shiro:hasPermission>
+														<shiro:hasPermission name="${permissionPrefix}:del">
+															<a href="${r"${ctx}"}/${urlPrefix}/delete?id=${"${"+className+".id}"}" onclick="return confirmx('确认要删除该${functionNameSimple}吗？', this.href)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
+														</shiro:hasPermission>
+													</td>
+												</tr>
+											</c:forEach>
+											</tbody>
 										</table>
                                     </div>
                                     <table:page page="${r"${page}"}"></table:page>

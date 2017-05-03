@@ -113,7 +113,7 @@ public class ${ClassName}Controller extends BaseController {
 			${className}Service.save(${className});//保存
 		}
 		addMessage(redirectAttributes, "保存${functionNameSimple}成功");
-		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/";
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}";
 	}
 	
 	/**
@@ -124,7 +124,7 @@ public class ${ClassName}Controller extends BaseController {
 	public String delete(${ClassName} ${className}, RedirectAttributes redirectAttributes) {
 		${className}Service.delete(${className});
 		addMessage(redirectAttributes, "删除${functionNameSimple}成功");
-		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/";
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}";
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public class ${ClassName}Controller extends BaseController {
 			${className}Service.delete(${className}Service.get(id));
 		}
 		addMessage(redirectAttributes, "删除${functionNameSimple}成功");
-		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/";
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}";
 	}
 	
 	/**
@@ -155,7 +155,7 @@ public class ${ClassName}Controller extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导出${functionNameSimple}记录失败！失败信息："+e.getMessage());
 		}
-		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/";
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}";
     }
 
 	/**
@@ -187,7 +187,7 @@ public class ${ClassName}Controller extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入${functionNameSimple}失败！失败信息："+e.getMessage());
 		}
-		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/";
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}";
     }
 	
 	/**
@@ -204,7 +204,7 @@ public class ${ClassName}Controller extends BaseController {
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息："+e.getMessage());
 		}
-		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}/";
+		return "redirect:"+Global.getAdminPath()+"/${viewPrefix}";
     }
 	
 	
