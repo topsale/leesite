@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funtl.leesite.modules.cases.dao.CaseOneToManyFirstDao">
+    
+	<sql id="caseOneToManyFirstColumns">
+		a.id AS "id",
+		a.startarea AS "startarea",
+		a.endarea AS "endarea",
+		a.price AS "price",
+		a.case_one_to_many_main AS "caseOneToManyMain.id",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="caseOneToManyFirstJoins">
+		LEFT JOIN case_one_to_many_main b ON b.id = a.case_one_to_many_main
+	</sql>
+	
+    
+	<select id="get" resultType="CaseOneToManyFirst" >
+		SELECT 
+			<include refid="caseOneToManyFirstColumns"/>
+		FROM case_one_to_many_first a
+		<include refid="caseOneToManyFirstJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="CaseOneToManyFirst" >
+		SELECT 
+			<include refid="caseOneToManyFirstColumns"/>
+		FROM case_one_to_many_first a
+		<include refid="caseOneToManyFirstJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="caseOneToManyMain != null and caseOneToManyMain.id != null and caseOneToManyMain.id != ''">
+				AND a.case_one_to_many_main = #{caseOneToManyMain.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.create_date ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="CaseOneToManyFirst" >
+		SELECT 
+			<include refid="caseOneToManyFirstColumns"/>
+		FROM case_one_to_many_first a
+		<include refid="caseOneToManyFirstJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.create_date ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO case_one_to_many_first(
+			id,
+			startarea,
+			endarea,
+			price,
+			case_one_to_many_main,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{startarea},
+			#{endarea},
+			#{price},
+			#{caseOneToManyMain.id},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE case_one_to_many_first SET 	
+			startarea = #{startarea},
+			endarea = #{endarea},
+			price = #{price},
+			case_one_to_many_main = #{caseOneToManyMain.id},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM case_one_to_many_first
+		<choose>
+			<when test="id !=null and id != ''">
+				WHERE id = #{id}
+			</when>
+			<otherwise>
+				WHERE case_one_to_many_main = #{caseOneToManyMain.id}
+			</otherwise>
+		</choose>
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE case_one_to_many_first SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		<choose>
+			<when test="id !=null and id != ''">
+				WHERE id = #{id}
+			</when>
+			<otherwise>
+				WHERE case_one_to_many_main = #{caseOneToManyMain.id}
+			</otherwise>
+		</choose>
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="CaseOneToManyFirst" statementType="STATEMENT">
+		select * FROM case_one_to_many_first  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>
