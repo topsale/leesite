@@ -70,13 +70,9 @@ public class GenSchemeController extends BaseController {
 		if (!user.isAdmin()) {
 			genScheme.setCreateBy(user);
 		}
+
 		Page<GenScheme> page = genSchemeService.find(new Page<GenScheme>(request, response), genScheme);
 		model.addAttribute("page", page);
-
-		//验证设置的源码路径是否正确
-		if (!genSchemeService.checkSrcPathConfig()) {
-			addMessage(model, "您未配置源码路径“srcPath”或您配置的路径不正确，只有正确配置后才能生成源码</br>" + "请在“leesite.properties”中配置正确的“srcPath”。</br>" + "srcPath路径需指向jeesite项目源码所在的路径，如：C:\\Users\\Administrator\\workspace\\jeesite");
-		}
 
 		return "modules/gen/genSchemeList";
 	}
@@ -85,11 +81,9 @@ public class GenSchemeController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(GenScheme genScheme, Model model) {
 		if (StringUtils.isBlank(genScheme.getPackageName())) {
-			genScheme.setPackageName("com.jeeplus.modules");
+			genScheme.setPackageName(GenSchemeController.class.getPackage().getName().replace(".gen.web", ""));
 		}
-		//		if (StringUtils.isBlank(genScheme.getFunctionAuthor())){
-		//			genScheme.setFunctionAuthor(UserUtils.getUser().getName());
-		//		}
+
 		model.addAttribute("genScheme", genScheme);
 		model.addAttribute("config", GenUtils.getConfig());
 		model.addAttribute("tableList", genTableService.findAll());
@@ -101,14 +95,6 @@ public class GenSchemeController extends BaseController {
 	public String save(GenScheme genScheme, Model model, RedirectAttributes redirectAttributes) {
 		if (!beanValidator(model, genScheme)) {
 			return form(genScheme, model);
-		}
-
-		//验证设置的源码路径是否正确
-		if ("1".equals(genScheme.getFlag())) {
-			if (!genSchemeService.checkSrcPathConfig()) {
-				addMessage(redirectAttributes, "您未配置源码路径“srcPath”，或您配置的路径不正确");
-				return "redirect:" + adminPath + "/gen/genScheme/";
-			}
 		}
 
 		String result = genSchemeService.save(genScheme);

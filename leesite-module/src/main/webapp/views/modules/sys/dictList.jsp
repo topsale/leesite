@@ -59,9 +59,9 @@
                                         <table:sortColumn id="orderBy" name="orderBy" value="${page.orderBy}" callback="sortOrRefresh();"/><!-- 支持排序 -->
                                         <div class="form-group">
                                             <label>类型：</label>
-                                            <form:select id="type" path="type" class="form-control m-b"><form:option value="" label=""/><form:options items="${typeList}" htmlEscape="false"/></form:select>
+                                            <form:select id="type" path="type" class="form-control input-sm"><form:option value="" label=""/><form:options items="${typeList}" htmlEscape="false"/></form:select>
                                             <label>描述 ：</label>
-                                            <form:input path="description" htmlEscape="false" maxlength="50" class="form-control"/>
+                                            <form:input path="description" htmlEscape="false" maxlength="50" class="form-control input-sm"/>
                                         </div>
                                     </form:form>
                                 </div>

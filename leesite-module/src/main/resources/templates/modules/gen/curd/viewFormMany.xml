@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
 	<name>viewForm</name>
-	<filePath>src/WebContent/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
+	<filePath>src/main/webapp/views/${lastPackageName}/${moduleName}/${subModuleName}</filePath>
 	<fileName>${className}Form.jsp</fileName>
 	<content><![CDATA[
 <%@ page contentType="text/html;charset=UTF-8" %>

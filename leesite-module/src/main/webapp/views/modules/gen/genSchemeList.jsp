@@ -42,7 +42,7 @@
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
-                                <span class="caption-subject bold font-grey-gallery uppercase"> 业务表配置 </span>
+                                <span class="caption-subject bold font-grey-gallery uppercase"> 生成方案配置 </span>
                                 <span class="caption-helper"></span>
                             </div>
                             <div class="tools">
@@ -53,17 +53,12 @@
                             <sys:message content="${message}"/>
                             <div class="row" style="margin-bottom: 20px;">
                                 <div class="col-md-12">
-                                    <form:form id="searchForm" modelAttribute="genTable" action="${ctx}/gen/genTable/" method="post" class="form-inline">
+                                    <form:form id="searchForm" modelAttribute="genScheme" action="${ctx}/gen/genScheme/" method="post" class="form-inline">
                                         <input id="pageNo" name="pageNo" type="hidden" value="${page.pageNo}"/>
                                         <input id="pageSize" name="pageSize" type="hidden" value="${page.pageSize}"/>
-                                        <sys:tableSort id="orderBy" name="orderBy" value="${page.orderBy}" callback="page();"/>
                                         <div class="form-group">
-                                            <label>表名：</label>
-                                            <form:input path="nameLike" htmlEscape="false" maxlength="50" class="form-control input-sm"/>
-                                            <label>说明 ：</label>
-                                            <form:input path="comments" htmlEscape="false" maxlength="50" class="form-control input-sm"/>
-                                            <label>父表表名：</label>
-                                            <form:input path="parentTable" htmlEscape="false" maxlength="50" class="form-control input-sm"/>
+                                            <label>方案名称：</label>
+                                            <form:input path="name" htmlEscape="false" maxlength="50" class="form-control input-sm"/>
                                         </div>
                                     </form:form>
                                 </div>
@@ -73,7 +68,7 @@
                                 <div class="col-md-12">
                                     <div class="pull-left">
                                         <shiro:hasPermission name="gen:genTable:edit">
-                                            <a href="${ctx}/gen/genTable/form" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> 业务表添加</a>
+                                            <a href="${ctx}/gen/genScheme/form" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> 生成方案添加</a>
                                         </shiro:hasPermission>
                                         <button class="btn btn-default btn-sm" onclick="sortOrRefresh()" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -90,26 +85,31 @@
                                         <table id="contentTable" class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <th class="sort-column name">表名</th>
-                                                <th>说明</th>
-                                                <th class="sort-column class_name">类名</th>
-                                                <th class="sort-column parent_table">父表</th>
-                                                <shiro:hasPermission name="gen:genTable:edit">
+                                                <th>方案名称</th>
+                                                <th>生成模块</th>
+                                                <th>模块名</th>
+                                                <th>功能名</th>
+                                                <th>功能作者</th>
+                                                <shiro:hasPermission name="gen:genScheme:edit">
                                                     <th>操作</th>
-                                                </shiro:hasPermission>
-                                            </tr>
+                                                </shiro:hasPermission></tr>
                                             </thead>
                                             <tbody>
-                                            <c:forEach items="${page.list}" var="genTable">
+                                            <c:forEach items="${page.list}" var="genScheme">
                                                 <tr>
-                                                    <td><a href="${ctx}/gen/genTable/form?id=${genTable.id}">${genTable.name}</a></td>
-                                                    <td>${genTable.comments}</td>
-                                                    <td>${genTable.className}</td>
-                                                    <td title="点击查询子表"><a href="javascript:" onclick="$('#parentTable').val('${genTable.parentTable}');$('#searchForm').submit();">${genTable.parentTable}</a></td>
-                                                    <shiro:hasPermission name="gen:genTable:edit"><td>
-                                                        <a href="${ctx}/gen/genTable/form?id=${genTable.id}" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> 修改</a>
-                                                        <a href="${ctx}/gen/genTable/delete?id=${genTable.id}" onclick="return confirmx('确认要删除该业务表吗？', this.href)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
-                                                    </td></shiro:hasPermission>
+                                                    <td>
+                                                        <a href="${ctx}/gen/genScheme/form?id=${genScheme.id}">${genScheme.name}</a>
+                                                    </td>
+                                                    <td>${genScheme.packageName}</td>
+                                                    <td>${genScheme.moduleName}${not empty genScheme.subModuleName?'.':''}${genScheme.subModuleName}</td>
+                                                    <td>${genScheme.functionName}</td>
+                                                    <td>${genScheme.functionAuthor}</td>
+                                                    <shiro:hasPermission name="gen:genScheme:edit">
+                                                        <td>
+                                                            <a href="${ctx}/gen/genScheme/form?id=${genScheme.id}" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> 修改</a>
+                                                            <a href="${ctx}/gen/genScheme/delete?id=${genScheme.id}" onclick="return confirmx('确认要删除该生成方案吗？', this.href)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
+                                                        </td>
+                                                    </shiro:hasPermission>
                                                 </tr>
                                             </c:forEach>
                                             </tbody>

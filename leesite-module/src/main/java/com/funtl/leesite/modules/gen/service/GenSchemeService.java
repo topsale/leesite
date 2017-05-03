@@ -77,6 +77,7 @@ public class GenSchemeService extends BaseService {
 			genScheme.preUpdate();
 			genSchemeDao.update(genScheme);
 		}
+
 		// 生成代码
 		if ("1".equals(genScheme.getFlag())) {
 			return generateCode(genScheme);

@@ -42,9 +42,9 @@
 		<dict value="Integer" label="Integer"/>
 		<dict value="Double" label="Double"/>
 		<dict value="java.util.Date" label="Date"/>
-		<dict value="com.jeeplus.modules.sys.entity.User" label="User"/>
-		<dict value="com.jeeplus.modules.sys.entity.Office" label="Office"/>
-		<dict value="com.jeeplus.modules.sys.entity.Area" label="Area"/>
+		<dict value="com.funtl.leesite.modules.sys.entity.User" label="User"/>
+		<dict value="com.funtl.leesite.modules.sys.entity.Office" label="Office"/>
+		<dict value="com.funtl.leesite.modules.sys.entity.Area" label="Area"/>
 		<dict value="This" label="ThisObj" description="生成当前对象"/>
 	</javaType>
 	<!-- 查询类型 -->
@@ -74,6 +74,5 @@
 		<dict value="areaselect" label="区域选择"/>
 		<dict value="treeselect" label="树选择控件"/>
 		<dict value="fileselect" label="文件上传选择"/>
-		<dict value="gridselect" label="grid选择框(自定义java对象)"/>
 	</showType>
 </config>
