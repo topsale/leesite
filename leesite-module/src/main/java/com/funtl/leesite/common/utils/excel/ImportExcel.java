@@ -79,7 +79,7 @@ public class ImportExcel {
 	/**
 	 * 构造函数
 	 *
-	 * @param path      导入文件，读取第一个工作表
+	 * @param fileName      导入文件，读取第一个工作表
 	 * @param headerNum 标题行号，数据行号=标题行号+1
 	 * @throws InvalidFormatException
 	 * @throws IOException
@@ -91,7 +91,7 @@ public class ImportExcel {
 	/**
 	 * 构造函数
 	 *
-	 * @param path      导入文件对象，读取第一个工作表
+	 * @param file      导入文件对象，读取第一个工作表
 	 * @param headerNum 标题行号，数据行号=标题行号+1
 	 * @throws InvalidFormatException
 	 * @throws IOException
@@ -103,7 +103,7 @@ public class ImportExcel {
 	/**
 	 * 构造函数
 	 *
-	 * @param path       导入文件
+	 * @param fileName       导入文件
 	 * @param headerNum  标题行号，数据行号=标题行号+1
 	 * @param sheetIndex 工作表编号
 	 * @throws InvalidFormatException
@@ -116,7 +116,7 @@ public class ImportExcel {
 	/**
 	 * 构造函数
 	 *
-	 * @param path       导入文件对象
+	 * @param file       导入文件对象
 	 * @param headerNum  标题行号，数据行号=标题行号+1
 	 * @param sheetIndex 工作表编号
 	 * @throws InvalidFormatException
@@ -129,7 +129,7 @@ public class ImportExcel {
 	/**
 	 * 构造函数
 	 *
-	 * @param file       导入文件对象
+	 * @param multipartFile       导入文件对象
 	 * @param headerNum  标题行号，数据行号=标题行号+1
 	 * @param sheetIndex 工作表编号
 	 * @throws InvalidFormatException
@@ -142,7 +142,7 @@ public class ImportExcel {
 	/**
 	 * 构造函数
 	 *
-	 * @param path       导入文件对象
+	 * @param fileName       导入文件对象
 	 * @param headerNum  标题行号，数据行号=标题行号+1
 	 * @param sheetIndex 工作表编号
 	 * @throws InvalidFormatException

@@ -18,7 +18,7 @@ package com.funtl.leesite.modules.tools.utils;
 
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,11 +34,11 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
@@ -92,7 +92,7 @@ public class HttpPostTest {
 		HttpEntity entity = response.getEntity();
 
 		log.info("response status: " + response.getStatusLine());
-		String charset = EntityUtils.getContentCharSet(entity);
+		String charset = ContentType.getOrDefault(entity).getCharset().toString();
 		log.info(charset);
 
 		String body = null;
@@ -132,12 +132,8 @@ public class HttpPostTest {
 			nvps.add(new BasicNameValuePair(key, params.get(key)));
 		}
 
-		try {
-			log.info("set utf-8 form entity to httppost");
-			httpost.setEntity(new UrlEncodedFormEntity(nvps, HTTP.UTF_8));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		log.info("set utf-8 form entity to httppost");
+		httpost.setEntity(new UrlEncodedFormEntity(nvps, StandardCharsets.UTF_8));
 
 		return httpost;
 	}

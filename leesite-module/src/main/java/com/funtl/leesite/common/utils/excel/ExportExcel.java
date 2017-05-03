@@ -48,10 +48,10 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
@@ -76,7 +76,7 @@ public class ExportExcel {
 	/**
 	 * 工作表对象
 	 */
-	private Sheet sheet;
+	private SXSSFSheet sheet;
 
 	/**
 	 * 样式列表
@@ -241,6 +241,9 @@ public class ExportExcel {
 			} else {
 				cell.setCellValue(headerList.get(i));
 			}
+
+			// 高版本 autoSizeColumn 解决，Sheet 接口改为 SXSSFSheet
+			sheet.trackAllColumnsForAutoSizing();
 			sheet.autoSizeColumn(i);
 		}
 		for (int i = 0; i < headerList.size(); i++) {

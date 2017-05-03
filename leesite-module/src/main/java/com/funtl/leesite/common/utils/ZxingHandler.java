@@ -18,6 +18,7 @@ package com.funtl.leesite.common.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.nio.file.Path;
 import java.util.Hashtable;
 
 import javax.imageio.ImageIO;
@@ -62,7 +63,7 @@ public class ZxingHandler {
 		try {
 			BitMatrix bitMatrix = new MultiFormatWriter().encode(contents, BarcodeFormat.EAN_13, codeWidth, height, null);
 
-			MatrixToImageWriter.writeToFile(bitMatrix, "png", new File(imgPath));
+			MatrixToImageWriter.writeToPath(bitMatrix, "png", new File(imgPath).toPath());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -111,7 +112,7 @@ public class ZxingHandler {
 		try {
 			BitMatrix bitMatrix = new MultiFormatWriter().encode(contents, BarcodeFormat.QR_CODE, width, height, hints);
 
-			MatrixToImageWriter.writeToFile(bitMatrix, "png", new File(imgPath));
+			MatrixToImageWriter.writeToPath(bitMatrix, "png", new File(imgPath).toPath());
 
 		} catch (Exception e) {
 			e.printStackTrace();
