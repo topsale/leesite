@@ -202,10 +202,9 @@ ${updateField?substring(0, updateField?last_index_of(","))}
 			</#if>
 		</#list>
 	<#else>
-		WHERE id = ${"#"}{id} OR parent_ids LIKE 
-		<if test="dbName == 'oracle'">${"#"}{id}||'%'</if>
-		<if test="dbName == 'mssql'">${"#"}{id}+'%'</if>
-		<if test="dbName == 'mysql'">concat(${"#"}{id},'%')</if>
+		WHERE id = ${"#"}{id} OR parent_ids LIKE
+		<if test="dbName == 'oracle'">'%,'||${"#"}{id}||',%'</if>
+		<if test="dbName == 'mysql'">CONCAT('%,', ${"#"}{id}, ',%')</if>
 	</#if>
 	</update>
 	
@@ -228,9 +227,8 @@ ${updateField?substring(0, updateField?last_index_of(","))}
 		</#list>
 	<#else>
 		WHERE id = ${"#"}{id} OR parent_ids LIKE 
-		<if test="dbName == 'oracle'">${"#"}{id}||'%'</if>
-		<if test="dbName == 'mssql'">${"#"}{id}+'%'</if>
-		<if test="dbName == 'mysql'">concat(${"#"}{id},'%')</if>
+		<if test="dbName == 'oracle'">'%,'||${"#"}{id}||',%'</if>
+		<if test="dbName == 'mysql'">CONCAT('%,', ${"#"}{id}, ',%')</if>
 	</#if>
 	</update>
 	

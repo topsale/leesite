@@ -1,9 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<template>
-	<name>dao</name>
-	<filePath>src/main/java/${packageName}/${moduleName}/dao/${subModuleName}</filePath>
-	<fileName>${ClassName}Dao.java</fileName>
-	<content><![CDATA[
 /*
  * Copyright 2015-2017 the original author or authors.
  *
@@ -19,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ${packageName}.${moduleName}.dao<#if subModuleName != "">.${subModuleName}</#if>;
+package com.funtl.leesite.modules.cases.dao;
 
 import com.funtl.leesite.common.persistence.TreeDao;
 import com.funtl.leesite.common.persistence.annotation.MyBatisDao;
-import ${packageName}.${moduleName}.entity<#if subModuleName != "">.${subModuleName}</#if>.${ClassName};
+import com.funtl.leesite.modules.cases.entity.CaseTreeTable;
 
 /**
- * ${functionName}DAO接口
- * @author ${functionAuthor}
- * @version ${functionVersion}
+ * 生成示例树结构DAO接口
+ * @author Lusifer
+ * @version 2017-05-03
  */
 @MyBatisDao
-public interface ${ClassName}Dao extends TreeDao<${ClassName}> {
+public interface CaseTreeTableDao extends TreeDao<CaseTreeTable> {
 	
-}]]>
-	</content>
-</template>
+}
