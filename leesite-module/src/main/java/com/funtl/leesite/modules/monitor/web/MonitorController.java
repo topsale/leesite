@@ -27,8 +27,6 @@ import com.funtl.leesite.common.web.BaseController;
 import com.funtl.leesite.modules.monitor.entity.Monitor;
 import com.funtl.leesite.modules.monitor.service.MonitorService;
 import com.funtl.leesite.modules.monitor.utils.SystemInfo;
-import com.funtl.leesite.modules.sys.entity.SystemConfig;
-import com.funtl.leesite.modules.sys.service.SystemConfigService;
 
 import org.hyperic.sigar.Sigar;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +49,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MonitorController extends BaseController {
 	@Autowired
 	private MonitorService monitorService;
-	@Autowired
-	private SystemConfigService systemConfigService;
 
 	@ModelAttribute
 	public Monitor get(@RequestParam(required = false) String id) {
@@ -89,8 +85,7 @@ public class MonitorController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping("usage")
-	public Map usage(Model model) throws Exception {
-		SystemConfig config = systemConfigService.get("1");
+	public Map usage() throws Exception {
 		Monitor monitor = monitorService.get("1");
 		Map<?, ?> sigar = SystemInfo.usage(new Sigar());
 		String content = "";
@@ -98,24 +93,22 @@ public class MonitorController extends BaseController {
 		content += "您预设的jvm使用率警告线是" + monitor.getJvm() + "%, 当前使用率是" + sigar.get("jvmUsage") + "%";
 		content += "您预设的ram使用率警告线是" + monitor.getRam() + "%, 当前使用率是" + sigar.get("ramUsage") + "%";
 		if (Float.valueOf(sigar.get("cpuUsage").toString()) >= Float.valueOf(monitor.getCpu()) || Float.valueOf(sigar.get("jvmUsage").toString()) >= Float.valueOf(monitor.getJvm()) || Float.valueOf(sigar.get("ramUsage").toString()) >= Float.valueOf(monitor.getRam())) {
-			MailSendUtils.sendEmail(config.getSmtp(), config.getPort(), config.getMailName(), config.getMailPassword(), monitor.getToEmail(), "服务器监控预警", content, "0");
-
+			// TODO 完善邮箱配置
+			MailSendUtils.sendEmail("smtp.qq.com", "465", "test", "test", monitor.getToEmail(), "服务器监控预警", content, "0");
 		}
-		;
 		return sigar;
 	}
 
 	/**
 	 * 修改配置
 	 *
-	 * @param request
-	 * @param nodeId
+	 * @param monitor
 	 * @return
 	 * @throws Exception
 	 */
 	@ResponseBody
 	@RequestMapping("modifySetting")
-	public AjaxJson save(Monitor monitor, Model model) {
+	public AjaxJson save(Monitor monitor) {
 		AjaxJson j = new AjaxJson();
 		String message = "保存成功";
 		Monitor t = monitorService.get("1");

@@ -17,7 +17,6 @@
 package com.funtl.leesite.modules.sys.web;
 
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,10 +30,8 @@ import com.funtl.leesite.common.web.BaseController;
 import com.funtl.leesite.modules.sys.dao.UserDao;
 import com.funtl.leesite.modules.sys.entity.Office;
 import com.funtl.leesite.modules.sys.entity.Role;
-import com.funtl.leesite.modules.sys.entity.SystemConfig;
 import com.funtl.leesite.modules.sys.entity.User;
 import com.funtl.leesite.modules.sys.service.OfficeService;
-import com.funtl.leesite.modules.sys.service.SystemConfigService;
 import com.funtl.leesite.modules.sys.service.SystemService;
 import com.funtl.leesite.modules.sys.utils.UserUtils;
 import com.funtl.leesite.modules.tools.utils.TwoDimensionCode;
@@ -58,11 +55,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping(value = "${adminPath}/sys/register")
 public class RegisterController extends BaseController {
-
-
-	@Autowired
-	private SystemConfigService systemConfigService;
-
 	@Autowired
 	private SystemService systemService;
 
@@ -90,8 +82,6 @@ public class RegisterController extends BaseController {
 
 	@RequestMapping(value = "registerUser")
 	public String registerUser(HttpServletRequest request, HttpServletResponse response, boolean mobileLogin, String randomCode, String roleName, User user, Model model, RedirectAttributes redirectAttributes) {
-
-
 		//验证手机号是否已经注册
 
 		if (userDao.findUniqueByProperty("mobile", user.getMobile()) != null) {
@@ -139,7 +129,6 @@ public class RegisterController extends BaseController {
 			}
 		}
 
-
 		// 修正引用赋值问题，不知道为何，Company和Office引用的一个实例地址，修改了一个，另外一个跟着修改。
 		Role role = systemService.getRoleByEnname(roleName);
 		String officeCode = "1000";
@@ -172,7 +161,6 @@ public class RegisterController extends BaseController {
 		// 清除当前用户缓存
 		if (user.getLoginName().equals(UserUtils.getUser().getLoginName())) {
 			UserUtils.clearCache();
-			//UserUtils.getCacheMap().clear();
 		}
 		request.getSession().getServletContext().removeAttribute(user.getMobile());//清除验证码
 
@@ -184,60 +172,9 @@ public class RegisterController extends BaseController {
 			return renderString(response, j);
 		}
 
-
 		addMessage(redirectAttributes, "注册用户'" + user.getLoginName() + "'成功");
 		return "redirect:" + adminPath + "/login";
 	}
-
-
-	/**
-	 * 获取验证码
-	 *
-	 * @param request
-	 * @param response
-	 * @param mobile
-	 * @param model
-	 * @param redirectAttributes
-	 * @return
-	 */
-	@RequestMapping(value = "getRegisterCode")
-	@ResponseBody
-	public AjaxJson getRegisterCode(HttpServletRequest request, HttpServletResponse response, String mobile, Model model, RedirectAttributes redirectAttributes) {
-
-		SystemConfig config = systemConfigService.get("1");
-
-		AjaxJson j = new AjaxJson();
-
-		//验证手机号是否已经注册
-		if (userDao.findUniqueByProperty("mobile", mobile) != null) {
-
-			j.setSuccess(false);
-			j.setErrorCode("1");
-			j.setMsg("手机号已经被使用");
-			return j;
-		}
-
-		String randomCode = String.valueOf((int) (Math.random() * 9000 + 1000));
-		try {
-			String result = UserUtils.sendRandomCode(config.getSmsName(), config.getSmsPassword(), mobile, randomCode);
-			if (!result.equals("100")) {
-				j.setSuccess(false);
-				j.setErrorCode("2");
-				j.setMsg("短信发送失败，错误代码：" + result + "，请联系管理员。");
-			} else {
-				j.setSuccess(true);
-				j.setErrorCode("-1");
-				j.setMsg("短信发送成功!");
-				request.getSession().getServletContext().setAttribute(mobile, randomCode);
-			}
-		} catch (IOException e) {
-			j.setSuccess(false);
-			j.setErrorCode("3");
-			j.setMsg("因未知原因导致短信发送失败，请联系管理员。");
-		}
-		return j;
-	}
-
 
 	/**
 	 * web端ajax验证手机验证码是否正确

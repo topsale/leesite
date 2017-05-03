@@ -39,6 +39,8 @@ public class GenTable extends DataEntity<GenTable> {
 	private String className;        // 实体类名称
 	private String parentTable;        // 关联父表
 	private String parentTableFk;        // 关联父表外键
+	private String tableType; // 表类型
+	private String isSync; // 同步
 
 	private List<GenTableColumn> columnList = Lists.newArrayList();    // 表列
 
@@ -96,6 +98,22 @@ public class GenTable extends DataEntity<GenTable> {
 
 	public void setParentTableFk(String parentTableFk) {
 		this.parentTableFk = parentTableFk;
+	}
+
+	public String getTableType() {
+		return tableType;
+	}
+
+	public void setTableType(String tableType) {
+		this.tableType = tableType;
+	}
+
+	public String getIsSync() {
+		return isSync;
+	}
+
+	public void setIsSync(String isSync) {
+		this.isSync = isSync;
 	}
 
 	public List<String> getPkList() {

@@ -16,7 +16,6 @@
 
 package com.funtl.leesite.modules.sys.utils;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.funtl.leesite.common.persistence.Page;
 import com.funtl.leesite.common.service.BaseService;
-import com.funtl.leesite.common.sms.SMSUtils;
 import com.funtl.leesite.common.utils.CacheUtils;
 import com.funtl.leesite.common.utils.SpringContextHolder;
 import com.funtl.leesite.modules.iim.entity.MailBox;
@@ -342,24 +340,6 @@ public class UserUtils {
 		long mins = temp2 / 1000 / 60;                    //相差分钟数
 		time.append(mins + "分钟");
 		return time.toString();
-	}
-
-
-	//发送注册码
-	public static String sendRandomCode(String uid, String pwd, String tel, String randomCode) throws IOException {
-		//发送内容
-		String content = "您的验证码是：" + randomCode + "，有效期30分钟，请在有效期内使用。";
-
-		return SMSUtils.send(uid, pwd, tel, content);
-
-	}
-
-	//注册用户重置密码
-	public static String sendPass(String uid, String pwd, String tel, String password) throws IOException {
-		//发送内容
-		String content = "您的新密码是：" + password + "，请登录系统，重新设置密码。";
-		return SMSUtils.send(uid, pwd, tel, content);
-
 	}
 
 	/**

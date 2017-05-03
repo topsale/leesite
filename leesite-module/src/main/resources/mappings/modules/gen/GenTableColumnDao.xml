@@ -82,7 +82,6 @@
 			fieldKeys,
 			searchLabel,
 			searchKey
-			
 		) VALUES (
 			#{id}, 
 			#{genTable.id}, 

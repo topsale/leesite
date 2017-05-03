@@ -38,9 +38,7 @@ import com.funtl.leesite.common.web.BaseController;
 import com.funtl.leesite.modules.sys.dao.UserDao;
 import com.funtl.leesite.modules.sys.entity.Office;
 import com.funtl.leesite.modules.sys.entity.Role;
-import com.funtl.leesite.modules.sys.entity.SystemConfig;
 import com.funtl.leesite.modules.sys.entity.User;
-import com.funtl.leesite.modules.sys.service.SystemConfigService;
 import com.funtl.leesite.modules.sys.service.SystemService;
 import com.funtl.leesite.modules.sys.utils.UserUtils;
 import com.funtl.leesite.modules.tools.utils.TwoDimensionCode;
@@ -69,10 +67,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping(value = "${adminPath}/sys/user")
 public class UserController extends BaseController {
-
-	@Autowired
-	private SystemConfigService systemConfigService;
-
 	@Autowired
 	private SystemService systemService;
 	@Autowired
@@ -547,38 +541,5 @@ public class UserController extends BaseController {
 		} else {
 			return false;
 		}
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "resetPassword")
-	public AjaxJson resetPassword(String mobile, HttpServletResponse response, Model model) {
-		SystemConfig config = systemConfigService.get("1");//获取短信配置的用户名和密码
-		AjaxJson j = new AjaxJson();
-		if (userDao.findUniqueByProperty("mobile", mobile) == null) {
-			j.setSuccess(false);
-			j.setMsg("手机号不存在!");
-			j.setErrorCode("1");
-			return j;
-		}
-		User user = userDao.findUniqueByProperty("mobile", mobile);
-		String newPassword = String.valueOf((int) (Math.random() * 900000 + 100000));
-		try {
-			String result = UserUtils.sendPass(config.getSmsName(), config.getSmsPassword(), mobile, newPassword);
-			if (!result.equals("100")) {
-				j.setSuccess(false);
-				j.setErrorCode("2");
-				j.setMsg("短信发送失败，密码重置失败，错误代码：" + result + "，请联系管理员。");
-			} else {
-				j.setSuccess(true);
-				j.setErrorCode("-1");
-				j.setMsg("短信发送成功，密码重置成功!");
-				systemService.updatePasswordById(user.getId(), user.getLoginName(), newPassword);
-			}
-		} catch (IOException e) {
-			j.setSuccess(false);
-			j.setErrorCode("3");
-			j.setMsg("因未知原因导致短信发送失败，请联系管理员。");
-		}
-		return j;
 	}
 }

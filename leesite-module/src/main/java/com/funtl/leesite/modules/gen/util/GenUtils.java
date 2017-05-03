@@ -183,7 +183,8 @@ public class GenUtils {
 		try {
 			File file = new DefaultResourceLoader().getResource("").getFile();
 			if (file != null) {
-				return file.getAbsolutePath() + File.separator + StringUtils.replaceEach(GenUtils.class.getName(), new String[]{"util." + GenUtils.class.getSimpleName(), "."}, new String[]{"template", File.separator});
+				return file.getAbsolutePath() + File.separator + "templates/modules/gen";
+//				return file.getAbsolutePath() + File.separator + StringUtils.replaceEach(GenUtils.class.getName(), new String[]{"util." + GenUtils.class.getSimpleName(), "."}, new String[]{"template", File.separator});
 			}
 		} catch (Exception e) {
 			logger.error("{}", e);
@@ -227,7 +228,7 @@ public class GenUtils {
 	 * 根据分类获取模板列表
 	 *
 	 * @param config
-	 * @param genScheme
+	 * @param category
 	 * @param isChildTable 是否是子表
 	 * @return
 	 */
@@ -265,7 +266,6 @@ public class GenUtils {
 	 * 获取数据模型
 	 *
 	 * @param genScheme
-	 * @param genTable
 	 * @return
 	 */
 	public static Map<String, Object> getDataModel(GenScheme genScheme) {
@@ -300,7 +300,7 @@ public class GenUtils {
 	 *
 	 * @param tpl
 	 * @param model
-	 * @param replaceFile
+	 * @param isReplaceFile
 	 * @return
 	 */
 	public static String generateToFile(GenTemplate tpl, Map<String, Object> model, boolean isReplaceFile) {

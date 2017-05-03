@@ -29,5 +29,5 @@ import com.funtl.leesite.modules.gen.entity.GenTableColumn;
 @MyBatisDao
 public interface GenTableColumnDao extends CrudDao<GenTableColumn> {
 
-	public void deleteByGenTableId(String genTableId);
+	public void deleteByGenTable(String genTableId);
 }

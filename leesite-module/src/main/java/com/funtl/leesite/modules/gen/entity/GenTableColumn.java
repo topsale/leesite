@@ -51,6 +51,13 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 	private String dictType;    // 字典类型
 	private Integer sort;        // 排序（升序）
 
+	private String isForm;
+	private String tableName;
+	private String fieldLabels;
+	private String fieldKeys;
+	private String searchLabel;
+	private String searchKey;
+
 	public GenTableColumn() {
 		super();
 	}
@@ -190,6 +197,54 @@ public class GenTableColumn extends DataEntity<GenTableColumn> {
 
 	public void setSort(Integer sort) {
 		this.sort = sort;
+	}
+
+	public String getIsForm() {
+		return isForm;
+	}
+
+	public void setIsForm(String isForm) {
+		this.isForm = isForm;
+	}
+
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	public String getFieldLabels() {
+		return fieldLabels;
+	}
+
+	public void setFieldLabels(String fieldLabels) {
+		this.fieldLabels = fieldLabels;
+	}
+
+	public String getFieldKeys() {
+		return fieldKeys;
+	}
+
+	public void setFieldKeys(String fieldKeys) {
+		this.fieldKeys = fieldKeys;
+	}
+
+	public String getSearchLabel() {
+		return searchLabel;
+	}
+
+	public void setSearchLabel(String searchLabel) {
+		this.searchLabel = searchLabel;
+	}
+
+	public String getSearchKey() {
+		return searchKey;
+	}
+
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
 	}
 
 	/**

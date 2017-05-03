@@ -153,13 +153,13 @@
                                                     <td>
                                                         <c:if test="${!requestScope.oaNotify.self}">
                                                             <shiro:hasPermission name="oa:oaNotify:view">
-                                                                <a href="#" onclick="openDialogView('查看通知', '${ctx}/oa/oaNotify/form?id=${oaNotify.id}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus">查看</i></a>
+                                                                <a href="#" onclick="openDialogView('查看通知', '${ctx}/oa/oaNotify/form?id=${oaNotify.id}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"> 查看</i></a>
                                                             </shiro:hasPermission>
                                                             <shiro:hasPermission name="oa:oaNotify:edit">
-                                                                <a href="#" onclick="openDialog('修改通知', '${ctx}/oa/oaNotify/form?id=${oaNotify.id}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit">修改</i></a>
+                                                                <a href="#" onclick="openDialog('修改通知', '${ctx}/oa/oaNotify/form?id=${oaNotify.id}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"> 修改</i></a>
                                                             </shiro:hasPermission>
                                                             <shiro:hasPermission name="oa:oaNotify:del">
-                                                                <a href="${ctx}/oa/oaNotify/delete?id=${oaNotify.id}" onclick="return confirmx('确认要删除该通知吗？', this.href)"   class="btn btn-danger btn-xs"><i class="fa fa-trash">删除</i></a>
+                                                                <a href="${ctx}/oa/oaNotify/delete?id=${oaNotify.id}" onclick="return confirmx('确认要删除该通知吗？', this.href)"   class="btn btn-danger btn-xs"><i class="fa fa-trash"> 删除</i></a>
                                                             </shiro:hasPermission>
                                                         </c:if>
                                                     </td>
