@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funtl.leesite.modules.config.dao.ConfigMailDao">
+    
+	<sql id="configMailColumns">
+		a.id AS "id",
+		a.mail_host AS "mailHost",
+		a.mail_port AS "mailPort",
+		a.mail_username AS "mailUsername",
+		a.mail_password AS "mailPassword",
+		a.mail_from AS "mailFrom",
+		a.mail_ssl AS "mailSsl"
+	</sql>
+	
+	<sql id="configMailJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ConfigMail" >
+		SELECT 
+			<include refid="configMailColumns"/>
+		FROM config_mail a
+		<include refid="configMailJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ConfigMail" >
+		SELECT 
+			<include refid="configMailColumns"/>
+		FROM config_mail a
+		<include refid="configMailJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ConfigMail" >
+		SELECT 
+			<include refid="configMailColumns"/>
+		FROM config_mail a
+		<include refid="configMailJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO config_mail(
+			id,
+			mail_host,
+			mail_port,
+			mail_username,
+			mail_password,
+			mail_from,
+			mail_ssl
+		) VALUES (
+			#{id},
+			#{mailHost},
+			#{mailPort},
+			#{mailUsername},
+			#{mailPassword},
+			#{mailFrom},
+			#{mailSsl}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE config_mail SET 	
+			mail_host = #{mailHost},
+			mail_port = #{mailPort},
+			mail_username = #{mailUsername},
+			mail_password = #{mailPassword},
+			mail_from = #{mailFrom},
+			mail_ssl = #{mailSsl}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM config_mail
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE config_mail SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ConfigMail" statementType="STATEMENT">
+		select * FROM config_mail  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

@@ -19,14 +19,15 @@ package com.funtl.leesite.modules.monitor.web;
 
 import java.util.Map;
 
+import com.funtl.leesite.common.context.SpringMailSender;
 import com.funtl.leesite.common.json.AjaxJson;
-import com.funtl.leesite.common.mail.MailSendUtils;
 import com.funtl.leesite.common.utils.MyBeanUtils;
 import com.funtl.leesite.common.utils.StringUtils;
 import com.funtl.leesite.common.web.BaseController;
 import com.funtl.leesite.modules.monitor.entity.Monitor;
 import com.funtl.leesite.modules.monitor.service.MonitorService;
 import com.funtl.leesite.modules.monitor.utils.SystemInfo;
+import com.google.common.collect.Maps;
 
 import org.hyperic.sigar.Sigar;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "${adminPath}/monitor")
 public class MonitorController extends BaseController {
+	@Autowired
+	private SpringMailSender springMailSender;
+
 	@Autowired
 	private MonitorService monitorService;
 
@@ -89,12 +93,14 @@ public class MonitorController extends BaseController {
 		Monitor monitor = monitorService.get("1");
 		Map<?, ?> sigar = SystemInfo.usage(new Sigar());
 		String content = "";
-		content += "您预设的cpu使用率警告线是" + monitor.getCpu() + "%, 当前使用率是" + sigar.get("cpuUsage") + "%";
-		content += "您预设的jvm使用率警告线是" + monitor.getJvm() + "%, 当前使用率是" + sigar.get("jvmUsage") + "%";
-		content += "您预设的ram使用率警告线是" + monitor.getRam() + "%, 当前使用率是" + sigar.get("ramUsage") + "%";
+		content += "您预设的 cpu 使用率警告线是 <span style='color:blue'>" + monitor.getCpu() + "%</span>，当前使用率是 <span style='color:red'>" + sigar.get("cpuUsage") + "%</span><br />";
+		content += "您预设的 jvm 使用率警告线是 <span style='color:blue'>" + monitor.getJvm() + "%</span>，当前使用率是 <span style='color:red'>" + sigar.get("jvmUsage") + "%</span><br />";
+		content += "您预设的 ram 使用率警告线是 <span style='color:blue'>" + monitor.getRam() + "%</span>，当前使用率是 <span style='color:red'>" + sigar.get("ramUsage") + "%</span><br />";
 		if (Float.valueOf(sigar.get("cpuUsage").toString()) >= Float.valueOf(monitor.getCpu()) || Float.valueOf(sigar.get("jvmUsage").toString()) >= Float.valueOf(monitor.getJvm()) || Float.valueOf(sigar.get("ramUsage").toString()) >= Float.valueOf(monitor.getRam())) {
-			// TODO 完善邮箱配置
-			MailSendUtils.sendEmail("smtp.qq.com", "465", "test", "test", monitor.getToEmail(), "服务器监控预警", content, "0");
+			// 邮件预警
+			Map<String, Object> map = Maps.newHashMap();
+			map.put("content", content);
+			springMailSender.send(monitor.getToEmail(), "服务器监控预警", "monitor", map, true);
 		}
 		return sigar;
 	}

@@ -81,7 +81,6 @@ public class ChatServer extends WebSocketServer {
 	public void onMessage(WebSocket conn, String message) {
 		message = message.toString();
 		ChatHistoryService chatHistoryService = SpringContextHolder.getBean("chatHistoryService");
-		// TODO Auto-generated catch block
 		if (null != message && message.startsWith(Constant._online_user_)) {//用户上线
 			String userId = message.replaceFirst(Constant._online_user_, "");
 			this.userjoin(userId, conn);

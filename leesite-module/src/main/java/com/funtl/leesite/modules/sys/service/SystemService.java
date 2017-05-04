@@ -413,7 +413,6 @@ public class SystemService extends BaseService implements InitializingBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 

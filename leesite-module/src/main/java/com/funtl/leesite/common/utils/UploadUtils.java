@@ -131,24 +131,18 @@ public class UploadUtils {
 		saveUrl = request.getContextPath() + "/" + basePath + "/";
 		File uploadDir = new File(savePath);
 		if (contentType == null || !contentType.startsWith("multipart")) {
-			// TODO
 			System.out.println("请求不包含multipart/form-data流");
 			errorInfo = "请求不包含multipart/form-data流";
 		} else if (maxSize < contentLength) {
-			// TODO
 			System.out.println("上传文件大小超出文件最大大小");
 			errorInfo = "上传文件大小超出文件最大大小[" + maxSize + "]";
 		} else if (!ServletFileUpload.isMultipartContent(request)) {
-			// TODO
 			errorInfo = "请选择文件";
 		} else if (!uploadDir.isDirectory()) {// 检查目录
-			// TODO
 			errorInfo = "上传目录[" + savePath + "]不存在";
 		} else if (!uploadDir.canWrite()) {
-			// TODO
 			errorInfo = "上传目录[" + savePath + "]没有写权限";
 		} else if (!extMap.containsKey(dirName)) {
-			// TODO
 			errorInfo = "目录名不正确";
 		} else {
 			// .../basePath/dirName/
@@ -218,7 +212,6 @@ public class UploadUtils {
 			try {
 				items = upload.parseRequest(request);
 			} catch (FileUploadException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -260,7 +253,6 @@ public class UploadUtils {
 		String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toLowerCase();
 
 		if (item.getSize() > maxSize) { // 检查文件大小
-			// TODO
 			error = "上传文件大小超过限制";
 		} else if (!Arrays.<String>asList(extMap.get(dirName).split(",")).contains(fileExt)) {// 检查扩展名
 			error = "上传文件扩展名是不允许的扩展名。\n只允许" + extMap.get(dirName) + "格式。";

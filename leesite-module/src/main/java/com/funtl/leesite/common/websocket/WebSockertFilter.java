@@ -85,13 +85,11 @@ public class WebSockertFilter implements Filter {
 
 
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
 
 	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain arg2) throws IOException, ServletException {
-		// TODO Auto-generated method stub
 
 	}
 
