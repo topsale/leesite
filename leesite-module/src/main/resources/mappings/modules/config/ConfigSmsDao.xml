@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funtl.leesite.modules.config.dao.ConfigSmsDao">
+    
+	<sql id="configSmsColumns">
+		a.id AS "id",
+		a.sms_access_id AS "smsAccessId",
+		a.sms_access_key AS "smsAccessKey",
+		a.sms_mns_endpoint AS "smsMnsEndpoint",
+		a.sms_topic AS "smsTopic",
+		a.sms_sign_name AS "smsSignName"
+	</sql>
+	
+	<sql id="configSmsJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ConfigSms" >
+		SELECT 
+			<include refid="configSmsColumns"/>
+		FROM config_sms a
+		<include refid="configSmsJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ConfigSms" >
+		SELECT 
+			<include refid="configSmsColumns"/>
+		FROM config_sms a
+		<include refid="configSmsJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ConfigSms" >
+		SELECT 
+			<include refid="configSmsColumns"/>
+		FROM config_sms a
+		<include refid="configSmsJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO config_sms(
+			id,
+			sms_access_id,
+			sms_access_key,
+			sms_mns_endpoint,
+			sms_topic,
+			sms_sign_name
+		) VALUES (
+			#{id},
+			#{smsAccessId},
+			#{smsAccessKey},
+			#{smsMnsEndpoint},
+			#{smsTopic},
+			#{smsSignName}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE config_sms SET 	
+			sms_access_id = #{smsAccessId},
+			sms_access_key = #{smsAccessKey},
+			sms_mns_endpoint = #{smsMnsEndpoint},
+			sms_topic = #{smsTopic},
+			sms_sign_name = #{smsSignName}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM config_sms
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE config_sms SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ConfigSms" statementType="STATEMENT">
+		select * FROM config_sms  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

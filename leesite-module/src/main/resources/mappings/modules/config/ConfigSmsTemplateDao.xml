@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funtl.leesite.modules.config.dao.ConfigSmsTemplateDao">
+    
+	<sql id="configSmsTemplateColumns">
+		a.id AS "id",
+		a.sms_template_name AS "smsTemplateName",
+		a.sms_template_code AS "smsTemplateCode",
+		a.sms_template_type AS "smsTemplateType",
+		a.sms_template_content AS "smsTemplateContent",
+		a.config_sms AS "configSms.id"
+	</sql>
+	
+	<sql id="configSmsTemplateJoins">
+		LEFT JOIN config_sms b ON b.id = a.config_sms
+	</sql>
+	
+    
+	<select id="get" resultType="ConfigSmsTemplate" >
+		SELECT 
+			<include refid="configSmsTemplateColumns"/>
+		FROM config_sms_template a
+		<include refid="configSmsTemplateJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ConfigSmsTemplate" >
+		SELECT 
+			<include refid="configSmsTemplateColumns"/>
+		FROM config_sms_template a
+		<include refid="configSmsTemplateJoins"/>
+		<where>
+			
+			<if test="configSms != null and configSms.id != null and configSms.id != ''">
+				AND a.config_sms = #{configSms.id}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ConfigSmsTemplate" >
+		SELECT 
+			<include refid="configSmsTemplateColumns"/>
+		FROM config_sms_template a
+		<include refid="configSmsTemplateJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO config_sms_template(
+			id,
+			sms_template_name,
+			sms_template_code,
+			sms_template_type,
+			sms_template_content,
+			config_sms
+		) VALUES (
+			#{id},
+			#{smsTemplateName},
+			#{smsTemplateCode},
+			#{smsTemplateType},
+			#{smsTemplateContent},
+			#{configSms.id}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE config_sms_template SET 	
+			sms_template_name = #{smsTemplateName},
+			sms_template_code = #{smsTemplateCode},
+			sms_template_type = #{smsTemplateType},
+			sms_template_content = #{smsTemplateContent},
+			config_sms = #{configSms.id}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM config_sms_template
+		<choose>
+			<when test="id !=null and id != ''">
+				WHERE id = #{id}
+			</when>
+			<otherwise>
+				WHERE config_sms = #{configSms.id}
+			</otherwise>
+		</choose>
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE config_sms_template SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		<choose>
+			<when test="id !=null and id != ''">
+				WHERE id = #{id}
+			</when>
+			<otherwise>
+				WHERE config_sms = #{configSms.id}
+			</otherwise>
+		</choose>
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ConfigSmsTemplate" statementType="STATEMENT">
+		select * FROM config_sms_template  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

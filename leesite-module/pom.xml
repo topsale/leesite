@@ -118,6 +118,10 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.aliyun.mns</groupId>
+            <artifactId>aliyun-sdk-mns</artifactId>
+        </dependency>
         <!-- Alibaba End -->
 
         <!-- Spring Framework Begin -->
@@ -391,6 +395,13 @@
             <version>2.3.9</version>
         </dependency>
         <!-- Restlet End -->
+
+        <!-- Concurrent Begin -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+        </dependency>
+        <!-- Concurrent End -->
 
         <!-- Other Begin -->
         <dependency>

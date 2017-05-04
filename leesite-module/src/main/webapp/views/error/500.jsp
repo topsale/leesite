@@ -42,7 +42,8 @@ else {
 		<div class="details">
 			<h3>系统内部错误</h3>
 			<p>
-				错误信息：<%=ex == null ? "未知错误." : StringUtils.toHtml(ex.getMessage())%> <br />
+				错误信息： <br />
+				<%=ex == null ? "未知错误." : StringUtils.toHtml(ex.getMessage())%> <br />
 			</p>
 			<p>
 				<a href="#" class="btn red btn-outline" onclick="history.go(-1);"> 返回上一页 </a><br />
