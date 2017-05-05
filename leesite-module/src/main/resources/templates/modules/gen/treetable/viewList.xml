@@ -27,7 +27,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${r"${fns:getTopMenu()}"}"></t:menu>
+                <t:menu menu="${r"${fns:getTopMenu()}"}" parentName="${functionName}" currentName="${functionNameSimple}"></t:menu>
             </ul>
         </div>
     </div>
