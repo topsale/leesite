@@ -16,6 +16,7 @@
 package com.funtl.leesite.modules.config.web;
 
 import com.funtl.leesite.common.config.Global;
+import com.funtl.leesite.common.sms.SmsUtils;
 import com.funtl.leesite.common.utils.MyBeanUtils;
 import com.funtl.leesite.common.utils.StringUtils;
 import com.funtl.leesite.common.web.BaseController;
@@ -41,6 +42,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping(value = "${adminPath}/config/configSms")
 public class ConfigSmsController extends BaseController {
+	@Autowired
+	private SmsUtils smsUtils;
 
 	@Autowired
 	private ConfigSmsService configSmsService;
@@ -84,6 +87,38 @@ public class ConfigSmsController extends BaseController {
 			configSmsService.save(configSms);//保存
 		}
 		addMessage(redirectAttributes, "保存短信配置成功");
+		return "redirect:" + Global.getAdminPath() + "/config/configSms/form?id=1";
+	}
+
+	/**
+	 * 发送测试已短信
+	 * @param configSms
+	 * @param model
+	 * @param redirectAttributes
+	 * @return
+	 * @throws Exception
+	 */
+	@RequiresPermissions("config:configSms:edit")
+	@RequestMapping(value = "sendTestSms")
+	public String sendTestSms(ConfigSms configSms, Model model, RedirectAttributes redirectAttributes) throws Exception {
+		if (!beanValidator(model, configSms)) {
+			return form(configSms, model);
+		}
+
+		if (!configSms.getIsNewRecord()) { // 编辑表单保存
+			ConfigSms t = configSmsService.get(configSms.getId()); // 从数据库取出记录的值
+			MyBeanUtils.copyBeanNotNull2Bean(configSms, t); // 将编辑表单中的非NULL值覆盖数据库记录中的值
+			configSmsService.save(t); // 保存
+		}
+
+		String result = smsUtils.sendTest(configSms.getTestNumber());
+
+		if ("OK".equals(result)) {
+			addMessage(redirectAttributes, "短信发送成功");
+		} else {
+			addMessage(redirectAttributes, "短信发送失败，".concat(result));
+		}
+
 		return "redirect:" + Global.getAdminPath() + "/config/configSms/form?id=1";
 	}
 }

@@ -49,9 +49,16 @@
 							</div>
 						</div>
 						<div class="portlet-body">
+							<sys:message content="${message}"/>
+							<div class="note note-info">
+								<p>1.发送短信使用的模板Code，可在<a href="https://mns.console.aliyun.com/sms?spm=5176.doc51063.2.12.RL5Sck#/sms/Template" target="_blank">这里</a>获取</p>
+								<p>2.请自行添加“短信测试”模板，程序会通过“短信测试”四个字查找模板并发送测试短信</p>
+								<p>3.验证码类的模板参数必须设置为“&dollar;{code}”并请勿将该参数传入工具类中</p>
+								<p>4.短信验证码的生产和消费使用了消息队列处理</p>
+								<p>5.查看短信推送状态的结果消息请参考<a href="https://help.aliyun.com/document_detail/52329.html?spm=5176.doc51063.2.14.PtL351" target="_blank">这里</a></p>
+							</div>
 							<form:form id="inputForm" modelAttribute="configSms" action="${ctx}/config/configSms/save" class="form-horizontal">
 								<form:hidden path="id"/>
-								<sys:message content="${message}"/>
 
 								<table class="table table-striped table-bordered table-hover">
 									<tbody>
@@ -90,13 +97,14 @@
 											<span class="help-inline">发送短信使用的签名，可在<a href="https://mns.console.aliyun.com/sms?spm=5176.doc51063.2.11.WHdLYv#/sms/Sign" target="_blank">这里</a>获取</span>
 										</td>
 									</tr>
+									<tr>
+										<td class="active"><label class="pull-right"><span style="color: #E7505A;"> * </span>测试手机：</label></td>
+										<td colspan="3">
+											<form:input path="testNumber" htmlEscape="false" maxlength="20" class="form-control required"/>
+										</td>
+									</tr>
 									</tbody>
 								</table>
-
-								<div class="small grey" style="margin-bottom: 10px;">
-									<span style="color: #E7505A;"> * </span>说明：发送短信使用的模板Code，可在<a href="https://mns.console.aliyun.com/sms?spm=5176.doc51063.2.12.RL5Sck#/sms/Template" target="_blank">这里</a>获取<br/>
-									<span style="color: #E7505A;"> * 注意：请自行添加“短信测试”模板，程序会通过“短信测试”四个字查找模板并发送测试短信</span>
-								</div>
 
 								<div class="tabs-container">
 									<ul class="nav nav-tabs">
@@ -173,7 +181,8 @@
 
 								<div class="form-actions pull-right">
 									<shiro:hasPermission name="config:configSms:edit">
-										<button class="btn btn-primary btn-sm" type="submit">保存</button>
+										<button class="btn btn-primary btn-sm" type="submit" onclick="saveSms();">保存</button>
+										<button class="btn btn-danger btn-sm" type="submit" onclick="saveAndTestSms();">保存并测试</button>
 									</shiro:hasPermission>
 								</div>
 								<div class="clearfix"></div>
@@ -192,6 +201,14 @@
 
 <%@include file="/views/include/foot.jsp" %>
 <script type="text/javascript">
+    function saveSms() {
+        $("#inputForm").attr("action", "${ctx}/config/configSms/save");
+    }
+
+    function saveAndTestSms() {
+        $("#inputForm").attr("action", "${ctx}/config/configSms/sendTestSms");
+    }
+
     $(document).ready(function() {
         var validateForm = $("#inputForm").validate({
             errorElement: 'span',

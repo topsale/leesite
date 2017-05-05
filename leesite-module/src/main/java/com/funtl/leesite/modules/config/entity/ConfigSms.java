@@ -15,12 +15,13 @@
  */
 package com.funtl.leesite.modules.config.entity;
 
-import org.hibernate.validator.constraints.Length;
 import java.util.List;
-import com.google.common.collect.Lists;
 
 import com.funtl.leesite.common.persistence.DataEntity;
 import com.funtl.leesite.common.utils.excel.annotation.ExcelField;
+import com.google.common.collect.Lists;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * 短信配置Entity
@@ -35,6 +36,7 @@ public class ConfigSms extends DataEntity<ConfigSms> {
 	private String smsMnsEndpoint;		// MNSEndpoint
 	private String smsTopic;		// 主题
 	private String smsSignName;		// 签名
+	private String testNumber; // 测试手机
 	private List<ConfigSmsTemplate> configSmsTemplateList = Lists.newArrayList();		// 子表列表
 	
 	public ConfigSms() {
@@ -93,6 +95,16 @@ public class ConfigSms extends DataEntity<ConfigSms> {
 
 	public void setSmsSignName(String smsSignName) {
 		this.smsSignName = smsSignName;
+	}
+
+	@Length(min=11, max=11, message="测试手机号必须满足11位")
+	@ExcelField(title="测试手机", align=2, sort=5)
+	public String getTestNumber() {
+		return testNumber;
+	}
+
+	public void setTestNumber(String testNumber) {
+		this.testNumber = testNumber;
 	}
 	
 	public List<ConfigSmsTemplate> getConfigSmsTemplateList() {

@@ -8,7 +8,8 @@
 		a.sms_access_key AS "smsAccessKey",
 		a.sms_mns_endpoint AS "smsMnsEndpoint",
 		a.sms_topic AS "smsTopic",
-		a.sms_sign_name AS "smsSignName"
+		a.sms_sign_name AS "smsSignName",
+		a.test_number AS "testNumber"
 	</sql>
 	
 	<sql id="configSmsJoins">
@@ -64,14 +65,16 @@
 			sms_access_key,
 			sms_mns_endpoint,
 			sms_topic,
-			sms_sign_name
+			sms_sign_name,
+			test_number
 		) VALUES (
 			#{id},
 			#{smsAccessId},
 			#{smsAccessKey},
 			#{smsMnsEndpoint},
 			#{smsTopic},
-			#{smsSignName}
+			#{smsSignName},
+			#{testNumber}
 		)
 	</insert>
 	
@@ -81,7 +84,8 @@
 			sms_access_key = #{smsAccessKey},
 			sms_mns_endpoint = #{smsMnsEndpoint},
 			sms_topic = #{smsTopic},
-			sms_sign_name = #{smsSignName}
+			sms_sign_name = #{smsSignName},
+			test_number = #{testNumber}
 		WHERE id = #{id}
 	</update>
 	
