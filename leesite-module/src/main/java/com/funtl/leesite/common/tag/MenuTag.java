@@ -16,21 +16,22 @@
 
 package com.funtl.leesite.common.tag;
 
-import java.io.IOException;
-import java.util.List;
+import com.funtl.leesite.common.config.Global;
+import com.funtl.leesite.common.utils.SpringContextHolder;
+import com.funtl.leesite.common.utils.StringUtils;
+import com.funtl.leesite.modules.sys.entity.Menu;
+import com.funtl.leesite.modules.sys.utils.UserUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
-
-import com.funtl.leesite.common.config.Global;
-import com.funtl.leesite.common.utils.SpringContextHolder;
-import com.funtl.leesite.modules.sys.entity.Menu;
-import com.funtl.leesite.modules.sys.utils.UserUtils;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -46,6 +47,9 @@ public class MenuTag extends TagSupport {
 
 	private static final long serialVersionUID = 1L;
 	protected Menu menu;// 菜单Map
+	protected String parentName; //上级菜单名称
+	protected String currentName; //当前菜单名称
+	ServletContext context = SpringContextHolder.getBean(ServletContext.class);
 
 	public Menu getMenu() {
 		return menu;
@@ -53,6 +57,22 @@ public class MenuTag extends TagSupport {
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
+	public String getCurrentName() {
+		return currentName;
+	}
+
+	public void setCurrentName(String currentName) {
+		this.currentName = currentName;
 	}
 
 	public int doStartTag() throws JspTagException {
@@ -66,8 +86,7 @@ public class MenuTag extends TagSupport {
 			if (menu != null) {
 				out.print(menu);
 			} else {
-				menu = end().toString();
-				out.print(menu);
+				out.print(end());
 
 			}
 
@@ -77,14 +96,67 @@ public class MenuTag extends TagSupport {
 		return EVAL_PAGE;
 	}
 
-	public StringBuffer end() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(getChildOfTree(menu, 0, UserUtils.getMenuList()));
-		logger.debug("{}", sb);
-		return sb;
+	public String end() {
+		StringBuffer treeMenu = getTreeMenu();
+		String menuHtml = treeMenu.toString();
+		menuHtml = menuHtml.substring(menuHtml.indexOf(">") + 1,menuHtml.lastIndexOf("<"));
+		return menuHtml;
 	}
 
+
+	private StringBuffer getTreeMenu(){
+		Menu menu = generateTreeNode("1");
+		List<String> activeIds = Arrays.asList(UserUtils.findActiveIdsByName(parentName, currentName).split(","));
+		return recursionMenu(menu,activeIds,new StringBuffer());
+	}
+
+	private StringBuffer recursionMenu(Menu menu,List<String> activeIds,StringBuffer sb){
+		List<Menu> menus = menu.getChildren();
+		if(menus != null && !menus.isEmpty()){
+			sb.append("<ul class=\"sub-menu\">");
+		}
+		for(Menu item : menus){
+			String active = "";
+			String open = "";
+			String selected = "";
+			if (activeIds.contains(item.getId())){
+				active = "active";
+				open = "open";
+				selected = "selected";
+			}
+			sb.append("<li class=\"nav-item  "+active+" "+open+"\">");
+			String href = item.getHref();
+			if(StringUtils.isEmpty(href)){
+				href = "javascript:;";
+			}else{
+				if (href.startsWith("http://")) {// 如果是互联网资源
+					href = href;
+				} else if (href.endsWith(".html") && !href.endsWith("ckfinder.html")) {//如果是静态资源并且不是ckfinder.html，直接访问不加adminPath
+					href = context.getContextPath() + href;
+				} else {
+					href = context.getContextPath() + Global.getAdminPath() + href;
+				}
+			}
+			sb.append("<a href=\""+href+"\" class=\"nav-link nav-toggle\">");
+			sb.append("<i class=\""+item.getIcon()+"\"></i>");
+			sb.append("<span class=\"title\">"+item.getName()+"</span>");
+			sb.append("<span class=\""+selected+"\"></span>");
+			if(item.getChildren() != null && !item.getChildren().isEmpty()){
+				sb.append("<span class=\"arrow "+open+"\"></span>");
+			}
+			sb.append("</a>");
+			recursionMenu(item,activeIds,sb);
+			sb.append("</li>");
+
+		}
+
+		if(menus != null && !menus.isEmpty()){
+			sb.append("</ul>");
+		}
+		return sb;
+	}
 	private static String getChildOfTree(Menu parent, int level, List<Menu> menuList) {
+
 		StringBuffer menuString = new StringBuffer();
 		String href = "";
 		if (!parent.hasPermisson()) return "";
@@ -137,5 +209,53 @@ public class MenuTag extends TagSupport {
 		return menuString.toString();
 	}
 
+	/**
+	 *
+	 * @param nodeId
+	 * @return
+	 */
+	public Menu getNodeById(String nodeId){
+		List<Menu> menuList = UserUtils.getMenuList();
+		Menu menu = new Menu();
+		for (Menu item : menuList) {
+			if (nodeId.equals(item.getId()) && "1".equals(item.getIsShow())) {
+				menu = item;
+				break;
+			}
+		}
+		return menu;
+	}
+
+	/**
+	 *
+	 * @param nodeId
+	 * @return
+	 */
+	public List<Menu> getChildrenNodeById(String nodeId){
+		List<Menu> childrenMenus = new ArrayList<Menu>();
+		List<Menu> menuList = UserUtils.getMenuList();
+		for (Menu item : menuList) {
+			if(nodeId.equals(item.getParentId()) && "1".equals(item.getIsShow())){
+				childrenMenus.add(item);
+			}
+		}
+		return childrenMenus;
+	}
+
+	/**
+	 * 递归生成Tree结构数据
+	 * @param rootId
+	 * @return
+	 */
+	public Menu generateTreeNode(String rootId){
+		Menu root = this.getNodeById(rootId);
+		List<Menu> childrenTreeNode = this.getChildrenNodeById(rootId);
+		root.getChildren().clear();
+		root.getChildren().addAll(childrenTreeNode);
+		for (Menu item : childrenTreeNode) {
+			this.generateTreeNode(item.getId());
+		}
+		return root;
+	}
 
 }

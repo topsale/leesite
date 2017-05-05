@@ -16,11 +16,11 @@
 
 package com.funtl.leesite.modules.sys.dao;
 
-import java.util.List;
-
 import com.funtl.leesite.common.persistence.CrudDao;
 import com.funtl.leesite.common.persistence.annotation.MyBatisDao;
 import com.funtl.leesite.modules.sys.entity.Menu;
+
+import java.util.List;
 
 /**
  * 菜单DAO接口
@@ -39,4 +39,5 @@ public interface MenuDao extends CrudDao<Menu> {
 
 	public int updateSort(Menu menu);
 
+	List<Menu> findParentIdsByName(String currentName);
 }

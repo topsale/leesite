@@ -16,12 +16,6 @@
 
 package com.funtl.leesite.modules.sys.utils;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.funtl.leesite.common.persistence.Page;
 import com.funtl.leesite.common.service.BaseService;
 import com.funtl.leesite.common.utils.CacheUtils;
@@ -31,23 +25,19 @@ import com.funtl.leesite.modules.iim.entity.MailPage;
 import com.funtl.leesite.modules.iim.service.MailBoxService;
 import com.funtl.leesite.modules.oa.entity.OaNotify;
 import com.funtl.leesite.modules.oa.service.OaNotifyService;
-import com.funtl.leesite.modules.sys.dao.AreaDao;
-import com.funtl.leesite.modules.sys.dao.MenuDao;
-import com.funtl.leesite.modules.sys.dao.OfficeDao;
-import com.funtl.leesite.modules.sys.dao.RoleDao;
-import com.funtl.leesite.modules.sys.dao.UserDao;
-import com.funtl.leesite.modules.sys.entity.Area;
-import com.funtl.leesite.modules.sys.entity.Menu;
-import com.funtl.leesite.modules.sys.entity.Office;
-import com.funtl.leesite.modules.sys.entity.Role;
-import com.funtl.leesite.modules.sys.entity.User;
+import com.funtl.leesite.modules.sys.dao.*;
+import com.funtl.leesite.modules.sys.entity.*;
 import com.funtl.leesite.modules.sys.security.SystemAuthorizingRealm.Principal;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.UnavailableSecurityManagerException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 用户工具类
@@ -437,5 +427,28 @@ public class UserUtils {
 		Page<MailBox> page = mailBoxService.findPage(new MailPage<MailBox>(request, response), mailBox);
 		return page.getList();
 	}
+
+
+	public static String findActiveIdsByName(String parentName,String currentName) {
+		List<Menu> menus = menuDao.findParentIdsByName(currentName);
+		if(menus == null || menus.isEmpty()){
+			return null;
+		}
+		//菜单名称有重复，需要去根据父级菜单来判断
+		if(menus.size() > 1){
+			for(Menu menu : menus){
+				Menu parentMenu = menuDao.get(menu.getParentId());
+				if(parentName.equals(parentMenu.getName())){
+					return menu.getParentIds() + menu.getId();
+				}
+			}
+		}else{
+			Menu menu = menus.get(0);
+			return menu.getParentIds()+menu.getId();
+		}
+
+		return null;
+	}
+
 
 }
