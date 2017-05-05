@@ -74,7 +74,7 @@
                                             <table:addRow url="${ctx}/sys/dict/form" title="字典"></table:addRow><!-- 增加按钮 -->
                                         </shiro:hasPermission>
                                         <shiro:hasPermission name="sys:dict:edit">
-                                            <table:editRow url="${ctx}/sys/dict/form" id="contentTable"  title="字典"></table:editRow><!-- 编辑按钮 -->
+                                            <table:editRow url="${ctx}/sys/dict/form" id="contentTable" title="字典"></table:editRow><!-- 编辑按钮 -->
                                         </shiro:hasPermission>
                                         <shiro:hasPermission name="sys:dict:del">
                                             <table:delRow url="${ctx}/sys/dict/deleteAll" id="contentTable"></table:delRow><!-- 删除按钮 -->
@@ -124,13 +124,13 @@
                                                     <td>${dict.sort}</td>
                                                     <td>
                                                         <shiro:hasPermission name="sys:dict:view">
-                                                            <a href="#" onclick="openDialogView('查看字典', '${ctx}/sys/dict/form?id=${dict.id}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
+                                                            <a href="#" onclick="openDialogView('查看字典', '${ctx}/sys/dict/form?id=${dict.id}','900px', '600px')" class="btn btn-info btn-xs"><i class="fa fa-search-plus"></i> 查看</a>
                                                         </shiro:hasPermission>
                                                         <shiro:hasPermission name="sys:dict:edit">
-                                                            <a href="#" onclick="openDialog('修改字典', '${ctx}/sys/dict/form?id=${dict.id}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+                                                            <a href="#" onclick="openDialog('修改字典', '${ctx}/sys/dict/form?id=${dict.id}','900px', '600px')" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> 修改</a>
                                                         </shiro:hasPermission>
                                                         <shiro:hasPermission name="sys:dict:del">
-                                                            <a href="${ctx}/sys/dict/delete?id=${dict.id}&type=${dict.type}" onclick="return confirmx('确认要删除该字典吗？', this.href)"   class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
+                                                            <a href="${ctx}/sys/dict/delete?id=${dict.id}&type=${dict.type}" onclick="return confirmx('确认要删除该字典吗？', this.href)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
                                                         </shiro:hasPermission>
                                                         <shiro:hasPermission name="sys:dict:add">
                                                             <a href="#" onclick="openDialog('添加键值', '<c:url value='${fns:getAdminPath()}/sys/dict/form?type=${dict.type}&sort=${dict.sort+10}'><c:param name='description' value='${dict.description}'/></c:url>','900px', '600px')" class="btn btn-primary btn-xs" ><i class="fa fa-plus"></i> 添加键值</a>

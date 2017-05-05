@@ -161,13 +161,14 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <div class="form-actions">
+                                <div class="form-actions pull-right">
                                     <shiro:hasPermission name="gen:genScheme:edit">
                                         <input id="btnSubmit" class="btn btn-primary btn-sm" type="submit" value="保存方案" onclick="$('#flag').val('0');"/>&nbsp;
                                         <input id="btnSubmit" class="btn btn-danger btn-sm" type="submit" value="保存并生成代码" onclick="$('#flag').val('1');"/>&nbsp;
                                     </shiro:hasPermission>
                                     <input id="btnCancel" class="btn btn-default btn-sm" type="button" value="返 回" onclick="history.go(-1)"/>
                                 </div>
+                                <div class="clearfix"></div>
                             </form:form>
                         </div>
                     </div>

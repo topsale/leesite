@@ -42,7 +42,7 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<span class="caption-subject bold font-grey-gallery uppercase"> 短信配置 </span>
-								<span class="caption-helper"></span>
+								<span class="caption-helper"><a href="https://help.aliyun.com/document_detail/51063.html?spm=5176.doc51082.2.5.d2YvaS" target="_blank">通过SDK发送短信</a> </span>
 							</div>
 							<div class="tools">
 								<a href="" class="fullscreen"> </a>
@@ -59,30 +59,35 @@
 										<td class="active" style="width: 10%;"><label class="pull-right"><span style="color: #E7505A;"> * </span>AccessId：</label></td>
 										<td colspan="3">
 											<form:input path="smsAccessId" htmlEscape="false" maxlength="64" class="form-control required"/>
+											<span class="help-inline">登陆<a href="https://ak-console.aliyun.com/?spm=5176.doc51063.2.7.WHdLYv#/accesskey" target="_blank">阿里云 AccessKey 管理页面</a>创建、查看</span>
 										</td>
 									</tr>
 									<tr>
 										<td class="active"><label class="pull-right"><span style="color: #E7505A;"> * </span>AccessKey：</label></td>
 										<td colspan="3">
 											<form:input path="smsAccessKey" htmlEscape="false" maxlength="64" class="form-control required"/>
+											<span class="help-inline">登陆<a href="https://ak-console.aliyun.com/?spm=5176.doc51063.2.8.WHdLYv#/accesskey" target="_blank">阿里云 AccessKey 管理页面</a>创建、查看</span>
 										</td>
 									</tr>
 									<tr>
 										<td class="active"><label class="pull-right"><span style="color: #E7505A;"> * </span>MNSEndpoint：</label></td>
 										<td colspan="3">
 											<form:input path="smsMnsEndpoint" htmlEscape="false" maxlength="255" class="form-control required"/>
+											<span class="help-inline">登陆<a href="https://mns.console.aliyun.com/?spm=5176.doc51063.2.9.WHdLYv" target="_blank">MNS控制台</a>，单击右上角“获取Endpoint”查看，选择公网地址</span>
 										</td>
 									</tr>
 									<tr>
 										<td class="active"><label class="pull-right"><span style="color: #E7505A;"> * </span>主题：</label></td>
 										<td colspan="3">
 											<form:input path="smsTopic" htmlEscape="false" maxlength="255" class="form-control required"/>
+											<span class="help-inline">进入<a href="https://mns.console.aliyun.com/?spm=5176.doc51063.2.10.WHdLYv#/home/cn-hangzhou" target="_blank">控制台短信概览页</a>，获取主题名称</span>
 										</td>
 									</tr>
 									<tr>
 										<td class="active"><label class="pull-right"><span style="color: #E7505A;"> * </span>签名：</label></td>
 										<td colspan="3">
 											<form:input path="smsSignName" htmlEscape="false" maxlength="20" class="form-control required"/>
+											<span class="help-inline">发送短信使用的签名，可在<a href="https://mns.console.aliyun.com/sms?spm=5176.doc51063.2.11.WHdLYv#/sms/Sign" target="_blank">这里</a>获取</span>
 										</td>
 									</tr>
 									</tbody>
@@ -90,7 +95,7 @@
 
 								<div class="tabs-container">
 									<ul class="nav nav-tabs">
-										<li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">短信模板：</a>
+										<li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">短信模板</a>
 										</li>
 									</ul>
 									<div class="tab-content">
@@ -161,10 +166,12 @@
 									</div>
 								</div>
 
-								<div class="form-actions">
-									<button class="btn btn-primary btn-sm" type="submit" onclick="saveSms();">保存</button>
-									<button class="btn btn-danger btn-sm" type="submit" onclick="saveAndTestSms();">保存并测试</button>
+								<div class="form-actions pull-right">
+									<shiro:hasPermission name="config:configSms:edit">
+										<button class="btn btn-primary btn-sm" type="submit">保存</button>
+									</shiro:hasPermission>
 								</div>
+								<div class="clearfix"></div>
 							</form:form>
 						</div>
 					</div>
@@ -180,14 +187,6 @@
 
 <%@include file="/views/include/foot.jsp" %>
 <script type="text/javascript">
-    function saveSms() {
-        $("#inputForm").attr("action", "${ctx}/config/configSms/save");
-    }
-
-    function saveAndTestSms() {
-        $("#inputForm").attr("action", "${ctx}/config/configSms/sendTestSms");
-    }
-
     $(document).ready(function() {
         var validateForm = $("#inputForm").validate({
             errorElement: 'span',
