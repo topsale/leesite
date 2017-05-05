@@ -126,7 +126,7 @@ public class ConfigSmsController extends BaseController {
 //		try {
 //			// 等待 20 秒，触发短信验证码消费者
 //			Thread.sleep(20 * 1000);
-			// 消费短信验证码
+//			// 消费短信验证码
 //		    smsUtils.removeValidate(configSms.getTestNumber());
 //		} catch (InterruptedException e) {
 //			e.printStackTrace();

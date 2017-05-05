@@ -9,7 +9,9 @@ import java.util.concurrent.Executors;
  */
 public class ExecutorUtils {
 	private static ExecutorService executorService;
-	private ExecutorUtils() {}
+
+	private ExecutorUtils() {
+	}
 
 	public synchronized static ExecutorService getCachedThreadPool() {
 		if (executorService == null) {

@@ -16,6 +16,9 @@
 
 package com.funtl.leesite.modules.sys.listener;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 
@@ -40,8 +43,14 @@ public class WebContextListener extends org.springframework.web.context.ContextL
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		// TODO 容器销毁时调用
-		ExecutorUtils.getCachedThreadPool().shutdown();
-		logger.debug("CachedThreadPool is stop ...");
+		try {
+			// 平缓关闭 ExecutorService
+			ExecutorService executor = ExecutorUtils.getCachedThreadPool();
+			executor.shutdown();
+			executor.awaitTermination(30 * 1000, TimeUnit.MILLISECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		super.contextDestroyed(event);
 	}
 }
