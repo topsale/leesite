@@ -52,5 +52,8 @@ Root 项目，负责整体构建和模块组装
 ### leesite-module
 依赖 leesite-parent 模块，项目源码
 
+### leesite-database
+依赖 leesite-parent 模块，数据库初始化
+
 ## License
 LeeSite is Open Source software released under the [Apache 2.0 license.](http://www.apache.org/licenses/LICENSE-2.0.html)
