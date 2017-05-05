@@ -174,5 +174,14 @@
 					<if test="dbName == 'oracle'">'%,'||#{id}||',%'</if>
 					<if test="dbName == 'mysql'">CONCAT('%,', #{id}, ',%')</if>
 	</update>
-	
+
+	<select id="findParentIdsByName" parameterType="java.lang.String"  resultMap="menuResult">
+		SELECT
+		<include refid="menuColumns"/>
+		FROM sys_menu a
+		<include refid="menuJoins"/>
+		WHERE a.del_flag = '0'
+		AND a.name = #{parameter}
+	</select>
+
 </mapper>

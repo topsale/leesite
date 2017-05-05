@@ -16,18 +16,17 @@
 
 package com.funtl.leesite.common.tag;
 
-import java.io.IOException;
-import java.util.List;
+import com.funtl.leesite.common.config.Global;
+import com.funtl.leesite.common.utils.SpringContextHolder;
+import com.funtl.leesite.modules.sys.entity.Menu;
+import com.funtl.leesite.modules.sys.utils.UserUtils;
 
 import javax.servlet.ServletContext;
 import javax.servlet.jsp.JspTagException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
-
-import com.funtl.leesite.common.config.Global;
-import com.funtl.leesite.common.utils.SpringContextHolder;
-import com.funtl.leesite.modules.sys.entity.Menu;
-import com.funtl.leesite.modules.sys.utils.UserUtils;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * 类描述：菜单标签
