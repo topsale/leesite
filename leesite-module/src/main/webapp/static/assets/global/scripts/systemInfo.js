@@ -166,9 +166,9 @@ $(function() {
 		var ram = [];
 		var cpu = [];
 		$.ajax({
-			type : "POST",
+			type : "GET",
 			url : locat + '/monitor/usage',
-			async : false,
+			async : true,
 			dataType : 'json',
 			success : function(json) {
 				$("#td_jvmUsage").html(json.jvmUsage);
