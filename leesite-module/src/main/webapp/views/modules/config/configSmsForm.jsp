@@ -93,6 +93,11 @@
 									</tbody>
 								</table>
 
+								<div class="small grey" style="margin-bottom: 10px;">
+									<span style="color: #E7505A;"> * </span>说明：发送短信使用的模板Code，可在<a href="https://mns.console.aliyun.com/sms?spm=5176.doc51063.2.12.RL5Sck#/sms/Template" target="_blank">这里</a>获取<br/>
+									<span style="color: #E7505A;"> * 注意：请自行添加“短信测试”模板，程序会通过“短信测试”四个字查找模板并发送测试短信</span>
+								</div>
+
 								<div class="tabs-container">
 									<ul class="nav nav-tabs">
 										<li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">短信模板</a>

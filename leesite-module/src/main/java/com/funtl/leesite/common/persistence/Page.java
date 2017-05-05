@@ -225,9 +225,9 @@ public class Page<T> {
 		long endIndex = pageNo * pageSize <= count ? pageNo * pageSize : count;
 
 		sb.append("<div class=\"pull-left pagination-detail\">");
-		sb.append("<span class=\"pagination-info\">显示第 " + startIndex + " 到第 " + endIndex + " 条记录，总共 " + count + " 条记录</span>");
-		sb.append("<span class=\"page-list\">每页显示 <span class=\"btn-group dropup\">");
-		sb.append("<button type=\"button\" class=\"btn btn-default  btn-outline dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">");
+		sb.append("<span class=\"pagination-info small font-grey-gallery\">显示第 " + startIndex + " 到第 " + endIndex + " 条记录，总共 " + count + " 条记录</span>");
+		sb.append("<span class=\"page-list small font-grey-gallery\">每页显示 <span class=\"btn-group dropup\">");
+		sb.append("<button type=\"button\" class=\"btn btn-default btn-sm btn-outline dropdown-toggle\" data-toggle=\"dropdown\" aria-expanded=\"false\">");
 		sb.append("<span class=\"page-size\">" + pageSize + "</span> <span class=\"caret\"></span>");
 		sb.append("</button>");
 		sb.append("<ul class=\"dropdown-menu\" role=\"menu\">");
