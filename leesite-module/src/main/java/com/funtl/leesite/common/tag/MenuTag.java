@@ -16,29 +16,30 @@
 
 package com.funtl.leesite.common.tag;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.jsp.JspTagException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.TagSupport;
+
 import com.beust.jcommander.internal.Lists;
 import com.funtl.leesite.common.config.Global;
 import com.funtl.leesite.common.utils.SpringContextHolder;
 import com.funtl.leesite.common.utils.StringUtils;
 import com.funtl.leesite.modules.sys.entity.Menu;
 import com.funtl.leesite.modules.sys.utils.UserUtils;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.servlet.ServletContext;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.TagSupport;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 /**
  * 类描述：菜单标签
  * <p>
- *
  *
  * @version 1.0
  * @date： 日期：2015-1-23 时间：上午10:17:45
@@ -100,40 +101,42 @@ public class MenuTag extends TagSupport {
 	public String end() {
 		StringBuffer treeMenu = getTreeMenu();
 		String menuHtml = treeMenu.toString();
-		menuHtml = menuHtml.substring(menuHtml.indexOf(">") + 1,menuHtml.lastIndexOf("<"));
+		menuHtml = menuHtml.substring(menuHtml.indexOf(">") + 1, menuHtml.lastIndexOf("<"));
+
+		logger.debug(menuHtml);
 		return menuHtml;
 	}
 
 
-	private StringBuffer getTreeMenu(){
+	private StringBuffer getTreeMenu() {
 		Menu menu = generateTreeNode("1");
 		String activeIdsStr = UserUtils.findActiveIdsByName(parentName, currentName);
 		List<String> activeIds = Lists.newArrayList();
-		if(StringUtils.isNotEmpty(activeIdsStr)){
+		if (StringUtils.isNotEmpty(activeIdsStr)) {
 			activeIds = Arrays.asList(activeIdsStr.split(","));
 		}
-		return recursionMenu(menu,activeIds,new StringBuffer());
+		return recursionMenu(menu, activeIds, new StringBuffer());
 	}
 
-	private StringBuffer recursionMenu(Menu menu,List<String> activeIds,StringBuffer sb){
+	private StringBuffer recursionMenu(Menu menu, List<String> activeIds, StringBuffer sb) {
 		List<Menu> menus = menu.getChildren();
-		if(menus != null && !menus.isEmpty()){
+		if (menus != null && !menus.isEmpty()) {
 			sb.append("<ul class=\"sub-menu\">");
 		}
-		for(Menu item : menus){
+		for (Menu item : menus) {
 			String active = "";
 			String open = "";
 			String selected = "";
-			if (activeIds.contains(item.getId())){
+			if (activeIds.contains(item.getId())) {
 				active = "active";
 				open = "open";
 				selected = "selected";
 			}
-			sb.append("<li class=\"nav-item  "+active+" "+open+"\">");
+			sb.append("<li class=\"nav-item  " + active + " " + open + "\">");
 			String href = item.getHref();
-			if(StringUtils.isEmpty(href)){
+			if (StringUtils.isEmpty(href)) {
 				href = "javascript:;";
-			}else{
+			} else {
 				if (href.startsWith("http://")) {// 如果是互联网资源
 					href = href;
 				} else if (href.endsWith(".html") && !href.endsWith("ckfinder.html")) {//如果是静态资源并且不是ckfinder.html，直接访问不加adminPath
@@ -142,24 +145,25 @@ public class MenuTag extends TagSupport {
 					href = context.getContextPath() + Global.getAdminPath() + href;
 				}
 			}
-			sb.append("<a href=\""+href+"\" class=\"nav-link nav-toggle\">");
-			sb.append("<i class=\""+item.getIcon()+"\"></i>");
-			sb.append("<span class=\"title\">"+item.getName()+"</span>");
-			sb.append("<span class=\""+selected+"\"></span>");
-			if(item.getChildren() != null && !item.getChildren().isEmpty()){
-				sb.append("<span class=\"arrow "+open+"\"></span>");
+			sb.append("<a href=\"" + href + "\" target=\"" + item.getTarget() + "\" class=\"nav-link nav-toggle\">");
+			sb.append("<i class=\"" + item.getIcon() + "\"></i>");
+			sb.append("<span class=\"title\">" + item.getName() + "</span>");
+			sb.append("<span class=\"" + selected + "\"></span>");
+			if (item.getChildren() != null && !item.getChildren().isEmpty()) {
+				sb.append("<span class=\"arrow " + open + "\"></span>");
 			}
 			sb.append("</a>");
-			recursionMenu(item,activeIds,sb);
+			recursionMenu(item, activeIds, sb);
 			sb.append("</li>");
 
 		}
 
-		if(menus != null && !menus.isEmpty()){
+		if (menus != null && !menus.isEmpty()) {
 			sb.append("</ul>");
 		}
 		return sb;
 	}
+
 	private static String getChildOfTree(Menu parent, int level, List<Menu> menuList) {
 
 		StringBuffer menuString = new StringBuffer();
@@ -215,11 +219,10 @@ public class MenuTag extends TagSupport {
 	}
 
 	/**
-	 *
 	 * @param nodeId
 	 * @return
 	 */
-	public Menu getNodeById(String nodeId){
+	public Menu getNodeById(String nodeId) {
 		List<Menu> menuList = UserUtils.getMenuList();
 		Menu menu = new Menu();
 		for (Menu item : menuList) {
@@ -232,15 +235,14 @@ public class MenuTag extends TagSupport {
 	}
 
 	/**
-	 *
 	 * @param nodeId
 	 * @return
 	 */
-	public List<Menu> getChildrenNodeById(String nodeId){
+	public List<Menu> getChildrenNodeById(String nodeId) {
 		List<Menu> childrenMenus = new ArrayList<Menu>();
 		List<Menu> menuList = UserUtils.getMenuList();
 		for (Menu item : menuList) {
-			if(nodeId.equals(item.getParentId()) && "1".equals(item.getIsShow())){
+			if (nodeId.equals(item.getParentId()) && "1".equals(item.getIsShow())) {
 				childrenMenus.add(item);
 			}
 		}
@@ -249,10 +251,11 @@ public class MenuTag extends TagSupport {
 
 	/**
 	 * 递归生成Tree结构数据
+	 *
 	 * @param rootId
 	 * @return
 	 */
-	public Menu generateTreeNode(String rootId){
+	public Menu generateTreeNode(String rootId) {
 		Menu root = this.getNodeById(rootId);
 		List<Menu> childrenTreeNode = this.getChildrenNodeById(rootId);
 		root.getChildren().clear();
