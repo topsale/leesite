@@ -17,12 +17,17 @@
 package com.funtl.leesite.modules.sys.listener;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
 
+import com.funtl.leesite.common.utils.ExecutorUtils;
 import com.funtl.leesite.modules.sys.service.SystemService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.context.WebApplicationContext;
 
 public class WebContextListener extends org.springframework.web.context.ContextLoaderListener {
+	private static final Logger logger = LoggerFactory.getLogger(WebContextListener.class);
 
 	@Override
 	public WebApplicationContext initWebApplicationContext(ServletContext servletContext) {
@@ -30,5 +35,13 @@ public class WebContextListener extends org.springframework.web.context.ContextL
 			return null;
 		}
 		return super.initWebApplicationContext(servletContext);
+	}
+
+	@Override
+	public void contextDestroyed(ServletContextEvent event) {
+		// TODO 容器销毁时调用
+		ExecutorUtils.getCachedThreadPool().shutdown();
+		logger.debug("CachedThreadPool is stop ...");
+		super.contextDestroyed(event);
 	}
 }

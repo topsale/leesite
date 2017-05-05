@@ -86,6 +86,7 @@ public class ConfigSmsController extends BaseController {
 		} else {//新增表单保存
 			configSmsService.save(configSms);//保存
 		}
+
 		addMessage(redirectAttributes, "保存短信配置成功");
 		return "redirect:" + Global.getAdminPath() + "/config/configSms/form?id=1";
 	}
@@ -112,6 +113,24 @@ public class ConfigSmsController extends BaseController {
 		}
 
 		String result = smsUtils.sendTest(configSms.getTestNumber());
+
+		// 测试短信通知
+//		Map<String, String> param = Maps.newHashMap();
+//		param.put("name", "鲁斯菲尔");
+//		param.put("username", "Lusifer");
+//		param.put("userpass", "123456");
+//		String result = smsUtils.sendNotify("SMS_47935242", param, configSms.getTestNumber());
+
+		// 测试短信验证码
+//		String result = smsUtils.sendValidate(configSms.getTestNumber(), "SMS_47950113", null);
+//		try {
+//			// 等待 20 秒，触发短信验证码消费者
+//			Thread.sleep(20 * 1000);
+			// 消费短信验证码
+//		    smsUtils.removeValidate(configSms.getTestNumber());
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 		if ("OK".equals(result)) {
 			addMessage(redirectAttributes, "短信发送成功");

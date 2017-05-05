@@ -11,7 +11,7 @@
 <head>
     <title>${fns:getConfig('productName')} | 首页</title>
     <meta name="decorator" content="default"/>
-  <%--  <meta http-equiv="refresh" content="0; url=${ctx}/sys/user/info" />--%>
+    <meta http-equiv="refresh" content="0; url=${ctx}/sys/user/info" />
 </head>
 
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">

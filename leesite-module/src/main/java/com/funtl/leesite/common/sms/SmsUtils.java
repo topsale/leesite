@@ -1,7 +1,10 @@
 package com.funtl.leesite.common.sms;
 
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
 
 import com.aliyun.mns.client.CloudAccount;
 import com.aliyun.mns.client.CloudTopic;
@@ -11,10 +14,19 @@ import com.aliyun.mns.model.BatchSmsAttributes;
 import com.aliyun.mns.model.MessageAttributes;
 import com.aliyun.mns.model.RawTopicMessage;
 import com.aliyun.mns.model.TopicMessage;
+import com.funtl.leesite.common.sms.consumer.SmsValidateEventPutCacheHandler;
+import com.funtl.leesite.common.sms.consumer.SmsValidateEventRemoveCacheHandler;
+import com.funtl.leesite.common.sms.publisher.SmsValidateEvent;
+import com.funtl.leesite.common.sms.publisher.SmsValidateEventFactory;
+import com.funtl.leesite.common.sms.publisher.SmsValidateEventPublisher;
+import com.funtl.leesite.common.utils.CacheUtils;
+import com.funtl.leesite.common.utils.ExecutorUtils;
 import com.funtl.leesite.common.utils.SpringContextHolder;
 import com.funtl.leesite.modules.config.entity.ConfigSms;
 import com.funtl.leesite.modules.config.entity.ConfigSmsTemplate;
 import com.funtl.leesite.modules.config.service.ConfigSmsService;
+import com.lmax.disruptor.RingBuffer;
+import com.lmax.disruptor.dsl.Disruptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,9 +48,16 @@ public class SmsUtils {
 	private CloudTopic topic;
 	private RawTopicMessage msg;
 
+	// 短信验证码生产消费
+	private static final int BUFFER_SIZE = 1024;
+	private ExecutorService executor;
+	private SmsValidateEventFactory factory = new SmsValidateEventFactory();
+
 	private void initParams() {
 		configSms = configSmsService.get("1");
 		configSmsTemplates = configSms.getConfigSmsTemplateList();
+
+		executor = ExecutorUtils.getCachedThreadPool();
 
 		/**
 		 * Step 1. 获取主题引用
@@ -170,6 +189,84 @@ public class SmsUtils {
 	 * @return
 	 */
 	public String sendValidate(String phoneNumber, String templateCode, Map<String, String> templateParamKeyValue) {
-		return "OK";
+		try {
+			initParams();
+
+			MessageAttributes messageAttributes = new MessageAttributes();
+			BatchSmsAttributes batchSmsAttributes = new BatchSmsAttributes();
+			batchSmsAttributes.setFreeSignName(configSms.getSmsSignName());
+			batchSmsAttributes.setTemplateCode(templateCode);
+
+			BatchSmsAttributes.SmsReceiverParams smsReceiverParams = new BatchSmsAttributes.SmsReceiverParams();
+			// 加入验证码参数
+			String code = getRandomForSix();
+			smsReceiverParams.setParam("code", code);
+			if (templateParamKeyValue != null && templateParamKeyValue.size() > 0) {
+				for (Map.Entry<String, String> entry : templateParamKeyValue.entrySet()) {
+					smsReceiverParams.setParam(entry.getKey(), entry.getValue());
+				}
+			}
+
+			batchSmsAttributes.addSmsReceiver(phoneNumber, smsReceiverParams);
+			messageAttributes.setBatchSmsAttributes(batchSmsAttributes);
+
+			TopicMessage ret = topic.publishMessage(msg, messageAttributes);
+			logger.debug("MessageId: {}", ret.getMessageId());
+			logger.debug("MessageMD5: {}", ret.getMessageBodyMD5());
+
+			// 生产者准备
+			Disruptor<SmsValidateEvent> disruptor = new Disruptor<>(factory, BUFFER_SIZE, executor);
+			disruptor.handleEventsWith(new SmsValidateEventPutCacheHandler());
+			disruptor.start();
+
+			RingBuffer<SmsValidateEvent> ringBuffer = disruptor.getRingBuffer();
+			SmsValidateEventPublisher publisher = new SmsValidateEventPublisher(ringBuffer);
+			String sendString = phoneNumber + "," + code;
+			ByteBuffer sendBuffer = ByteBuffer.wrap(sendString.getBytes(StandardCharsets.UTF_16BE));
+			publisher.onData(sendBuffer);
+
+			disruptor.shutdown();
+
+			return "OK";
+		} catch (ServiceException se) {
+			logger.error(se.getErrorCode() + se.getRequestId());
+			logger.error(se.getMessage());
+			se.printStackTrace();
+			return se.getMessage();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return e.getMessage();
+		} finally {
+			client.close();
+		}
+	}
+
+	/**
+	 * 删除验证码
+	 * @param phoneNumber
+	 */
+	public void removeValidate(String phoneNumber) {
+		// 消费者准备
+		Disruptor<SmsValidateEvent> disruptor = new Disruptor<>(factory, BUFFER_SIZE, executor);
+		disruptor.handleEventsWith(new SmsValidateEventRemoveCacheHandler());
+		disruptor.start();
+
+		RingBuffer<SmsValidateEvent> ringBuffer = disruptor.getRingBuffer();
+		SmsValidateEventPublisher publisher = new SmsValidateEventPublisher(ringBuffer);
+		String sendString = phoneNumber + "," + CacheUtils.get("smsCache", phoneNumber);
+		ByteBuffer sendBuffer = ByteBuffer.wrap(sendString.getBytes(StandardCharsets.UTF_16BE));
+		publisher.onData(sendBuffer);
+
+		disruptor.shutdown();
+	}
+
+	/**
+	 * 获取一个6位随机数 <br />
+	 * 从100000 ~ 999999
+	 *
+	 * @return
+	 */
+	private String getRandomForSix() {
+		return String.valueOf(100000 + (int) (Math.random() * 899999));
 	}
 }
