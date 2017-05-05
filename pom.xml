@@ -11,6 +11,11 @@
     <description>LeeSite Build</description>
     <url>https://github.com/topsale/leesite</url>
 
+    <scm>
+        <url>https://github.com/topsale/leesite</url>
+        <developerConnection>scm:git:ssh://git@github.com:topsale/leesite.git</developerConnection>
+    </scm>
+
     <organization>
         <name>深圳市鲁斯菲尔科技有限公司</name>
         <url>http://www.funtl.com</url>
@@ -39,6 +44,16 @@
     <properties>
         <main.basedir>${basedir}</main.basedir>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+            </plugin>
+        </plugins>
+    </build>
 
     <modules>
 		<module>leesite-dependencies</module>
