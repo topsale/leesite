@@ -26,9 +26,9 @@ import com.funtl.leesite.modules.cases.entity.CaseSingleTable;
 import com.funtl.leesite.modules.cases.dao.CaseSingleTableDao;
 
 /**
- * 生成示例单表Service
+ * 生成示例Service
  * @author Lusifer
- * @version 2017-05-03
+ * @version 2017-05-05
  */
 @Service
 @Transactional(readOnly = true)

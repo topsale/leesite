@@ -42,9 +42,9 @@ import com.funtl.leesite.modules.cases.entity.CaseTreeTable;
 import com.funtl.leesite.modules.cases.service.CaseTreeTableService;
 
 /**
- * 生成示例树结构Controller
+ * 生成示例Controller
  * @author Lusifer
- * @version 2017-05-03
+ * @version 2017-05-05
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cases/caseTreeTable")
@@ -66,7 +66,7 @@ public class CaseTreeTableController extends BaseController {
 	}
 	
 	/**
-	 * 生成示例树结构列表页面
+	 * 树结构列表页面
 	 */
 	@RequiresPermissions("cases:caseTreeTable:list")
 	@RequestMapping(value = {"list", ""})
@@ -77,7 +77,7 @@ public class CaseTreeTableController extends BaseController {
 	}
 
 	/**
-	 * 查看，增加，编辑生成示例树结构表单页面
+	 * 查看，增加，编辑树结构表单页面
 	 */
 	@RequiresPermissions(value={"cases:caseTreeTable:view","cases:caseTreeTable:add","cases:caseTreeTable:edit"},logical=Logical.OR)
 	@RequestMapping(value = "form")
@@ -105,7 +105,7 @@ public class CaseTreeTableController extends BaseController {
 	}
 
 	/**
-	 * 保存生成示例树结构
+	 * 保存树结构
 	 */
 	@RequiresPermissions(value={"cases:caseTreeTable:add","cases:caseTreeTable:edit"},logical=Logical.OR)
 	@RequestMapping(value = "save")
@@ -120,18 +120,18 @@ public class CaseTreeTableController extends BaseController {
 		}else{//新增表单保存
 			caseTreeTableService.save(caseTreeTable);//保存
 		}
-		addMessage(redirectAttributes, "保存生成示例树结构成功");
+		addMessage(redirectAttributes, "保存树结构成功");
 		return "redirect:"+Global.getAdminPath()+"/cases/caseTreeTable";
 	}
 	
 	/**
-	 * 删除生成示例树结构
+	 * 删除树结构
 	 */
 	@RequiresPermissions("cases:caseTreeTable:del")
 	@RequestMapping(value = "delete")
 	public String delete(CaseTreeTable caseTreeTable, RedirectAttributes redirectAttributes) {
 		caseTreeTableService.delete(caseTreeTable);
-		addMessage(redirectAttributes, "删除生成示例树结构成功");
+		addMessage(redirectAttributes, "删除树结构成功");
 		return "redirect:"+Global.getAdminPath()+"/cases/caseTreeTable";
 	}
 

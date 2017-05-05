@@ -25,15 +25,15 @@
 
 		<attribute>
 			<name>parentName</name>
-			<required>false</required>
+			<required>true</required>
 			<rtexprvalue>false</rtexprvalue>
 			<description>上级菜单名称</description>
 		</attribute>
 
 		<attribute>
 			<name>currentName</name>
-			<required>false</required>
-			<rtexprvalue>false</rtexprvalue>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
 			<description>当前菜单名称</description>
 		</attribute>
 	</tag>

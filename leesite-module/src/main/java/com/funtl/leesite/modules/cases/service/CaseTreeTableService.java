@@ -26,9 +26,9 @@ import com.funtl.leesite.modules.cases.entity.CaseTreeTable;
 import com.funtl.leesite.modules.cases.dao.CaseTreeTableDao;
 
 /**
- * 生成示例树结构Service
+ * 生成示例Service
  * @author Lusifer
- * @version 2017-05-03
+ * @version 2017-05-05
  */
 @Service
 @Transactional(readOnly = true)

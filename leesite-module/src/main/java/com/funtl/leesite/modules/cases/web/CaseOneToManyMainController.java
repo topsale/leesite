@@ -46,9 +46,9 @@ import com.funtl.leesite.modules.cases.entity.CaseOneToManyMain;
 import com.funtl.leesite.modules.cases.service.CaseOneToManyMainService;
 
 /**
- * 生成示例一对多Controller
+ * 生成示例Controller
  * @author Lusifer
- * @version 2017-05-04
+ * @version 2017-05-05
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cases/caseOneToManyMain")
@@ -70,7 +70,7 @@ public class CaseOneToManyMainController extends BaseController {
 	}
 	
 	/**
-	 * 生成示例一对多列表页面
+	 * 一对多列表页面
 	 */
 	@RequiresPermissions("cases:caseOneToManyMain:list")
 	@RequestMapping(value = {"list", ""})
@@ -81,7 +81,7 @@ public class CaseOneToManyMainController extends BaseController {
 	}
 
 	/**
-	 * 查看，增加，编辑生成示例一对多表单页面
+	 * 查看，增加，编辑一对多表单页面
 	 */
 	@RequiresPermissions(value={"cases:caseOneToManyMain:view","cases:caseOneToManyMain:add","cases:caseOneToManyMain:edit"},logical=Logical.OR)
 	@RequestMapping(value = "form")
@@ -91,7 +91,7 @@ public class CaseOneToManyMainController extends BaseController {
 	}
 
 	/**
-	 * 保存生成示例一对多
+	 * 保存一对多
 	 */
 	@RequiresPermissions(value={"cases:caseOneToManyMain:add","cases:caseOneToManyMain:edit"},logical=Logical.OR)
 	@RequestMapping(value = "save")
@@ -106,23 +106,23 @@ public class CaseOneToManyMainController extends BaseController {
 		}else{//新增表单保存
 			caseOneToManyMainService.save(caseOneToManyMain);//保存
 		}
-		addMessage(redirectAttributes, "保存生成示例一对多成功");
+		addMessage(redirectAttributes, "保存一对多成功");
 		return "redirect:"+Global.getAdminPath()+"/cases/caseOneToManyMain";
 	}
 	
 	/**
-	 * 删除生成示例一对多
+	 * 删除一对多
 	 */
 	@RequiresPermissions("cases:caseOneToManyMain:del")
 	@RequestMapping(value = "delete")
 	public String delete(CaseOneToManyMain caseOneToManyMain, RedirectAttributes redirectAttributes) {
 		caseOneToManyMainService.delete(caseOneToManyMain);
-		addMessage(redirectAttributes, "删除生成示例一对多成功");
+		addMessage(redirectAttributes, "删除一对多成功");
 		return "redirect:"+Global.getAdminPath()+"/cases/caseOneToManyMain";
 	}
 	
 	/**
-	 * 批量删除生成示例一对多
+	 * 批量删除一对多
 	 */
 	@RequiresPermissions("cases:caseOneToManyMain:del")
 	@RequestMapping(value = "deleteAll")
@@ -131,7 +131,7 @@ public class CaseOneToManyMainController extends BaseController {
 		for(String id : idArray){
 			caseOneToManyMainService.delete(caseOneToManyMainService.get(id));
 		}
-		addMessage(redirectAttributes, "删除生成示例一对多成功");
+		addMessage(redirectAttributes, "删除一对多成功");
 		return "redirect:"+Global.getAdminPath()+"/cases/caseOneToManyMain";
 	}
 	
@@ -142,12 +142,12 @@ public class CaseOneToManyMainController extends BaseController {
     @RequestMapping(value = "export", method=RequestMethod.POST)
     public String exportFile(CaseOneToManyMain caseOneToManyMain, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
-            String fileName = "生成示例一对多"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
+            String fileName = "一对多"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
             Page<CaseOneToManyMain> page = caseOneToManyMainService.findPage(new Page<CaseOneToManyMain>(request, response, -1), caseOneToManyMain);
-    		new ExportExcel("生成示例一对多", CaseOneToManyMain.class).setDataList(page.getList()).write(response, fileName).dispose();
+    		new ExportExcel("一对多", CaseOneToManyMain.class).setDataList(page.getList()).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出生成示例一对多记录失败！失败信息："+e.getMessage());
+			addMessage(redirectAttributes, "导出一对多记录失败！失败信息："+e.getMessage());
 		}
 		return "redirect:"+Global.getAdminPath()+"/cases/caseOneToManyMain";
     }
@@ -175,25 +175,25 @@ public class CaseOneToManyMainController extends BaseController {
 				}
 			}
 			if (failureNum>0){
-				failureMsg.insert(0, "，失败 "+failureNum+" 条生成示例一对多记录。");
+				failureMsg.insert(0, "，失败 "+failureNum+" 条一对多记录。");
 			}
-			addMessage(redirectAttributes, "已成功导入 "+successNum+" 条生成示例一对多记录"+failureMsg);
+			addMessage(redirectAttributes, "已成功导入 "+successNum+" 条一对多记录"+failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入生成示例一对多失败！失败信息："+e.getMessage());
+			addMessage(redirectAttributes, "导入一对多失败！失败信息："+e.getMessage());
 		}
 		return "redirect:"+Global.getAdminPath()+"/cases/caseOneToManyMain";
     }
 	
 	/**
-	 * 下载导入生成示例一对多数据模板
+	 * 下载导入一对多数据模板
 	 */
 	@RequiresPermissions("cases:caseOneToManyMain:import")
     @RequestMapping(value = "import/template")
     public String importFileTemplate(HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
-            String fileName = "生成示例一对多数据导入模板.xlsx";
+            String fileName = "一对多数据导入模板.xlsx";
     		List<CaseOneToManyMain> list = Lists.newArrayList(); 
-    		new ExportExcel("生成示例一对多数据", CaseOneToManyMain.class, 1).setDataList(list).write(response, fileName).dispose();
+    		new ExportExcel("一对多数据", CaseOneToManyMain.class, 1).setDataList(list).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息："+e.getMessage());

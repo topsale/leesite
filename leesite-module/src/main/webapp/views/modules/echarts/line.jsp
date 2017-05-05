@@ -26,7 +26,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${fns:getTopMenu()}"></t:menu>
+                <t:menu menu="${fns:getTopMenu()}" parentName="统计报表" currentName="折线图"></t:menu>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

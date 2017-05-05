@@ -34,9 +34,9 @@ import com.funtl.leesite.modules.cases.entity.CaseOneToManyThird;
 import com.funtl.leesite.modules.cases.dao.CaseOneToManyThirdDao;
 
 /**
- * 生成示例一对多Service
+ * 生成示例Service
  * @author Lusifer
- * @version 2017-05-04
+ * @version 2017-05-05
  */
 @Service
 @Transactional(readOnly = true)

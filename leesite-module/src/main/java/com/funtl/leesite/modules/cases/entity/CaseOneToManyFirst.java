@@ -22,9 +22,9 @@ import com.funtl.leesite.common.persistence.DataEntity;
 import com.funtl.leesite.common.utils.excel.annotation.ExcelField;
 
 /**
- * 生成示例一对多Entity
+ * 生成示例Entity
  * @author Lusifer
- * @version 2017-05-04
+ * @version 2017-05-05
  */
 public class CaseOneToManyFirst extends DataEntity<CaseOneToManyFirst> {
 	

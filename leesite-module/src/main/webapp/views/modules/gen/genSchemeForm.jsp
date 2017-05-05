@@ -25,7 +25,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${fns:getTopMenu()}"></t:menu>
+                <t:menu menu="${fns:getTopMenu()}" parentName="代码生成" currentName="生成方案配置"></t:menu>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
@@ -111,7 +111,7 @@
                                         </td>
                                         <td>
                                             <form:input path="functionName" htmlEscape="false" maxlength="500" class="form-control required"/>
-                                            <span class="help-inline">将设置到类描述</span>
+                                            <span class="help-inline">将设置到类描述，父级菜单名称（用于选中的父级菜单样式）</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -120,7 +120,7 @@
                                         </td>
                                         <td>
                                             <form:input path="functionNameSimple" htmlEscape="false" maxlength="500" class="form-control required"/>
-                                            <span class="help-inline">用作功能提示，如：保存“某某”成功</span>
+                                            <span class="help-inline">用作功能提示，如：保存“某某”成功，当前菜单名称（用于选中的当前菜单样式）</span>
                                         </td>
                                     </tr>
                                     <tr>

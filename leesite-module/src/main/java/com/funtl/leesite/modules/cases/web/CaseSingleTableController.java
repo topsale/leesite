@@ -46,9 +46,9 @@ import com.funtl.leesite.modules.cases.entity.CaseSingleTable;
 import com.funtl.leesite.modules.cases.service.CaseSingleTableService;
 
 /**
- * 生成示例单表Controller
+ * 生成示例Controller
  * @author Lusifer
- * @version 2017-05-03
+ * @version 2017-05-05
  */
 @Controller
 @RequestMapping(value = "${adminPath}/cases/caseSingleTable")
@@ -70,7 +70,7 @@ public class CaseSingleTableController extends BaseController {
 	}
 	
 	/**
-	 * 生成示例单表列表页面
+	 * 单表列表页面
 	 */
 	@RequiresPermissions("cases:caseSingleTable:list")
 	@RequestMapping(value = {"list", ""})
@@ -81,7 +81,7 @@ public class CaseSingleTableController extends BaseController {
 	}
 
 	/**
-	 * 查看，增加，编辑生成示例单表表单页面
+	 * 查看，增加，编辑单表表单页面
 	 */
 	@RequiresPermissions(value={"cases:caseSingleTable:view","cases:caseSingleTable:add","cases:caseSingleTable:edit"},logical=Logical.OR)
 	@RequestMapping(value = "form")
@@ -91,7 +91,7 @@ public class CaseSingleTableController extends BaseController {
 	}
 
 	/**
-	 * 保存生成示例单表
+	 * 保存单表
 	 */
 	@RequiresPermissions(value={"cases:caseSingleTable:add","cases:caseSingleTable:edit"},logical=Logical.OR)
 	@RequestMapping(value = "save")
@@ -106,23 +106,23 @@ public class CaseSingleTableController extends BaseController {
 		}else{//新增表单保存
 			caseSingleTableService.save(caseSingleTable);//保存
 		}
-		addMessage(redirectAttributes, "保存生成示例单表成功");
+		addMessage(redirectAttributes, "保存单表成功");
 		return "redirect:"+Global.getAdminPath()+"/cases/caseSingleTable";
 	}
 	
 	/**
-	 * 删除生成示例单表
+	 * 删除单表
 	 */
 	@RequiresPermissions("cases:caseSingleTable:del")
 	@RequestMapping(value = "delete")
 	public String delete(CaseSingleTable caseSingleTable, RedirectAttributes redirectAttributes) {
 		caseSingleTableService.delete(caseSingleTable);
-		addMessage(redirectAttributes, "删除生成示例单表成功");
+		addMessage(redirectAttributes, "删除单表成功");
 		return "redirect:"+Global.getAdminPath()+"/cases/caseSingleTable";
 	}
 	
 	/**
-	 * 批量删除生成示例单表
+	 * 批量删除单表
 	 */
 	@RequiresPermissions("cases:caseSingleTable:del")
 	@RequestMapping(value = "deleteAll")
@@ -131,7 +131,7 @@ public class CaseSingleTableController extends BaseController {
 		for(String id : idArray){
 			caseSingleTableService.delete(caseSingleTableService.get(id));
 		}
-		addMessage(redirectAttributes, "删除生成示例单表成功");
+		addMessage(redirectAttributes, "删除单表成功");
 		return "redirect:"+Global.getAdminPath()+"/cases/caseSingleTable";
 	}
 	
@@ -142,12 +142,12 @@ public class CaseSingleTableController extends BaseController {
     @RequestMapping(value = "export", method=RequestMethod.POST)
     public String exportFile(CaseSingleTable caseSingleTable, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
-            String fileName = "生成示例单表"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
+            String fileName = "单表"+DateUtils.getDate("yyyyMMddHHmmss")+".xlsx";
             Page<CaseSingleTable> page = caseSingleTableService.findPage(new Page<CaseSingleTable>(request, response, -1), caseSingleTable);
-    		new ExportExcel("生成示例单表", CaseSingleTable.class).setDataList(page.getList()).write(response, fileName).dispose();
+    		new ExportExcel("单表", CaseSingleTable.class).setDataList(page.getList()).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导出生成示例单表记录失败！失败信息："+e.getMessage());
+			addMessage(redirectAttributes, "导出单表记录失败！失败信息："+e.getMessage());
 		}
 		return "redirect:"+Global.getAdminPath()+"/cases/caseSingleTable";
     }
@@ -175,25 +175,25 @@ public class CaseSingleTableController extends BaseController {
 				}
 			}
 			if (failureNum>0){
-				failureMsg.insert(0, "，失败 "+failureNum+" 条生成示例单表记录。");
+				failureMsg.insert(0, "，失败 "+failureNum+" 条单表记录。");
 			}
-			addMessage(redirectAttributes, "已成功导入 "+successNum+" 条生成示例单表记录"+failureMsg);
+			addMessage(redirectAttributes, "已成功导入 "+successNum+" 条单表记录"+failureMsg);
 		} catch (Exception e) {
-			addMessage(redirectAttributes, "导入生成示例单表失败！失败信息："+e.getMessage());
+			addMessage(redirectAttributes, "导入单表失败！失败信息："+e.getMessage());
 		}
 		return "redirect:"+Global.getAdminPath()+"/cases/caseSingleTable";
     }
 	
 	/**
-	 * 下载导入生成示例单表数据模板
+	 * 下载导入单表数据模板
 	 */
 	@RequiresPermissions("cases:caseSingleTable:import")
     @RequestMapping(value = "import/template")
     public String importFileTemplate(HttpServletResponse response, RedirectAttributes redirectAttributes) {
 		try {
-            String fileName = "生成示例单表数据导入模板.xlsx";
+            String fileName = "单表数据导入模板.xlsx";
     		List<CaseSingleTable> list = Lists.newArrayList(); 
-    		new ExportExcel("生成示例单表数据", CaseSingleTable.class, 1).setDataList(list).write(response, fileName).dispose();
+    		new ExportExcel("单表数据", CaseSingleTable.class, 1).setDataList(list).write(response, fileName).dispose();
     		return null;
 		} catch (Exception e) {
 			addMessage(redirectAttributes, "导入模板下载失败！失败信息："+e.getMessage());

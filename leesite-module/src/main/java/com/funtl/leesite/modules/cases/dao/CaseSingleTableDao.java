@@ -20,9 +20,9 @@ import com.funtl.leesite.common.persistence.annotation.MyBatisDao;
 import com.funtl.leesite.modules.cases.entity.CaseSingleTable;
 
 /**
- * 生成示例单表DAO接口
+ * 生成示例DAO接口
  * @author Lusifer
- * @version 2017-05-03
+ * @version 2017-05-05
  */
 @MyBatisDao
 public interface CaseSingleTableDao extends CrudDao<CaseSingleTable> {

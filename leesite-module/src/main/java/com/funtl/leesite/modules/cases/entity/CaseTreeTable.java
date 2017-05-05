@@ -22,9 +22,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.funtl.leesite.common.persistence.TreeEntity;
 
 /**
- * 生成示例树结构Entity
+ * 生成示例Entity
  * @author Lusifer
- * @version 2017-05-03
+ * @version 2017-05-05
  */
 public class CaseTreeTable extends TreeEntity<CaseTreeTable> {
 	

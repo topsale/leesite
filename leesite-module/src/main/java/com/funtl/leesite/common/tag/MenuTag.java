@@ -16,6 +16,7 @@
 
 package com.funtl.leesite.common.tag;
 
+import com.beust.jcommander.internal.Lists;
 import com.funtl.leesite.common.config.Global;
 import com.funtl.leesite.common.utils.SpringContextHolder;
 import com.funtl.leesite.common.utils.StringUtils;
@@ -106,7 +107,11 @@ public class MenuTag extends TagSupport {
 
 	private StringBuffer getTreeMenu(){
 		Menu menu = generateTreeNode("1");
-		List<String> activeIds = Arrays.asList(UserUtils.findActiveIdsByName(parentName, currentName).split(","));
+		String activeIdsStr = UserUtils.findActiveIdsByName(parentName, currentName);
+		List<String> activeIds = Lists.newArrayList();
+		if(StringUtils.isNotEmpty(activeIdsStr)){
+			activeIds = Arrays.asList(activeIdsStr.split(","));
+		}
 		return recursionMenu(menu,activeIds,new StringBuffer());
 	}
 

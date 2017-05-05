@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-	<title>${fns:getConfig('productName')} | 生成示例树结构</title>
+	<title>${fns:getConfig('productName')} | 树结构</title>
 	<meta name="decorator" content="default"/>
 	<%@include file="/views/include/treetable.jsp" %>
 </head>
@@ -21,7 +21,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${fns:getTopMenu()}"></t:menu>
+                <t:menu menu="${fns:getTopMenu()}" parentName="生成示例" currentName="树结构"></t:menu>
             </ul>
         </div>
     </div>
@@ -33,7 +33,7 @@
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
-                                <span class="caption-subject bold font-grey-gallery uppercase"> 生成示例树结构 </span>
+                                <span class="caption-subject bold font-grey-gallery uppercase"> 树结构 </span>
                                 <span class="caption-helper"></span>
                             </div>
                             <div class="tools">
@@ -57,7 +57,7 @@
                                 <div class="col-md-12">
                                     <div class="pull-left">
 										<shiro:hasPermission name="cases:caseTreeTable:add">
-											<table:addRow url="${ctx}/cases/caseTreeTable/form" title="生成示例树结构"></table:addRow><!-- 增加按钮 -->
+											<table:addRow url="${ctx}/cases/caseTreeTable/form" title="树结构"></table:addRow><!-- 增加按钮 -->
 										</shiro:hasPermission>
                                         <button class="btn btn-default btn-sm" onclick="refresh()" title="刷新"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -82,7 +82,7 @@
 									</table>
 									<script type="text/template" id="treeTableTpl">
 										<tr id="{{row.id}}" pId="{{pid}}">
-											<td><a  href="#" onclick="openDialogView('查看生成示例树结构', '${ctx}/cases/caseTreeTable/form?id={{row.id}}','900px', '600px')">
+											<td><a  href="#" onclick="openDialogView('查看树结构', '${ctx}/cases/caseTreeTable/form?id={{row.id}}','900px', '600px')">
 												{{row.name}}
 											</a></td>
 											<td>
@@ -90,16 +90,16 @@
 											</td>
 											<td>
 											<shiro:hasPermission name="cases:caseTreeTable:view">
-												<a href="#" onclick="openDialogView('查看生成示例树结构', '${ctx}/cases/caseTreeTable/form?id={{row.id}}','900px', '600px')" class="btn btn-info btn-xs"><i class="fa fa-search-plus"></i>  查看</a>
+												<a href="#" onclick="openDialogView('查看树结构', '${ctx}/cases/caseTreeTable/form?id={{row.id}}','900px', '600px')" class="btn btn-info btn-xs"><i class="fa fa-search-plus"></i>  查看</a>
 												</shiro:hasPermission>
 											<shiro:hasPermission name="cases:caseTreeTable:edit">
-												<a href="#" onclick="openDialog('修改生成示例树结构', '${ctx}/cases/caseTreeTable/form?id={{row.id}}','900px', '600px')" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> 修改</a>
+												<a href="#" onclick="openDialog('修改树结构', '${ctx}/cases/caseTreeTable/form?id={{row.id}}','900px', '600px')" class="btn btn-success btn-xs"><i class="fa fa-edit"></i> 修改</a>
 											</shiro:hasPermission>
 											<shiro:hasPermission name="cases:caseTreeTable:del">
-												<a href="${ctx}/cases/caseTreeTable/delete?id={{row.id}}" onclick="return confirmx('确认要删除该生成示例树结构及所有子生成示例树结构吗？', this.href)" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
+												<a href="${ctx}/cases/caseTreeTable/delete?id={{row.id}}" onclick="return confirmx('确认要删除该树结构及所有子树结构吗？', this.href)" class="btn btn-danger btn-xs" ><i class="fa fa-trash"></i> 删除</a>
 											</shiro:hasPermission>
 											<shiro:hasPermission name="cases:caseTreeTable:add">
-												<a href="#" onclick="openDialog('添加下级生成示例树结构', '${ctx}/cases/caseTreeTable/form?parent.id={{row.id}}','900px', '600px')" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> 添加下级生成示例树结构</a>
+												<a href="#" onclick="openDialog('添加下级树结构', '${ctx}/cases/caseTreeTable/form?parent.id={{row.id}}','900px', '600px')" class="btn btn-primary btn-xs"><i class="fa fa-plus"></i> 添加下级树结构</a>
 											</shiro:hasPermission>
 											</td>
 										</tr>

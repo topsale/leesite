@@ -25,7 +25,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${fns:getTopMenu()}"></t:menu>
+                <t:menu menu="${fns:getTopMenu()}" parentName="系统设置" currentName="字典管理"></t:menu>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>

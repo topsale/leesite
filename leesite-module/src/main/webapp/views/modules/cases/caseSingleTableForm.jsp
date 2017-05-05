@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-	<title>${fns:getConfig('productName')} | 生成示例单表</title>
+	<title>${fns:getConfig('productName')} | 单表</title>
     <meta name="decorator" content="form"/>
 
 </head>

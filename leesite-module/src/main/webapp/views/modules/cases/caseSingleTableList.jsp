@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-	<title>${fns:getConfig('productName')} | 生成示例单表</title>
+	<title>${fns:getConfig('productName')} | 单表</title>
     <meta name="decorator" content="default"/>
 </head>
 
@@ -33,7 +33,7 @@
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
-                                <span class="caption-subject bold font-grey-gallery uppercase"> 生成示例单表 </span>
+                                <span class="caption-subject bold font-grey-gallery uppercase"> 单表 </span>
                                 <span class="caption-helper"></span>
                             </div>
                             <div class="tools">
@@ -61,10 +61,10 @@
                                 <div class="col-md-12">
                                     <div class="pull-left">
 										<shiro:hasPermission name="cases:caseSingleTable:add">
-											<table:addRow url="${ctx}/cases/caseSingleTable/form" title="生成示例单表"></table:addRow><!-- 增加按钮 -->
+											<table:addRow url="${ctx}/cases/caseSingleTable/form" title="单表"></table:addRow><!-- 增加按钮 -->
 										</shiro:hasPermission>
 										<shiro:hasPermission name="cases:caseSingleTable:edit">
-											<table:editRow url="${ctx}/cases/caseSingleTable/form" title="生成示例单表" id="contentTable"></table:editRow><!-- 编辑按钮 -->
+											<table:editRow url="${ctx}/cases/caseSingleTable/form" title="单表" id="contentTable"></table:editRow><!-- 编辑按钮 -->
 										</shiro:hasPermission>
 										<shiro:hasPermission name="cases:caseSingleTable:del">
 											<table:delRow url="${ctx}/cases/caseSingleTable/deleteAll" id="contentTable"></table:delRow><!-- 删除按钮 -->
@@ -114,7 +114,7 @@
                                                             <span></span>
                                                         </label>
 													</td>
-													<td><a  href="#" onclick="openDialogView('查看生成示例单表', '${ctx}/cases/caseSingleTable/form?id=${caseSingleTable.id}','900px', '600px')">
+													<td><a  href="#" onclick="openDialogView('查看单表', '${ctx}/cases/caseSingleTable/form?id=${caseSingleTable.id}','900px', '600px')">
 														${caseSingleTable.user.name}
 													</a></td>
 													<td>
@@ -134,13 +134,13 @@
 													</td>
 													<td>
 														<shiro:hasPermission name="cases:caseSingleTable:view">
-															<a href="#" onclick="openDialogView('查看生成示例单表', '${ctx}/cases/caseSingleTable/form?id=${caseSingleTable.id}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
+															<a href="#" onclick="openDialogView('查看单表', '${ctx}/cases/caseSingleTable/form?id=${caseSingleTable.id}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
 														</shiro:hasPermission>
 														<shiro:hasPermission name="cases:caseSingleTable:edit">
-															<a href="#" onclick="openDialog('修改生成示例单表', '${ctx}/cases/caseSingleTable/form?id=${caseSingleTable.id}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+															<a href="#" onclick="openDialog('修改单表', '${ctx}/cases/caseSingleTable/form?id=${caseSingleTable.id}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
 														</shiro:hasPermission>
 														<shiro:hasPermission name="cases:caseSingleTable:del">
-															<a href="${ctx}/cases/caseSingleTable/delete?id=${caseSingleTable.id}" onclick="return confirmx('确认要删除该生成示例单表吗？', this.href)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
+															<a href="${ctx}/cases/caseSingleTable/delete?id=${caseSingleTable.id}" onclick="return confirmx('确认要删除该单表吗？', this.href)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
 														</shiro:hasPermission>
 													</td>
 												</tr>

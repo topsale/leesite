@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-	<title>${fns:getConfig('productName')} | 生成示例树结构</title>
+	<title>${fns:getConfig('productName')} | 树结构</title>
     <meta name="decorator" content="form"/>
 </head>
 <body style="background: white;">

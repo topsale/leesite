@@ -26,9 +26,9 @@ import com.funtl.leesite.common.persistence.DataEntity;
 import com.funtl.leesite.common.utils.excel.annotation.ExcelField;
 
 /**
- * 生成示例单表Entity
+ * 生成示例Entity
  * @author Lusifer
- * @version 2017-05-03
+ * @version 2017-05-05
  */
 public class CaseSingleTable extends DataEntity<CaseSingleTable> {
 	

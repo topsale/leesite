@@ -20,9 +20,9 @@ import com.funtl.leesite.common.persistence.annotation.MyBatisDao;
 import com.funtl.leesite.modules.cases.entity.CaseOneToManyFirst;
 
 /**
- * 生成示例一对多DAO接口
+ * 生成示例DAO接口
  * @author Lusifer
- * @version 2017-05-04
+ * @version 2017-05-05
  */
 @MyBatisDao
 public interface CaseOneToManyFirstDao extends CrudDao<CaseOneToManyFirst> {

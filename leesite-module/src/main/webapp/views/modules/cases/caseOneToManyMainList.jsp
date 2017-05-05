@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-	<title>${fns:getConfig('productName')} | 生成示例一对多</title>
+	<title>${fns:getConfig('productName')} | 一对多</title>
     <meta name="decorator" content="default"/>
 </head>
 
@@ -21,7 +21,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${fns:getTopMenu()}"></t:menu>
+                <t:menu menu="${fns:getTopMenu()}" parentName="生成示例" currentName="一对多"></t:menu>
             </ul>
         </div>
     </div>
@@ -33,7 +33,7 @@
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
-                                <span class="caption-subject bold font-grey-gallery uppercase"> 生成示例一对多 </span>
+                                <span class="caption-subject bold font-grey-gallery uppercase"> 一对多 </span>
                                 <span class="caption-helper"></span>
                             </div>
                             <div class="tools">
@@ -70,10 +70,10 @@
                                 <div class="col-md-12">
                                     <div class="pull-left">
 										<shiro:hasPermission name="cases:caseOneToManyMain:add">
-											<table:addRow url="${ctx}/cases/caseOneToManyMain/form" title="生成示例一对多"></table:addRow><!-- 增加按钮 -->
+											<table:addRow url="${ctx}/cases/caseOneToManyMain/form" title="一对多"></table:addRow><!-- 增加按钮 -->
 										</shiro:hasPermission>
 										<shiro:hasPermission name="cases:caseOneToManyMain:edit">
-											<table:editRow url="${ctx}/cases/caseOneToManyMain/form" title="生成示例一对多" id="contentTable"></table:editRow><!-- 编辑按钮 -->
+											<table:editRow url="${ctx}/cases/caseOneToManyMain/form" title="一对多" id="contentTable"></table:editRow><!-- 编辑按钮 -->
 										</shiro:hasPermission>
 										<shiro:hasPermission name="cases:caseOneToManyMain:del">
 											<table:delRow url="${ctx}/cases/caseOneToManyMain/deleteAll" id="contentTable"></table:delRow><!-- 删除按钮 -->
@@ -124,7 +124,7 @@
                                                             <span></span>
                                                         </label>
 													</td>
-													<td><a  href="#" onclick="openDialogView('查看生成示例一对多', '${ctx}/cases/caseOneToManyMain/form?id=${caseOneToManyMain.id}','900px', '600px')">
+													<td><a  href="#" onclick="openDialogView('查看一对多', '${ctx}/cases/caseOneToManyMain/form?id=${caseOneToManyMain.id}','900px', '600px')">
 														${caseOneToManyMain.user.name}
 													</a></td>
 													<td>
@@ -147,13 +147,13 @@
 													</td>
 													<td>
 														<shiro:hasPermission name="cases:caseOneToManyMain:view">
-															<a href="#" onclick="openDialogView('查看生成示例一对多', '${ctx}/cases/caseOneToManyMain/form?id=${caseOneToManyMain.id}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
+															<a href="#" onclick="openDialogView('查看一对多', '${ctx}/cases/caseOneToManyMain/form?id=${caseOneToManyMain.id}','900px', '600px')" class="btn btn-info btn-xs" ><i class="fa fa-search-plus"></i> 查看</a>
 														</shiro:hasPermission>
 														<shiro:hasPermission name="cases:caseOneToManyMain:edit">
-															<a href="#" onclick="openDialog('修改生成示例一对多', '${ctx}/cases/caseOneToManyMain/form?id=${caseOneToManyMain.id}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
+															<a href="#" onclick="openDialog('修改一对多', '${ctx}/cases/caseOneToManyMain/form?id=${caseOneToManyMain.id}','900px', '600px')" class="btn btn-success btn-xs" ><i class="fa fa-edit"></i> 修改</a>
 														</shiro:hasPermission>
 														<shiro:hasPermission name="cases:caseOneToManyMain:del">
-															<a href="${ctx}/cases/caseOneToManyMain/delete?id=${caseOneToManyMain.id}" onclick="return confirmx('确认要删除该生成示例一对多吗？', this.href)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
+															<a href="${ctx}/cases/caseOneToManyMain/delete?id=${caseOneToManyMain.id}" onclick="return confirmx('确认要删除该一对多吗？', this.href)" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> 删除</a>
 														</shiro:hasPermission>
 													</td>
 												</tr>
