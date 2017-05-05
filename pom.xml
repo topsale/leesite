@@ -43,6 +43,7 @@
     <modules>
 		<module>leesite-dependencies</module>
         <module>leesite-parent</module>
+        <module>leesite-database</module>
         <module>leesite-module</module>
 	</modules>
 </project>

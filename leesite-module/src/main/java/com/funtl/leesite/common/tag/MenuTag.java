@@ -145,7 +145,9 @@ public class MenuTag extends TagSupport {
 					href = context.getContextPath() + Global.getAdminPath() + href;
 				}
 			}
-			sb.append("<a href=\"" + href + "\" target=\"" + item.getTarget() + "\" class=\"nav-link nav-toggle\">");
+
+			String target = item.getTarget() == null ? "" : item.getTarget();
+			sb.append("<a href=\"" + href + "\" target=\"" + target + "\" class=\"nav-link nav-toggle\">");
 			sb.append("<i class=\"" + item.getIcon() + "\"></i>");
 			sb.append("<span class=\"title\">" + item.getName() + "</span>");
 			sb.append("<span class=\"" + selected + "\"></span>");
