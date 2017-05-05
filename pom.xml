@@ -13,7 +13,7 @@
 
     <scm>
         <url>https://github.com/topsale/leesite</url>
-        <developerConnection>scm:git:ssh://git@github.com:topsale/leesite.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@github.com/topsale/leesite.git</developerConnection>
     </scm>
 
     <organization>
