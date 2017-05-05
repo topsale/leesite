@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.funtl.leesite</groupId>
+        <artifactId>leesite-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../leesite-parent</relativePath>
+    </parent>
+
+    <artifactId>leesite-database</artifactId>
+    <packaging>jar</packaging>
+
+    <name>leesite-database</name>
+    <description>LeeSite Database</description>
+    <url>https://github.com/topsale/leesite</url>
+
+    <organization>
+        <name>深圳市鲁斯菲尔科技有限公司</name>
+        <url>http://www.funtl.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>lusifer</id>
+            <name>Lusifer</name>
+            <email>lusifer at tssup.com</email>
+            <organization>深圳市鲁斯菲尔科技有限公司</organization>
+            <organizationUrl>http://www.funtl.com</organizationUrl>
+            <roles>
+                <role>CTO</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+        <main.basedir>${basedir}/..</main.basedir>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>init-db</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.dbunit</groupId>
+                    <artifactId>dbunit</artifactId>
+                    <version>2.4.8</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi</artifactId>
+                    <version>3.2-FINAL</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <configuration>
+                            <target>
+                                <property name="dbunit.datatype" value="org.dbunit.ext.mysql.MySqlDataTypeFactory" />
+                                <property file="db-init.properties"/>
+                                <sql
+                                        driver="${jdbc.driver}"
+                                        url="${jdbc.url}"
+                                        userid="${jdbc.username}"
+                                        password="${jdbc.password}"
+                                        onerror="continue"
+                                        encoding="UTF-8">
+                                    <classpath refid="maven.test.classpath"/>
+                                    <transaction src="db/init/leesite_${jdbc.type}.sql"/>
+                                </sql>
+
+                                <taskdef name="dbunit" classname="org.dbunit.ant.DbUnitTask" classpathref="maven.test.classpath"/>
+                                <dbunit
+                                        driver="${jdbc.driver}"
+                                        url="${jdbc.url}"
+                                        userid="${jdbc.username}"
+                                        password="${jdbc.password}">
+                                    <dbconfig>
+                                        <property name="datatypeFactory" value="${dbunit.datatype}"/>
+                                    </dbconfig>
+                                    <classpath refid="maven.test.classpath"/>
+                                    <operation type="INSERT" src="db/init/leesite_data.xls" format="xls" transaction="true"/>
+                                </dbunit>
+                            </target>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
