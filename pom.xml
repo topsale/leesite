@@ -46,6 +46,19 @@
         <main.basedir>${basedir}</main.basedir>
     </properties>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Nexus Snapshot</name>
+            <url>http://192.168.0.254:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Releases</name>
+            <url>http://192.168.0.254:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -56,10 +69,18 @@
         </plugins>
     </build>
 
-    <modules>
-		<module>leesite-dependencies</module>
-        <module>leesite-parent</module>
-        <module>leesite-database</module>
-        <module>leesite-module</module>
-	</modules>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>leesite-dependencies</module>
+                <module>leesite-parent</module>
+                <module>leesite-database</module>
+                <module>leesite-module</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>

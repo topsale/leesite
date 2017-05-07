@@ -36,6 +36,19 @@
         </developer>
     </developers>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Nexus Snapshot</name>
+            <url>http://192.168.0.254:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Releases</name>
+            <url>http://192.168.0.254:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <apache-ant.version>1.9.7</apache-ant.version>
         <apache-poi.version>3.15</apache-poi.version>
