@@ -55,5 +55,34 @@ Root 项目，负责整体构建和模块组装
 ### leesite-database
 依赖 leesite-parent 模块，数据库初始化
 
+## Maven overlays
+
+将 LeeSite 作为框架依赖到您的项目中：
+
+```xml
+<dependencies>
+	<dependency>
+		<groupId>com.funtl.leesite</groupId>
+		<artifactId>leesite-dependencies</artifactId>
+		<version>${leesite.version}</version>
+		<type>pom</type>
+		<scope>import</scope>
+	</dependency>
+	<dependency>
+		<groupId>com.funtl.leesite</groupId>
+		<artifactId>leesite-module</artifactId>
+		<version>${leesite.version}</version>
+		<type>war</type>
+	</dependency>
+	<dependency>
+		<groupId>com.funtl.leesite</groupId>
+		<artifactId>leesite-module</artifactId>
+		<version>${leesite.version}</version>
+		<type>jar</type>
+		<classifier>classes</classifier>
+	</dependency>
+</dependencies>
+```
+
 ## License
 LeeSite is Open Source software released under the [Apache 2.0 license.](http://www.apache.org/licenses/LICENSE-2.0.html)

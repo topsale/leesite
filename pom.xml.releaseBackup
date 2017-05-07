@@ -4,7 +4,7 @@
 	
     <groupId>com.funtl.leesite</groupId>
     <artifactId>leesite-build</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 	
     <name>leesite-build</name>
@@ -14,7 +14,8 @@
     <scm>
         <url>https://github.com/topsale/leesite</url>
         <developerConnection>scm:git:ssh://git@github.com/topsale/leesite.git</developerConnection>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
 
     <organization>
         <name>深圳市鲁斯菲尔科技有限公司</name>
@@ -32,7 +33,7 @@
         <developer>
             <id>lusifer</id>
             <name>Lusifer</name>
-            <email>lusifer at tssup.com</email>
+            <email>lusifer at funtl.com</email>
             <organization>深圳市鲁斯菲尔科技有限公司</organization>
             <organizationUrl>http://www.funtl.com</organizationUrl>
             <roles>
@@ -45,6 +46,19 @@
         <main.basedir>${basedir}</main.basedir>
     </properties>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Nexus Snapshot</name>
+            <url>http://192.168.0.254:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus Releases</name>
+            <url>http://192.168.0.254:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
@@ -55,10 +69,18 @@
         </plugins>
     </build>
 
-    <modules>
-		<module>leesite-dependencies</module>
-        <module>leesite-parent</module>
-        <module>leesite-database</module>
-        <module>leesite-module</module>
-	</modules>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>leesite-dependencies</module>
+                <module>leesite-parent</module>
+                <module>leesite-database</module>
+                <module>leesite-module</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
