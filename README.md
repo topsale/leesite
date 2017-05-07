@@ -84,5 +84,9 @@ Root 项目，负责整体构建和模块组装
 </dependencies>
 ```
 
+## Maven archetype
+
+使用 [leesite-archetype-webapp](https://github.com/topsale/leesite-archetype-webapp) 生成基于 LeeSite 的 Java Web 项目骨架
+
 ## License
 LeeSite is Open Source software released under the [Apache 2.0 license.](http://www.apache.org/licenses/LICENSE-2.0.html)
