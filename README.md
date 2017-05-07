@@ -29,7 +29,7 @@ mvn clean
 ### Step 5
 启动
 
-将项目导入 IEDA，创建 Tomcat Server，启动即可
+将项目导入 IDEA，创建 Tomcat Server，启动即可
 
 登录账号：admin
 
