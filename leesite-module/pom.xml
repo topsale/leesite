@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.funtl.leesite</groupId>
         <artifactId>leesite-parent</artifactId>
-        <version>1.0.2-RELEASE</version>
+        <version>1.0.3-SNAPSHOT</version>
         <relativePath>../leesite-parent</relativePath>
     </parent>
 	
