@@ -34,7 +34,7 @@
            diskPersistent="true"
            diskExpiryThreadIntervalSeconds="600"/>
 
-    <!-- 默认缓存配置. -->
+    <!-- 短信缓存配置 -->
     <cache name="smsCache"
             maxEntriesLocalHeap="100"
             eternal="false"
