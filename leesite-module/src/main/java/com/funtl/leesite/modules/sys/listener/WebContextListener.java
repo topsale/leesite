@@ -46,7 +46,7 @@ public class WebContextListener extends org.springframework.web.context.ContextL
 		try {
 			// 平缓关闭 ExecutorService
 			ExecutorService executor = ExecutorUtils.getCachedThreadPool();
-			executor.shutdown();
+			executor.shutdownNow();
 			executor.awaitTermination(30 * 1000, TimeUnit.MILLISECONDS);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
