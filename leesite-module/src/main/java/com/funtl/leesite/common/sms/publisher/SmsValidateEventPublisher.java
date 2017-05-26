@@ -1,7 +1,5 @@
 package com.funtl.leesite.common.sms.publisher;
 
-import java.nio.ByteBuffer;
-
 import com.lmax.disruptor.EventTranslatorOneArg;
 import com.lmax.disruptor.RingBuffer;
 
@@ -16,19 +14,14 @@ public class SmsValidateEventPublisher {
 		this.ringBuffer = ringBuffer;
 	}
 
-	private static final EventTranslatorOneArg<SmsValidateEvent, ByteBuffer> TRANSLATOR = new EventTranslatorOneArg<SmsValidateEvent, ByteBuffer>() {
+	private static final EventTranslatorOneArg<SmsValidateEvent, SmsValidateEvent.Item> TRANSLATOR = new EventTranslatorOneArg<SmsValidateEvent, SmsValidateEvent.Item>() {
 		@Override
-		public void translateTo(SmsValidateEvent event, long sequence, ByteBuffer byteBuffer) {
-			String[] str = byteBuffer.asCharBuffer().toString().trim().split(",");
-			String phoneNumber = str[0];
-			String code = str[1];
-
-			event.setPhoneNumber(phoneNumber);
-			event.setCode(code);
+		public void translateTo(SmsValidateEvent event, long sequence, SmsValidateEvent.Item item) {
+			event.setItem(item);
 		}
 	};
 
-	public void onData(ByteBuffer byteBuffer) {
-		ringBuffer.publishEvent(TRANSLATOR, byteBuffer);
+	public void onData(SmsValidateEvent.Item item) {
+		ringBuffer.publishEvent(TRANSLATOR, item);
 	}
 }

@@ -1,7 +1,5 @@
 package com.funtl.leesite.common.sms;
 
-import java.nio.ByteBuffer;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -14,19 +12,14 @@ import com.aliyun.mns.model.BatchSmsAttributes;
 import com.aliyun.mns.model.MessageAttributes;
 import com.aliyun.mns.model.RawTopicMessage;
 import com.aliyun.mns.model.TopicMessage;
-import com.funtl.leesite.common.sms.consumer.SmsValidateEventPutCacheHandler;
-import com.funtl.leesite.common.sms.consumer.SmsValidateEventRemoveCacheHandler;
 import com.funtl.leesite.common.sms.publisher.SmsValidateEvent;
 import com.funtl.leesite.common.sms.publisher.SmsValidateEventFactory;
-import com.funtl.leesite.common.sms.publisher.SmsValidateEventPublisher;
 import com.funtl.leesite.common.utils.CacheUtils;
 import com.funtl.leesite.common.utils.ExecutorUtils;
 import com.funtl.leesite.common.utils.SpringContextHolder;
 import com.funtl.leesite.modules.config.entity.ConfigSms;
 import com.funtl.leesite.modules.config.entity.ConfigSmsTemplate;
 import com.funtl.leesite.modules.config.service.ConfigSmsService;
-import com.lmax.disruptor.RingBuffer;
-import com.lmax.disruptor.dsl.Disruptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -214,18 +207,12 @@ public class SmsUtils {
 			logger.debug("MessageId: {}", ret.getMessageId());
 			logger.debug("MessageMD5: {}", ret.getMessageBodyMD5());
 
-			// 生产者准备
-			Disruptor<SmsValidateEvent> disruptor = new Disruptor<>(factory, BUFFER_SIZE, executor);
-			disruptor.handleEventsWith(new SmsValidateEventPutCacheHandler());
-			disruptor.start();
-
-			RingBuffer<SmsValidateEvent> ringBuffer = disruptor.getRingBuffer();
-			SmsValidateEventPublisher publisher = new SmsValidateEventPublisher(ringBuffer);
-			String sendString = phoneNumber + "," + code;
-			ByteBuffer sendBuffer = ByteBuffer.wrap(sendString.getBytes(StandardCharsets.UTF_16BE));
-			publisher.onData(sendBuffer);
-
-			disruptor.shutdown();
+			// 生产短信验证码
+			SmsValidateEvent.Item item = new SmsValidateEvent.Item();
+			item.setPhoneNumber(phoneNumber);
+			item.setCode(code);
+			item.setType(SmsValidateEvent.Item.TYPE_PUT_CACHE);
+			SmsValidateDisruptor.getInstance().publish(item);
 
 			return "OK";
 		} catch (ServiceException se) {
@@ -246,18 +233,12 @@ public class SmsUtils {
 	 * @param phoneNumber
 	 */
 	public void removeValidate(String phoneNumber) {
-		// 消费者准备
-		Disruptor<SmsValidateEvent> disruptor = new Disruptor<>(factory, BUFFER_SIZE, executor);
-		disruptor.handleEventsWith(new SmsValidateEventRemoveCacheHandler());
-		disruptor.start();
-
-		RingBuffer<SmsValidateEvent> ringBuffer = disruptor.getRingBuffer();
-		SmsValidateEventPublisher publisher = new SmsValidateEventPublisher(ringBuffer);
-		String sendString = phoneNumber + "," + CacheUtils.get("smsCache", phoneNumber);
-		ByteBuffer sendBuffer = ByteBuffer.wrap(sendString.getBytes(StandardCharsets.UTF_16BE));
-		publisher.onData(sendBuffer);
-
-		disruptor.shutdown();
+		// 消费短信验证码
+		SmsValidateEvent.Item item = new SmsValidateEvent.Item();
+		item.setPhoneNumber(phoneNumber);
+		item.setCode(String.valueOf(CacheUtils.get("smsCache", phoneNumber)));
+		item.setType(SmsValidateEvent.Item.TYPE_REMOVE_CACHE);
+		SmsValidateDisruptor.getInstance().publish(item);
 	}
 
 	/**

@@ -1,6 +1,4 @@
-package com.lmax.disruptor.demo;
-
-import java.nio.ByteBuffer;
+package com.lmax.disruptor.demo.publisher;
 
 import com.lmax.disruptor.EventTranslatorOneArg;
 import com.lmax.disruptor.RingBuffer;
@@ -18,15 +16,18 @@ public class InParkingDataEventPublisher {
 		this.ringBuffer = ringBuffer;
 	}
 
-	private static final EventTranslatorOneArg<InParkingDataEvent, ByteBuffer> TRANSLATOR = new EventTranslatorOneArg<InParkingDataEvent, ByteBuffer>() {
+	/**
+	 * 该方法将 ringBuffer 中的消息，转换成 java 对象格式，方便消费者直接操作 Event 对象
+	 */
+	private static final EventTranslatorOneArg<InParkingDataEvent, String> TRANSLATOR = new EventTranslatorOneArg<InParkingDataEvent, String>() {
 		@Override
-		public void translateTo(InParkingDataEvent event, long sequence, ByteBuffer byteBuffer) {
-			event.setCarLicense(byteBuffer.asCharBuffer().toString());
+		public void translateTo(InParkingDataEvent event, long sequence, String carLicense) {
+			event.setCarLicense(carLicense);
 			System.out.println("Thread ID " + Thread.currentThread().getId() + " 写完一个 Event");
 		}
 	};
 
-	public void onData(ByteBuffer byteBuffer) {
-		ringBuffer.publishEvent(TRANSLATOR, byteBuffer);
+	public void onData(String carLicense) {
+		ringBuffer.publishEvent(TRANSLATOR, carLicense);
 	}
 }

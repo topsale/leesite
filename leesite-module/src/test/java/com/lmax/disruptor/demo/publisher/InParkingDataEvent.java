@@ -1,4 +1,4 @@
-package com.lmax.disruptor.demo;
+package com.lmax.disruptor.demo.publisher;
 
 /**
  * 1.定义事件

@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 
+import com.funtl.leesite.common.sms.SmsValidateDisruptor;
 import com.funtl.leesite.common.utils.ExecutorUtils;
 import com.funtl.leesite.modules.sys.service.SystemService;
 
@@ -43,6 +44,10 @@ public class WebContextListener extends org.springframework.web.context.ContextL
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
 		// TODO 容器销毁时调用
+
+		// 关闭 Disruptor
+		SmsValidateDisruptor.getInstance().shutdown();
+
 		try {
 			// 平缓关闭 ExecutorService
 			ExecutorService executor = ExecutorUtils.getCachedThreadPool();
