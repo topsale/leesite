@@ -6,10 +6,10 @@ package com.lmax.disruptor.demo;
  */
 public class TestP1C1C2C3 {
 	private static final int LOOP = 10; // 模拟 10 辆车入场
-//	private static final int LOOP = 1000000; // 模拟 1000000 辆车入场
+//	private static final int LOOP = 10000000; // 模拟 10000000 辆车入场
 
 	public static void main(String[] args) throws InterruptedException {
-//		example1();
+		example1();
 		example2();
 	}
 
@@ -32,6 +32,7 @@ public class TestP1C1C2C3 {
 			}
 		}
 
+		InParkingSingleDisruptor.getInstance().shutdown();
 		System.out.println("总耗时：" + (System.currentTimeMillis() - beginTime));
 	}
 
@@ -49,13 +50,14 @@ public class TestP1C1C2C3 {
 			String sendString = "粤B" + num;
 			InParkingMultiDisruptor.getInstance().publish(sendString);
 
-//			try {
-//				Thread.sleep(1000L);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			try {
+				Thread.sleep(1000L);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 
+		InParkingMultiDisruptor.getInstance().shutdown();
 		System.out.println("总耗时：" + (System.currentTimeMillis() - beginTime));
 	}
 }
