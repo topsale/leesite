@@ -4,7 +4,7 @@
 	
     <groupId>com.funtl.leesite</groupId>
     <artifactId>leesite-dependencies</artifactId>
-    <version>1.0.4-RELEASE</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 	
     <name>leesite-dependencies</name>

@@ -4,7 +4,7 @@
 	
     <groupId>com.funtl.leesite</groupId>
     <artifactId>leesite-build</artifactId>
-    <version>1.0.4-RELEASE</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 	
     <name>leesite-build</name>
@@ -14,7 +14,7 @@
     <scm>
         <url>https://github.com/topsale/leesite</url>
         <developerConnection>scm:git:ssh://git@github.com/topsale/leesite.git</developerConnection>
-      <tag>1.0.4-RELEASE</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <organization>
