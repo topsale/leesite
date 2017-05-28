@@ -4,7 +4,7 @@
 	
     <groupId>com.funtl.leesite</groupId>
     <artifactId>leesite-dependencies</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 	
     <name>leesite-dependencies</name>
@@ -54,6 +54,7 @@
         <apache-poi.version>3.15</apache-poi.version>
         <apache-httpclient.version>4.5.2</apache-httpclient.version>
         <apache-shiro.version>1.3.2</apache-shiro.version>
+        <alibaba-aliyun-sdk-oss.version>2.6.0</alibaba-aliyun-sdk-oss.version>
         <alibaba-aliyun-sdk-mns.version>1.1.8</alibaba-aliyun-sdk-mns.version>
         <alibaba-druid.version>1.0.27</alibaba-druid.version>
         <bitwalker.version>1.20</bitwalker.version>
@@ -89,6 +90,7 @@
         <javax-servlet-jstl.version>1.2</javax-servlet-jstl.version>
         <javax-validation-api.version>1.1.0.Final</javax-validation-api.version>
         <jedis.version>2.9.0</jedis.version>
+        <json.version>20150729</json.version>
         <taglibs.version>1.1.2</taglibs.version>
         <hyperic-sigar.version>1.6.4</hyperic-sigar.version>
         <mysql-connector-java.version>5.1.30</mysql-connector-java.version>
@@ -200,6 +202,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${alibaba-druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${alibaba-aliyun-sdk-oss.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.aliyun.mns</groupId>
@@ -613,6 +620,11 @@
                 <groupId>net.coobird</groupId>
                 <artifactId>thumbnailator</artifactId>
                 <version>${thumbnailator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.json</groupId>
+                <artifactId>json</artifactId>
+                <version>${json.version}</version>
             </dependency>
             <!-- Other End -->
         </dependencies>

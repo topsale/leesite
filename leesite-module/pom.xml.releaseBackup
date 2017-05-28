@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.funtl.leesite</groupId>
         <artifactId>leesite-parent</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.5-SNAPSHOT</version>
         <relativePath>../leesite-parent</relativePath>
     </parent>
 	
@@ -117,6 +117,10 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
         </dependency>
         <dependency>
             <groupId>com.aliyun.mns</groupId>
@@ -457,6 +461,10 @@
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
         </dependency>
         <!-- Other End -->
     </dependencies>
