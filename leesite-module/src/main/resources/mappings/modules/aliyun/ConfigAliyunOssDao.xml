@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funtl.leesite.modules.aliyun.dao.ConfigAliyunOssDao">
+    
+	<sql id="configAliyunOssColumns">
+		a.id AS "id",
+		a.oss_key AS "ossKey",
+		a.oss_secret AS "ossSecret",
+		a.bucket_name AS "bucketName",
+		a.oss_end_point AS "ossEndPoint",
+		a.auto_create_bucket AS "autoCreateBucket",
+		a.baidu_use_status AS "baiduUseStatus",
+		a.use_cdn AS "useCdn",
+		a.cdn_end_point AS "cdnEndPoint"
+	</sql>
+	
+	<sql id="configAliyunOssJoins">
+	</sql>
+	
+    
+	<select id="get" resultType="ConfigAliyunOss" >
+		SELECT 
+			<include refid="configAliyunOssColumns"/>
+		FROM config_aliyun_oss a
+		<include refid="configAliyunOssJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="ConfigAliyunOss" >
+		SELECT 
+			<include refid="configAliyunOssColumns"/>
+		FROM config_aliyun_oss a
+		<include refid="configAliyunOssJoins"/>
+		<where>
+			
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="ConfigAliyunOss" >
+		SELECT 
+			<include refid="configAliyunOssColumns"/>
+		FROM config_aliyun_oss a
+		<include refid="configAliyunOssJoins"/>
+		<where>
+			
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO config_aliyun_oss(
+			id,
+			oss_key,
+			oss_secret,
+			bucket_name,
+			oss_end_point,
+			auto_create_bucket,
+			baidu_use_status,
+			use_cdn,
+			cdn_end_point
+		) VALUES (
+			#{id},
+			#{ossKey},
+			#{ossSecret},
+			#{bucketName},
+			#{ossEndPoint},
+			#{autoCreateBucket},
+			#{baiduUseStatus},
+			#{useCdn},
+			#{cdnEndPoint}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE config_aliyun_oss SET 	
+			oss_key = #{ossKey},
+			oss_secret = #{ossSecret},
+			bucket_name = #{bucketName},
+			oss_end_point = #{ossEndPoint},
+			auto_create_bucket = #{autoCreateBucket},
+			baidu_use_status = #{baiduUseStatus},
+			use_cdn = #{useCdn},
+			cdn_end_point = #{cdnEndPoint}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!--物理删除-->
+	<update id="delete">
+		DELETE FROM config_aliyun_oss
+		WHERE id = #{id}
+	</update>
+	
+	<!--逻辑删除-->
+	<update id="deleteByLogic">
+		UPDATE config_aliyun_oss SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+	<select id="findUniqueByProperty" resultType="ConfigAliyunOss" statementType="STATEMENT">
+		select * FROM config_aliyun_oss  where ${propertyName} = '${value}'
+	</select>
+	
+</mapper>

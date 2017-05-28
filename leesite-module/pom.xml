@@ -119,6 +119,10 @@
             <artifactId>druid</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.aliyun.oss</groupId>
+            <artifactId>aliyun-sdk-oss</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.aliyun.mns</groupId>
             <artifactId>aliyun-sdk-mns</artifactId>
         </dependency>
@@ -457,6 +461,10 @@
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
         </dependency>
         <!-- Other End -->
     </dependencies>
