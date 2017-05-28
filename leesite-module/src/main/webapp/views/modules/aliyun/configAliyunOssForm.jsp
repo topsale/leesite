@@ -105,12 +105,6 @@
 											<span class="help-inline font-red">注意：请使用自定义绑定域名并以 "http://" 或 "https://" 开头，设置完成后如果不生效请尝试重启服务器</span>
 										</td>
 									</tr>
-									<tr>
-										<td class="active" style="width: 15%;"><label class="pull-right">测试：</label></td>
-										<td>
-											<sys:ueditor form="inputForm" id="test123" name="test123" type="textarea" value="" />
-										</td>
-									</tr>
 									</tbody>
 								</table>
 
