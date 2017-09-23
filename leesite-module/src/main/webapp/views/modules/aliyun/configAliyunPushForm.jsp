@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-    <title>${fns:getConfig('productName')} | 对象存储 OSS</title>
+    <title>${fns:getConfig('productName')} | 移动推送</title>
     <meta name="decorator" content="default" />
 </head>
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
@@ -24,7 +24,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${fns:getTopMenu()}" parentName="阿里云配置" currentName="对象存储 OSS"></t:menu>
+                <t:menu menu="${fns:getTopMenu()}" parentName="阿里云配置" currentName="移动推送"></t:menu>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
@@ -41,7 +41,7 @@
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
-                                <span class="caption-subject bold font-grey-gallery uppercase"> 对象存储 OSS </span>
+                                <span class="caption-subject bold font-grey-gallery uppercase"> 移动推送 </span>
                                 <span class="caption-helper"></span>
                             </div>
                             <div class="tools">
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="portlet-body">
-                            <form:form id="inputForm" modelAttribute="configAliyunOss" action="${ctx}/aliyun/configAliyunOss/save" method="post" class="form-horizontal" cssStyle="padding: 5px;">
+                            <form:form id="inputForm" modelAttribute="configAliyunPush" action="${ctx}/aliyun/configAliyunPush/save" method="post" class="form-horizontal" cssStyle="padding: 5px;">
                                 <form:hidden path="id" />
                                 <sys:message content="${message}" />
 
@@ -59,65 +59,37 @@
                                         <td class="active" style="width: 15%;"><label class="pull-right">Key：</label>
                                         </td>
                                         <td>
-                                            <form:input path="ossKey" htmlEscape="false" maxlength="64" class="form-control " />
+                                            <form:input path="accessKeyId" htmlEscape="false" maxlength="64" class="form-control " />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="active" style="width: 15%;"><label class="pull-right">Secret：</label>
                                         </td>
                                         <td>
-                                            <form:input path="ossSecret" htmlEscape="false" maxlength="64" class="form-control " />
+                                            <form:input path="accessKeySecret" htmlEscape="false" maxlength="64" class="form-control " />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="active" style="width: 15%;"><label class="pull-right">Bucket
-                                            Name：</label></td>
-                                        <td>
-                                            <form:input path="bucketName" htmlEscape="false" maxlength="100" class="form-control " />
+                                        <td class="active" style="width: 15%;"><label class="pull-right">AppKey：</label>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active" style="width: 15%;"><label class="pull-right">OSS End
-                                            Point：</label></td>
                                         <td>
-                                            <form:input path="ossEndPoint" htmlEscape="false" maxlength="100" class="form-control " />
-                                            <span class="help-inline font-red">注意：请使用自定义绑定域名并以 "http://" 或 "https://" 开头，设置完成后如果不生效请尝试重启服务器</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active" style="width: 15%;"><label class="pull-right">自动创建
-                                            Bucket：</label></td>
-                                        <td>
-                                            <form:radiobuttons path="autoCreateBucket" items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false" class="icheck " />
+                                            <form:input path="appKey" htmlEscape="false" maxlength="64" class="form-control " />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="active" style="width: 15%;">
-                                            <label class="pull-right">支持百度富文本：</label></td>
-                                        <td>
-                                            <form:radiobuttons path="baiduUseStatus" items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false" class="icheck " />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active" style="width: 15%;"><label class="pull-right">启用 CDN：</label>
+                                            <label class="pull-right">RegionId：</label>
                                         </td>
                                         <td>
-                                            <form:radiobuttons path="useCdn" items="${fns:getDictList('yes_no')}" itemLabel="label" itemValue="value" htmlEscape="false" class="icheck " />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="active" style="width: 15%;"><label class="pull-right">CDN End
-                                            Point：</label></td>
-                                        <td>
-                                            <form:input path="cdnEndPoint" htmlEscape="false" maxlength="100" class="form-control " />
-                                            <span class="help-inline font-red">注意：请使用自定义绑定域名并以 "http://" 或 "https://" 开头，设置完成后如果不生效请尝试重启服务器</span>
+                                            <form:input path="regionId" htmlEscape="false" maxlength="64" class="form-control " />
+                                            <span class="help-inline font-red">注意：目前该值固定，不用动</span>
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
 
                                 <div class="form-actions pull-right">
-                                    <shiro:hasPermission name="aliyun:configAliyunOss:edit">
+                                    <shiro:hasPermission name="aliyun:configAliyunPush:edit">
                                         <button class="btn btn-primary btn-sm" type="submit">保存</button>
                                     </shiro:hasPermission>
                                 </div>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funtl.leesite.modules.aliyun.dao.ConfigAliyunPushDao">
+
+    <sql id="configAliyunPushColumns">
+		a.id AS "id",
+		a.access_key_id AS "accessKeyId",
+		a.access_key_secret AS "accessKeySecret",
+		a.app_key AS "appKey",
+		a.region_id AS "regionId"
+	</sql>
+
+    <sql id="configAliyunPushJoins">
+    </sql>
+
+
+    <select id="get" resultType="ConfigAliyunPush">
+        SELECT
+        <include refid="configAliyunPushColumns"/>
+        FROM config_aliyun_push a
+        <include refid="configAliyunPushJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="ConfigAliyunPush">
+        SELECT
+        <include refid="configAliyunPushColumns"/>
+        FROM config_aliyun_push a
+        <include refid="configAliyunPushJoins"/>
+        <where>
+
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findAllList" resultType="ConfigAliyunPush">
+        SELECT
+        <include refid="configAliyunPushColumns"/>
+        FROM config_aliyun_push a
+        <include refid="configAliyunPushJoins"/>
+        <where>
+
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+            </otherwise>
+        </choose>
+    </select>
+
+    <insert id="insert">
+		INSERT INTO config_aliyun_push(
+			id,
+			access_key_id,
+			access_key_secret,
+			app_key,
+			region_id
+		) VALUES (
+			#{id},
+			#{accessKeyId},
+			#{accessKeySecret},
+			#{appKey},
+			#{regionId}
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE config_aliyun_push SET 	
+			access_key_id = #{accessKeyId},
+			access_key_secret = #{accessKeySecret},
+			app_key = #{appKey},
+			region_id = #{regionId}
+		WHERE id = #{id}
+	</update>
+
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM config_aliyun_push
+		WHERE id = #{id}
+	</update>
+
+    <!--逻辑删除-->
+    <update id="deleteByLogic">
+		UPDATE config_aliyun_push SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+
+
+    <!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+    <select id="findUniqueByProperty" resultType="ConfigAliyunPush" statementType="STATEMENT">
+		select * FROM config_aliyun_push  where ${propertyName} = '${value}'
+	</select>
+
+</mapper>

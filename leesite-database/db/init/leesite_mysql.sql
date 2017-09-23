@@ -2,7 +2,8 @@
 SQLyog Ultimate v12.09 (64 bit)
 MySQL - 5.7.17 : Database - leesite
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -163,7 +164,20 @@ CREATE TABLE `config_aliyun_oss` (
   `use_cdn` varchar(2) DEFAULT NULL COMMENT '启用 CDN',
   `cdn_end_point` varchar(100) DEFAULT NULL COMMENT 'CDN End Point',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='对象存储 OSS'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='对象存储 OSS';
+
+/*Table structure for table `config_aliyun_push` */
+
+DROP TABLE IF EXISTS `config_aliyun_push`;
+
+CREATE TABLE `config_aliyun_push` (
+  `id` varchar(64) NOT NULL COMMENT '编号',
+  `access_key_id` varchar(64) DEFAULT NULL COMMENT 'Key',
+  `access_key_secret` varchar(64) DEFAULT NULL COMMENT 'Secret',
+  `app_key` varchar(64) DEFAULT NULL COMMENT 'AppKey',
+  `region_id` varchar(64) DEFAULT NULL COMMENT 'RegionId',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='移动推送';
 
 /*Table structure for table `config_mail` */
 
