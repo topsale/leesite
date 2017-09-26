@@ -9,7 +9,7 @@
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-    <title>${fns:getConfig('productName')} | 移动推送</title>
+    <title>${fns:getConfig('productName')} | 移动推送 PUSH</title>
     <meta name="decorator" content="default" />
 </head>
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
@@ -24,7 +24,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${fns:getTopMenu()}" parentName="阿里云配置" currentName="移动推送"></t:menu>
+                <t:menu menu="${fns:getTopMenu()}" parentName="阿里云" currentName="移动推送 PUSH"></t:menu>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
@@ -41,7 +41,7 @@
                     <div class="portlet light">
                         <div class="portlet-title">
                             <div class="caption">
-                                <span class="caption-subject bold font-grey-gallery uppercase"> 移动推送 </span>
+                                <span class="caption-subject bold font-grey-gallery uppercase"> 移动推送 PUSH </span>
                                 <span class="caption-helper"></span>
                             </div>
                             <div class="tools">

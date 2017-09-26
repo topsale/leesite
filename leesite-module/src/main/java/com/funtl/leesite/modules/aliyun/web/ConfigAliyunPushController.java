@@ -15,12 +15,27 @@
  */
 package com.funtl.leesite.modules.aliyun.web;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.aliyuncs.push.model.v20160801.ListSummaryAppsResponse;
+import com.aliyuncs.push.model.v20160801.PushRequest;
+import com.aliyuncs.utils.ParameterHelper;
 import com.funtl.leesite.common.config.Global;
+import com.funtl.leesite.common.mapper.JsonMapper;
+import com.funtl.leesite.common.utils.DateUtils;
 import com.funtl.leesite.common.utils.MyBeanUtils;
 import com.funtl.leesite.common.utils.StringUtils;
 import com.funtl.leesite.common.web.BaseController;
 import com.funtl.leesite.modules.aliyun.entity.ConfigAliyunPush;
 import com.funtl.leesite.modules.aliyun.service.ConfigAliyunPushService;
+import com.funtl.leesite.tools.aliyun.java.sdk.push.PushApiForApp;
+import com.funtl.leesite.tools.aliyun.java.sdk.push.PushApiForPush;
+import com.funtl.leesite.tools.aliyun.java.sdk.push.PushConstant;
+import com.google.common.collect.Maps;
 
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -62,7 +77,7 @@ public class ConfigAliyunPushController extends BaseController {
 	 */
 	@RequiresPermissions(value = {"aliyun:configAliyunPush:view", "aliyun:configAliyunPush:add", "aliyun:configAliyunPush:edit"}, logical = Logical.OR)
 	@RequestMapping(value = "form")
-	public String form(ConfigAliyunPush configAliyunPush, Model model) {
+	public String form(ConfigAliyunPush configAliyunPush, Model model) throws Exception {
 		model.addAttribute("configAliyunPush", configAliyunPush);
 		return "modules/aliyun/configAliyunPushForm";
 	}
@@ -85,6 +100,122 @@ public class ConfigAliyunPushController extends BaseController {
 		}
 		addMessage(redirectAttributes, "保存移动推送成功");
 		return "redirect:" + Global.getAdminPath() + "/aliyun/configAliyunPush/form?id=1";
+	}
+
+	/**
+	 * APP概览列表
+	 *
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 */
+	@RequiresPermissions(value = "aliyun:configAliyunPush:view")
+	@RequestMapping(value = "listSummaryApps")
+	public String listSummaryApps(Model model) throws Exception {
+		PushApiForApp pushApiForApp = new PushApiForApp();
+		List<ListSummaryAppsResponse.SummaryAppInfo> summaryAppInfos = pushApiForApp.listSummaryApps();
+		model.addAttribute("summaryAppInfos", summaryAppInfos);
+		return "modules/aliyun/listSummaryApps";
+	}
+
+	/**
+	 * 推送通知
+	 *
+	 * @return
+	 */
+	@RequiresPermissions(value = "aliyun:configAliyunPush:pushNotify")
+	@RequestMapping(value = "pushNotify")
+	public String pushNotify(PushRequest pushRequest, Model model) {
+		pushRequest.setPushType(PushConstant.PushType.NOTICE);
+		pushRequest.setDeviceType(PushConstant.DeviceType.ANDROID);
+		model.addAttribute("pushRequest", pushRequest);
+		return "modules/aliyun/pushNotify";
+	}
+
+	/**
+	 * 推送消息
+	 *
+	 * @return
+	 */
+	@RequiresPermissions(value = "aliyun:configAliyunPush:pushMessage")
+	@RequestMapping(value = "pushMessage")
+	public String pushMessage(PushRequest pushRequest, Model model) {
+		pushRequest.setPushType(PushConstant.PushType.MESSAGE);
+		pushRequest.setDeviceType(PushConstant.DeviceType.ANDROID);
+		model.addAttribute("pushRequest", pushRequest);
+		return "modules/aliyun/pushMessage";
+	}
+
+	/**
+	 * 发送推送
+	 *
+	 * @param pushRequest
+	 * @param model
+	 * @param redirectAttributes
+	 * @return
+	 */
+	@RequiresPermissions(value = {"aliyun:configAliyunPush:pushNotify", "aliyun:configAliyunPush:pushMessage"})
+	@RequestMapping(value = "sendPush")
+	public String sendPush(PushRequest pushRequest, Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
+		// 发送对象为所有人
+		if (PushConstant.Target.ALL.equals(pushRequest.getTarget())) {
+			pushRequest.setTargetValue(PushConstant.Target.ALL);
+		}
+
+		pushRequest.setAndroidNotificationBarType(1); // 通知栏自定义样式0-100
+		pushRequest.setAndroidNotificationBarPriority(1); // 通知栏自定义样式0-100
+
+		pushRequest.setAndroidMusic("default"); // Android通知音乐
+
+		// 设定通知的扩展属性。(注意 : 该参数要以 json map 的格式传入,否则会解析出错)
+		boolean hasExtParameters = "on".equals(request.getParameter("hasExtParameters")) ? true : false;
+		if (hasExtParameters) {
+			String[] extParameterKeys = request.getParameterValues("extParameterKeys");
+			String[] extParameterValues = request.getParameterValues("extParameterValues");
+			if (extParameterKeys != null && extParameterKeys.length > 0 && extParameterValues != null && extParameterValues.length > 0 && extParameterKeys.length == extParameterValues.length) {
+				Map<String, String> kvMap = Maps.newHashMap();
+				for (int i = 0; i < extParameterKeys.length; i++) {
+					kvMap.put(extParameterKeys[i], extParameterValues[i]);
+				}
+				pushRequest.setAndroidExtParameters(JsonMapper.toJsonString(kvMap));
+			}
+		} else {
+			pushRequest.setAndroidExtParameters("");
+		}
+
+		// 延后推送。可选，如果不设置表示立即推送
+		if ("0".equals(pushRequest.getPushTime())) {
+			Date pushDate = new Date(System.currentTimeMillis()); // 30秒之间的时间点, 也可以设置成你指定固定时间
+			String pushTime = ParameterHelper.getISO8601Time(pushDate);
+			pushRequest.setPushTime(pushTime);
+		} else {
+			Date pushDate = DateUtils.parseDate(request.getParameter("pushDate"));
+			String pushTime = ParameterHelper.getISO8601Time(pushDate);
+			pushRequest.setPushTime(pushTime);
+		}
+
+		// 离线消息是否保存,若保存, 在推送时候，用户即使不在线，下一次上线则会收到
+		if (pushRequest.getStoreOffline()) {
+			int iExpireTime = Integer.parseInt(request.getParameter("expireTime"));
+			String expireTime = ParameterHelper.getISO8601Time(new Date(System.currentTimeMillis() + iExpireTime * 3600 * 1000)); // iExpireTime 小时后消息失效, 不会再发送
+			pushRequest.setExpireTime(expireTime);
+		} else {
+			String expireTime = ParameterHelper.getISO8601Time(new Date(System.currentTimeMillis()  + 1 * 3600 * 1000));
+			pushRequest.setExpireTime(expireTime);
+		}
+
+		// 发送
+		PushApiForPush pushApiForPush = new PushApiForPush();
+		pushApiForPush.advancedPush(pushRequest);
+
+
+		if (PushConstant.PushType.MESSAGE.equals(pushRequest.getPushType())) {
+			addMessage(redirectAttributes, "推送消息成功");
+			return "redirect:" + Global.getAdminPath() + "/aliyun/configAliyunPush/pushMessage";
+		} else {
+			addMessage(redirectAttributes, "推送通知成功");
+			return "redirect:" + Global.getAdminPath() + "/aliyun/configAliyunPush/pushNotify";
+		}
 	}
 
 }

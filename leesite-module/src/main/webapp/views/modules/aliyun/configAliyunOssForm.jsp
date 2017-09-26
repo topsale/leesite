@@ -24,7 +24,7 @@
                 <li class="heading">
                     <h3 class="uppercase">功能菜单</h3>
                 </li>
-                <t:menu menu="${fns:getTopMenu()}" parentName="阿里云配置" currentName="对象存储 OSS"></t:menu>
+                <t:menu menu="${fns:getTopMenu()}" parentName="阿里云" currentName="对象存储 OSS"></t:menu>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
