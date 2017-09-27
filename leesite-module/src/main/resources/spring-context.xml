@@ -2,10 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
-		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd"
        default-lazy-init="true">
 
     <!-- 加载配置属性文件 -->
@@ -35,9 +35,10 @@
     <task:annotation-driven scheduler="scheduler" executor="executor" proxy-target-class="true"/>
 
     <import resource="spring-context-shiro.xml"/>
-
     <import resource="spring-context-jedis.xml"/>
-
+    <import resource="spring-context-executor.xml"/>
+    <import resource="spring-context-mail.xml"/>
+    <import resource="spring-context-quartz.xml"/>
     <import resource="spring-mvc.xml"/>
 
 </beans>

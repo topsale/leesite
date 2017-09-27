@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funtl.leesite.modules.tools.dao.QrtzScheduleJobDao">
+
+    <sql id="qrtzScheduleJobColumns">
+		a.id AS "id",
+		a.job_name AS "jobName",
+		a.alias_name AS "aliasName",
+		a.job_group AS "jobGroup",
+		a.job_trigger AS "jobTrigger",
+		a.status AS "status",
+		a.cron_expression AS "cronExpression",
+		a.is_sync AS "isSync",
+		a.url AS "url",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+
+    <sql id="qrtzScheduleJobJoins">
+    </sql>
+
+
+    <select id="get" resultType="QrtzScheduleJob">
+        SELECT
+        <include refid="qrtzScheduleJobColumns"/>
+        FROM qrtz_schedule_job a
+        <include refid="qrtzScheduleJobJoins"/>
+        WHERE a.id = #{id}
+    </select>
+
+    <select id="findList" resultType="QrtzScheduleJob">
+        SELECT
+        <include refid="qrtzScheduleJobColumns"/>
+        FROM qrtz_schedule_job a
+        <include refid="qrtzScheduleJobJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+            <if test="jobName != null and jobName != ''">
+                AND a.job_name LIKE
+                <if test="dbName == 'oracle'">'%'||#{jobName}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{jobName}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{jobName},'%')</if>
+            </if>
+            <if test="aliasName != null and aliasName != ''">
+                AND a.alias_name LIKE
+                <if test="dbName == 'oracle'">'%'||#{aliasName}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{aliasName}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{aliasName},'%')</if>
+            </if>
+            <if test="jobGroup != null and jobGroup != ''">
+                AND a.job_group LIKE
+                <if test="dbName == 'oracle'">'%'||#{jobGroup}||'%'</if>
+                <if test="dbName == 'mssql'">'%'+#{jobGroup}+'%'</if>
+                <if test="dbName == 'mysql'">concat('%',#{jobGroup},'%')</if>
+            </if>
+            <if test="isSync != null and isSync != ''">
+                AND a.is_sync = #{isSync}
+            </if>
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findAllList" resultType="QrtzScheduleJob">
+        SELECT
+        <include refid="qrtzScheduleJobColumns"/>
+        FROM qrtz_schedule_job a
+        <include refid="qrtzScheduleJobJoins"/>
+        <where>
+            a.del_flag = #{DEL_FLAG_NORMAL}
+        </where>
+        <choose>
+            <when test="page !=null and page.orderBy != null and page.orderBy != ''">
+                ORDER BY ${page.orderBy}
+            </when>
+            <otherwise>
+                ORDER BY a.update_date DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <insert id="insert">
+		INSERT INTO qrtz_schedule_job(
+			id,
+			job_name,
+			alias_name,
+			job_group,
+			job_trigger,
+			status,
+			cron_expression,
+			is_sync,
+			url,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{jobName},
+			#{aliasName},
+			#{jobGroup},
+			#{jobTrigger},
+			#{status},
+			#{cronExpression},
+			#{isSync},
+			#{url},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+
+    <update id="update">
+		UPDATE qrtz_schedule_job SET 	
+			job_name = #{jobName},
+			alias_name = #{aliasName},
+			job_group = #{jobGroup},
+			job_trigger = #{jobTrigger},
+			status = #{status},
+			cron_expression = #{cronExpression},
+			is_sync = #{isSync},
+			url = #{url},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+
+
+    <!--物理删除-->
+    <update id="delete">
+		DELETE FROM qrtz_schedule_job
+		WHERE id = #{id}
+	</update>
+
+    <!--逻辑删除-->
+    <update id="deleteByLogic">
+		UPDATE qrtz_schedule_job SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+
+
+    <!-- 根据实体名称和字段名称和字段值获取唯一记录 -->
+    <select id="findUniqueByProperty" resultType="QrtzScheduleJob" statementType="STATEMENT">
+		select * FROM qrtz_schedule_job  where ${propertyName} = '${value}'
+	</select>
+
+</mapper>
